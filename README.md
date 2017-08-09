@@ -39,5 +39,5 @@ Once the project moves into development, the press release can be used as a touc
     "I never knew it was possible for everyone to come together and have
     everyone be able to contribute to one message!"
 ## Closing and Call to Action ##
-    "Head to your local host now, sign up, and start creating group messages
+    "Head to your local host now, sign up, and start archiving your AWESOME recipes
     right now!"
