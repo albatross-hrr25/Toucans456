@@ -32,12 +32,11 @@ Once the project moves into development, the press release can be used as a touc
 ## Solution ##
     Use our app solves your family legacy in one place!
 ## Quote from You ##
-    "Everyone has a voice" - Man without a voice
+    "Spend your time cooking, not rifling through your recipe bin."
 ## How to Get Started ##
     "Just go to the website, login, and start typing!"
 ## Customer Quote ##
-    "I never knew it was possible for everyone to come together and have
-    everyone be able to contribute to one message!"
+    "It's nice to have all my loose recipes in one place!"
 ## Closing and Call to Action ##
     "Head to your local host now, sign up, and start creating group messages
     right now!"
