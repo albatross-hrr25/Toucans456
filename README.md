@@ -24,10 +24,7 @@ Once the project moves into development, the press release can be used as a touc
     Anyone looking for a quick laugh while bonding with small community of
     random people.
 ## Summary ##
-    Messages typed in chat will be displayed on the screen one word at a time.
-    After 15 seconds, a document is created and then saved on the website.
-    This letter then will be automatically sent to the recipient, whose name
-    and e-mail is at the head of the letter.
+    Our recipe archiver allows users to upload and save photos of their handwritten recipes, as well as add a name and tags to each. The user can then use our search functionality to view recipes by recipe name or tag. Our purpose is to take grandmother's analogue recipes and digitize them, thereby realizing our main goal of making the world a better place.
 ## Problem ##
     The world is a diverse place.
     Getting many different people to come together and try
