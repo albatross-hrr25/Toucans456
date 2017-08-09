@@ -33,7 +33,7 @@ Once the project moves into development, the press release can be used as a touc
     That book of recipes is most likely falling apart and won't last another
     generation or two.
 ## Solution ##
-    Use our app solves your family legacy in one place!
+    Use our app to solve saving your family legacy in one place!
 ## Quote from You ##
     "Spend your time cooking, not rifling through your recipe bin."
 ## How to Get Started ##
