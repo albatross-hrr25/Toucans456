@@ -38,5 +38,5 @@ Once the project moves into development, the press release can be used as a touc
 ## Customer Quote ##
     "It's nice to have all my loose recipes in one place!"
 ## Closing and Call to Action ##
-    "Head to your local host now, sign up, and start creating group messages
+    "Head to your local host now, sign up, and start archiving your AWESOME recipes
     right now!"
