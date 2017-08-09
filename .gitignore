@@ -1,0 +1,11 @@
+Mac OSX ##
+.DS_Store
+
+## NPM ##
+node_modules/
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
