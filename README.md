@@ -24,7 +24,10 @@ Once the project moves into development, the press release can be used as a touc
     Anyone looking for a quick laugh while bonding with small community of
     random people.
 ## Summary ##
-    Our recipe archiver allows users to upload and save photos of their handwritten recipes, as well as add a name and tags to each. The user can then use our search functionality to view recipes by recipe name or tag. Our purpose is to take grandmother's analogue recipes and digitize them, thereby realizing our main goal of making the world a better place.
+    Our recipe archiver allows users to upload and save photos of their handwritten recipes,
+    as well as add a name and tags to each. The user can then use our search functionality to
+    view recipes by recipe name or tag. Our purpose is to take grandmother's analogue recipes
+    and digitize them, thereby realizing our main goal of making the world a better place.
 ## Problem ##
     Have a ton of old handmade cooking recipes passed down generations?
     That book of recipes is most likely falling apart and won't last another
