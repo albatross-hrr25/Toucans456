@@ -19,7 +19,7 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-    Collaborative Communication Composer:  Chaos Mode
+    Recipe Archive: Digitize Your Dinner
 ## Sub-Heading ##
     Anyone looking for a quick laugh while bonding with small community of
     random people.
@@ -37,7 +37,7 @@ Once the project moves into development, the press release can be used as a touc
 ## Quote from You ##
     "Spend your time cooking, not rifling through your recipe bin."
 ## How to Get Started ##
-    "Just go to the website, login, and start typing!"
+    Simply Login, add recipes and tags, and get cooking!
 ## Customer Quote ##
     "It's nice to have all my loose recipes in one place!"
 ## Closing and Call to Action ##
