@@ -26,13 +26,11 @@ Once the project moves into development, the press release can be used as a touc
 ## Summary ##
     Our recipe archiver allows users to upload and save photos of their handwritten recipes, as well as add a name and tags to each. The user can then use our search functionality to view recipes by recipe name or tag. Our purpose is to take grandmother's analogue recipes and digitize them, thereby realizing our main goal of making the world a better place.
 ## Problem ##
-    The world is a diverse place.
-    Getting many different people to come together and try
-    to work together to have their collective voices heard
-    is nearly an impossible feat. This app will let everyone have a voice.
+    Have a ton of old handmade cooking recipes passed down generations?
+    That book of recipes is most likely falling apart and won't last another
+    generation or two.
 ## Solution ##
-    Everyone is able to contribute to the letter!
-    There are no restrictions on who can participate
+    Use our app solves your family legacy in one place!
 ## Quote from You ##
     "Everyone has a voice" - Man without a voice
 ## How to Get Started ##
