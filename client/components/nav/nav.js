@@ -2,10 +2,10 @@ angular.module('app')
 
 .controller ('NavTest', function () {
   this.user = 'nav';
-  console.log(this);
+  console.log('NavTest controller has run: this is ', this);
 })
 
-.component('nav', {
+.component('navbar', {
   controller: 'NavTest',
-  templateUrl: 'nav.html',
+  templateUrl: '/components/nav/nav.html',
 })
