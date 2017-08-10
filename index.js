@@ -1,5 +1,5 @@
 var server = require('./server/routes.js');
-var port = 8000;
+var port = process.env.PORT || 8000;
 
 
 server.listen(port);
