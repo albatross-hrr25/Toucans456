@@ -24,6 +24,14 @@ var User = db.define('User', {
   username: Sequelize.STRING,
   salt: Sequelize.INTEGER,
   hash: Sequelize.STRING
-})
+});
+
+// make dummy table entry
+db.sync()
+  .then(() => User.create({
+    username: 'The Dude'
+  }));
+
+
 
 module.exports = db;
