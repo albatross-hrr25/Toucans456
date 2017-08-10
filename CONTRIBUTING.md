@@ -10,7 +10,7 @@
 And  when trying to submit
 1. git add .
 2. git commit
-3. git pull —rebase upstream master
+3. git pull —-rebase upstream master
 
 --- DEALING WITH MERGE CONFLICTS START ---
 
