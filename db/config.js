@@ -6,8 +6,6 @@ var db = new Sequelize('recipes', 'root', '', {
   dialect: 'mysql' //can be sqlite3
 });
 
-console.log('Our Database');
-
 db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
@@ -16,6 +14,16 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-
+// create dummy table
+var User = db.define('User', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  username: Sequelize.STRING,
+  salt: Sequelize.INTEGER,
+  hash: Sequelize.STRING
+})
 
 module.exports = db;
