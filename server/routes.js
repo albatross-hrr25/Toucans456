@@ -1,5 +1,6 @@
 //var bodyParser = require('body-parser');
 var express = require('express');
+var db = require('./../db/config.js')
 
 var app = express();
 app.use(express.static(__dirname + '/../client'));
