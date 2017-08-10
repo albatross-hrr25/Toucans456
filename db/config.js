@@ -14,7 +14,7 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-// create dummy table
+// create users table
 var User = db.define('User', {
   id: {
     type: Sequelize.INTEGER,
@@ -27,11 +27,16 @@ var User = db.define('User', {
 });
 
 // make dummy table entry
+// TODO: Turn this into a POST route
 db.sync()
   .then(() => User.create({
     username: 'The Dude'
   }));
 
-
+// read the dummy data
+// TODO: Turn this into a GET route
+User.findAll().then(data => {
+  console.log('findAll data: ', data[0].dataValues.username);
+});
 
 module.exports = db;
