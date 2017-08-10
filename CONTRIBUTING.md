@@ -1,14 +1,88 @@
 # Contributing
 
+## Github Worflow
+
+1. fork the repo
+2. git clone
+3. git remote add origin master (to your own branch)
+4. git remote add upstream master (to the toucan)
+
+And  when trying to submit
+1. git add .
+2. git commit
+3. git pull —-rebase upstream master
+
+--- DEALING WITH MERGE CONFLICTS START ---
+
+a. open up the files with the merge conflicts in your text editor
+b. delete the code you want to be replaced along with the ">" and "HEAD" and any extra text
+c. type in git --rebase continue
+d. continue to step 4
+
+--- DEALING WITH MERGE CONFLICTS END ---
+
+4. git push(to your own repo on github if you want to)
+4.5 OPTIONAL (git -push -f origin master (if there is a conflict))
+5. do  git pull request  as toy problems
+
+
+Useful Tips:
+
+- check logs
+git log
+git log --graph
+
+- check command history
+git reflog
+
+- reset --hard xxx
+(the xxx will be the commit ID u get from reflog)
+
+## Remote Server Workflow
+
+---Set Up---
+
+1. TO ADD REMOTE LIVE:
+   in terminal,  under your toucan root directory
+   type:  git remote add live ssh://(your username)@107.170.212.197/var/toucan/site.git
+   password:  the one you create when you generated your ssh
+
+---After merging pull request----
+
+2. TO DEPLOY:   
+   type: git push live master
+
+## Open Remote Server
+
+
+your username : cz, sm, ss  
+your password : cz, sm ,ss
+
+1. open terminal, login to remote server by doing this:
+       type:  ssh (your username)@107.170.212.197   
+       type password: (your password)
+2. mysql server will be running automatically in the background
+   if you want to go into mysql database:
+   type: mysql -u root -p
+   password for now is blank, just hit enter
+
+(WE ARE GOING TO CHANGE THE PASSWORD IN AN ENVIRONMENT VARIABLE FOR SECURITY MEASURES LATER)
+
+3. to run server.js
+   cd + ls  multiple times  until you find the var folder
+   cd /var/toucan/Toucan456
+   npm start
+
+4. if nothing is broken:
+   you should be able to open in your browser :
+   107.170.212.197:8000
+
+
+
+
 ## General Workflow
 
 1. Fork the repo
-1. Cut a namespaced feature branch from master
-  - bug/...
-  - feat/...
-  - test/...
-  - doc/...
-  - refactor/...
 1. Make commits to your feature branch. Prefix each commit like so:
   - (feat) Added a new feature
   - (fix) Fixed inconsistent tests [Fixes #0]
