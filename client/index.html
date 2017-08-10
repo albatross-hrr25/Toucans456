@@ -10,12 +10,16 @@
   <title>test</title>
 </head>
 
-<body ng-app="app">
-  <h1>test</h1>
-  <p> hey </p>
-  <greet-user></greet-user>
+<body>
+  <app ng-app="app">
+    <h1>This ought to disappear when things are properly rendered</h1>
+  </app>
+
   <!-- angular module file -->
-  <script src="/components/app.js"></script>
+  <script src="/components/app/app.js"></script>
+  <script src="/components/primary_recipe/primaryRecipe.js"></script>
+  <script src="/components/inventory/inventory.js"></script>
+  <script src="/components/nav/nav.js"></script>
 </body>
 
 </html>
