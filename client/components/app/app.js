@@ -1,10 +1,11 @@
 angular.module('app', [])
-.controller ('GreetUserController', function () {
-  this.user = 'world';
-  console.log(this);
+
+.component('app', {
+  controller: 'ChangeLater',
+  templateUrl: '/components/app/app.html',
 })
 
-.component('greetUser', {
-  controller: 'GreetUserController',
-  templateUrl: '../templates/helloworld.html',
-  });
+.controller ('ChangeLater', function () {
+
+  console.log('ChangeLater is running: this is ', this);
+})
