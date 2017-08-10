@@ -1,4 +1,5 @@
 //var bodyParser = require('body-parser');
+var db = require('../db/config');
 var express = require('express');
 var db = require('./../db/config.js')
 
