@@ -2,55 +2,65 @@
 
 ## Github Worflow
 
-1. fork the repo
-2. git clone
-3. git remote add origin master (to your own branch)
-4. git remote add upstream master (to the toucan)
+--- SET UP ---
 
-And  when trying to submit
+0.1 fork the repo
+0.2 git clone
+0.3 git remote add origin master (to your own branch)
+0.4 git remote add upstream master (to the toucan)
+
+--- SUBMITTING CHANGES TO THE REPO ---
+
 1. git add .
 2. git commit
-3. git pull —-rebase upstream master
+3. git pull --rebase upstream master
 
---- DEALING WITH MERGE CONFLICTS START ---
+-- if there are merge conflicts --
 
-a. open up the files with the merge conflicts in your text editor
-b. delete the code you want to be replaced along with the ">" and "HEAD" and any extra text
-c. type in git --rebase continue
-d. continue to step 4
+3.1 open up the files with the merge conflicts in your text editor
+3.2 delete the code you want to be replaced along with the ">" and "HEAD" and any extra text
+3.3 type: git --rebase continue
+3.4 continue to step 4 if there are no more conflicts
 
---- DEALING WITH MERGE CONFLICTS END ---
+-- merge conflicts end --
 
 4. git push(to your own repo on github if you want to)
 4.5 OPTIONAL (git -push -f origin master (if there is a conflict))
 5. do  git pull request  as toy problems
 
 
-Useful Tips:
+## Github Tips
 
-- check logs
+-- check logs --
+
 git log
 git log --graph
 
-- check command history
+-- check command history --
+
 git reflog
 
+-- reset to a previous commit --
+
 - reset --hard xxx
-(the xxx will be the commit ID u get from reflog)
+(the xxx will be the commit ID you get from reflog)
 
 ## Remote Server Workflow
 
----Set Up---
+---SET UP---
 
-1. TO ADD REMOTE LIVE:
+0.1 to add a remote live:
    in terminal,  under your toucan root directory
-   type:  git remote add live ssh://(your username)@107.170.212.197/var/toucan/site.git
-   password:  the one you create when you generated your ssh
+   type:
 
----After merging pull request----
+   git remote add live ssh://(your username)@107.170.212.197/var/toucan/site.git
 
-2. TO DEPLOY:   
-   type: git push live master
+   password:  (the one you created when you generated your ssh)
+
+--- DEPLOY TO REMOTE SERVER ---
+
+1. follow: steps 1-5 in GitHub Workflow
+2. type: git push live master
 
 ## Open Remote Server
 
@@ -58,26 +68,27 @@ git reflog
 your username : cz, sm, ss  
 your password : cz, sm ,ss
 
-1. open terminal, login to remote server by doing this:
+1. open terminal, login to remote server by:
        type:  ssh (your username)@107.170.212.197   
-       type password: (your password)
+       password: (your password)
 2. mysql server will be running automatically in the background
-   if you want to go into mysql database:
+
+   if you want to go into mysql database
    type: mysql -u root -p
    password for now is blank, just hit enter
 
 (WE ARE GOING TO CHANGE THE PASSWORD IN AN ENVIRONMENT VARIABLE FOR SECURITY MEASURES LATER)
 
-3. to run server.js
-   cd + ls  multiple times  until you find the var folder
+3. to run server.js:
+
+   cd + ls multiple times until you find the var folder
    cd /var/toucan/Toucan456
    npm start
 
 4. if nothing is broken:
-   you should be able to open in your browser :
+   you should be able to open this address in your browser:
+
    107.170.212.197:8000
-
-
 
 
 ## General Workflow
