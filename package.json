@@ -4,7 +4,8 @@
   "description": "Let's write a letter...",
   "main": "index.js",
   "scripts": {
-    "start": "grunt upload",
+    "test": "mocha",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "repository": {
@@ -20,12 +21,16 @@
   "dependencies": {
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
+    "chai": "^4.1.1",
     "express": "^4.15.4",
     "fs": "0.0.1-security",
     "grunt-shell": "^2.1.0",
+    "mocha": "^3.5.0",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
-    "sequelize": "^4.4.2"
+    "really-need": "^1.9.2",
+    "sequelize": "^4.4.2",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
