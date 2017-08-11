@@ -16,15 +16,32 @@ db.authenticate()
 
 // create users table
 var User = db.define('User', {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
+  id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
   username: Sequelize.STRING,
   salt: Sequelize.INTEGER,
   hash: Sequelize.STRING
 });
+
+// create recipes table
+var Recipe = db.define('Recipe', {
+  id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+  imageURl: Sequelize.STRING,
+  title: Sequelize.STRING,
+  isStarred: Sequelize.INTEGER,
+  filename: Sequelize.STRING,
+})
+
+// create tags table
+var Tag = db.define('Tag', {
+  id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+  Tag: Sequelize.STRING,
+})
+
+Recipe.belongsTo(User);
+Tag.belongsToMany(Recipe, {through: 'RecipeTag'});
+Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
+
+
 
 // make dummy table entry
 // TODO: Turn this into a POST route
@@ -33,10 +50,25 @@ db.sync()
     username: 'The Dude'
   }));
 
+db.sync().then(() => Recipe.create({
+  title: 'Baked Alaska3',
+  tags: [
+    { tag: 'On Fire2'},
+    { tag: 'Ice Cream2'}
+  ]
+}, {
+  include: [ Tag ]
+}))
+
 // read the dummy data
 // TODO: Turn this into a GET route
 User.findAll().then(data => {
   console.log('findAll data: ', data[0].dataValues.username);
 });
 
-module.exports = db;
+module.exports = {
+  db: db,
+  User: User,
+  Recipe: Recipe,
+  Tag: Tag
+};
