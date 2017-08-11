@@ -1,5 +1,6 @@
 # Contributing
 
+
 ## Github Worflow
 
 --- SET UP ---
@@ -26,7 +27,7 @@
 
 4. git push(to your own repo on github if you want to)
 4.5 OPTIONAL (git -push -f origin master (if there is a conflict))
-5. do  git pull request  as toy problems
+5. do git pull request  as toy problems
 
 
 ## Github Tips
@@ -89,6 +90,17 @@ your password : cz, sm ,ss
    you should be able to open this address in your browser:
 
    107.170.212.197:8000
+
+
+## Misc. Info
+
+-- Adding dev dependencies to package.json --
+
+type: npm install name —only=dev
+
+-- Adding strikethroughs to Scope Doc --
+
+push: alt + shift  + 5
 
 
 ## General Workflow
