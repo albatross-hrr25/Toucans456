@@ -40,7 +40,6 @@
     "grunt-nodemon": "^0.4.2",
     "grunt-shell": "^1.2.1",
     "grunt-contrib-cssmin": "^1.0.1",
-    "nodemon": "^1.11.0",
-
+    "nodemon": "^1.11.0"
   }
 }
