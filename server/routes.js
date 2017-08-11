@@ -19,6 +19,7 @@ app.get('/', function (req, res) {
 // if action[req.url === 'GET']
 // action()
 app.get('/api/recipes', (request, response) => {
+  // refactor to return tags as well as relevant data
   db.Recipe.findAll()
     .then((recipe) => {
       response.send(recipe);
@@ -31,11 +32,17 @@ app.get('/api/recipes', (request, response) => {
 app.post('/api/recipes', (request, response) => {
   // get relevant info from request
   console.log('REQUEST IS: ', request.body);
-  var newRecipe = new db.Recipe({
-    title: 'Bananas Foster',
-    tag: 'bananas'
+
+  db.Recipe.create({
+    title: 'Fortune Cookie',
+    Tags: [
+      { tag: '123'},
+      { tag: 'abc'}
+    ]
+  }, {
+    include: [ db.Tag ]
   })
-  .save()
+
   .then((recipeData) => {
     response.send(recipeData);
   })
@@ -58,19 +65,6 @@ app.delete('/api/recipes', (request, response) => {
 // get /api/recipes -read from the recipes table
 // delete /api/recipes - delete from recipes table
 
-// get /api/tags - read from tags table
-// post /api/tags - write to tags table
-// delete /api/tags - delete tags table
-
-app.get('api/tags', (request, response) => {
-  db.Tags.findAll()
-    .then((result) => {
-      response.send(result);
-    })
-    .catch((error) => {
-      response.send(error);
-    })
-})
 
 
 // get /api/users - read from users table

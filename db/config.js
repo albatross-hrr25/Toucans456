@@ -34,7 +34,7 @@ var Recipe = db.define('Recipe', {
 // create tags table
 var Tag = db.define('Tag', {
   id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
-  Tag: Sequelize.STRING,
+  tag: Sequelize.STRING,
 })
 
 Recipe.belongsTo(User);
@@ -45,26 +45,26 @@ Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
 
 // make dummy table entry
 // TODO: Turn this into a POST route
-db.sync()
-  .then(() => User.create({
-    username: 'The Dude'
-  }));
+// db.sync()
+//   .then(() => User.create({
+//     username: 'The Dude'
+//   }));
 
-db.sync().then(() => Recipe.create({
-  title: 'Baked Alaska3',
-  tags: [
-    { tag: 'On Fire2'},
-    { tag: 'Ice Cream2'}
-  ]
-}, {
-  include: [ Tag ]
-}))
+// db.sync().then(() => Recipe.create({
+//   title: 'Baked Alaska1',
+//   Tags: [
+//     { tag: 'On Fisdgrsde1'},
+//     { tag: 'Ice Creasdfsdf'}
+//   ]
+// }, {
+//   include: [ Tag ]
+// }))
 
 // read the dummy data
 // TODO: Turn this into a GET route
-User.findAll().then(data => {
-  console.log('findAll data: ', data[0].dataValues.username);
-});
+// User.findAll().then(data => {
+//   console.log('findAll data: ', data[0].dataValues.username);
+// });
 
 module.exports = {
   db: db,
