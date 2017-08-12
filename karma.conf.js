@@ -20,6 +20,14 @@ module.exports = function(config) {
       }
     },
 
+    preprocessors: {
+      'client/components/**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      moduleName: 'templates'
+    },
+
 
 
     // list of files / patterns to load in the browser
@@ -29,7 +37,9 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/sinon/pkg/sinon-1.17.7.js',
       'node_modules/chai/chai.js',
-      'test/front-end/*.js'
+      'test/front-end/*.js',
+      'client/components/**/*.js',
+      'client/components/**/*.html'
     ],
 
 
@@ -40,8 +50,7 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+
 
 
     // test results reporter to use
