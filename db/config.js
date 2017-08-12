@@ -1,7 +1,5 @@
 var Sequelize = require('sequelize');
 
-console.log('config.js has been served');
-
 var db = new Sequelize('recipes', 'root', '', {
   dialect: 'mysql' //can be sqlite3
 });
@@ -47,14 +45,14 @@ Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
 // TODO: Turn this into a POST route
 // db.sync()
 //   .then(() => User.create({
-//     username: 'The Dude'
+//     username: 'UnicornKiller'
 //   }));
 
 // db.sync().then(() => Recipe.create({
-//   title: 'Baked Alaska1',
+//   title: 'cabeza',
 //   Tags: [
-//     { tag: 'On Fisdgrsde1'},
-//     { tag: 'Ice Creasdfsdf'}
+//     { tag: 'tacos'},
+//     { tag: 'longpig'}
 //   ]
 // }, {
 //   include: [ Tag ]

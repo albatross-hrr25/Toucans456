@@ -8,9 +8,6 @@ app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-  res.send('Hello world');
-});
 // var actions = {
 //   'GET': function() {},
 //   'POST': function() {},
@@ -20,6 +17,7 @@ app.get('/', function (req, res) {
 // action()
 app.get('/api/recipes', (request, response) => {
   // refactor to return tags as well as relevant data
+  // -----------------------FIX TO FILTER BY USERNAME
   db.Recipe.findAll()
     .then((recipe) => {
       response.send(recipe);

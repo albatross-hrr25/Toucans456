@@ -1,12 +1,4 @@
 
-.recipe_container {
-  -webkit-columns: 2;
-     -moz-columns: 2;
-          columns: 2;
-  -webkit-column-rule: 1px dotted black;
-     -moz-column-rule: 1px dotted black;
-          column-rule: 1px dotted black;
-}
 
 body {
   background: #f1f1f1;
@@ -14,12 +6,20 @@ body {
 
 .navbar {
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .primary {
   border: 1px solid black;
+  box-sizing: border-box;
+  width: 70%;
+  float: left;
+
 }
 
 .inventory {
   border: 1px solid black;
+  box-sizing: border-box;
+  width: 30%;
+  float: right;
 }
