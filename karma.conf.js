@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Thu Aug 10 2017 21:09:40 GMT-0700 (PDT)
+// Generated on Fri Aug 11 2017 20:48:50 GMT-0700 (PDT)
 
 module.exports = function(config) {
   config.set({
@@ -10,27 +10,26 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs'],
+    frameworks: ['mocha', 'chai'],
+
+
+    client: {
+      mocha: {
+        // change Karma's debug.html to the mocha web reporter
+        reporter: 'html',
+      }
+    },
+
 
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/jquery/dist/jquery.js',
       'node_modules/angular/angular.js',
+      'node_modules/jquery/dist/jquery.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/sinon/pkg/sinon-1.17.7.js',
-      'client/**/*',
-      'server/*.js',
-      'index.js',
-      'test/*.js'
-    ],
-
-    // app, video list, video list entry, video player, search
-
-    plugins: [
-      'karma-mocha',
-      'karma-chrome-launcher',
-      'karma-ng-html2js-preprocessor',
+      'node_modules/chai/chai.js',
+      'test/front-end/*.js'
     ],
 
 
@@ -48,7 +47,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    // reporters: ['progress'],
+    reporters: ['progress'],
 
 
     // web server port
