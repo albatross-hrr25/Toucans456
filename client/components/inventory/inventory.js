@@ -7,5 +7,5 @@ angular.module('app')
 
 .component('inventory', {
   controller: 'InventoryTest',
-  templateUrl: '/components/inventory/inventory.html'
+  templateUrl: 'client/components/inventory/inventory.html'
 })

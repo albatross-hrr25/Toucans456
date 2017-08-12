@@ -7,5 +7,5 @@ angular.module('app')
 
 .component('navbar', {
   controller: 'NavTest',
-  templateUrl: '/components/nav/nav.html',
+  templateUrl: 'client/components/nav/nav.html',
 })

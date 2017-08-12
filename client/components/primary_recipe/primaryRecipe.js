@@ -7,5 +7,5 @@ angular.module('app')
 
 .component('primaryRecipe', {
   controller: 'PrimaryTest',
-  templateUrl: '/components/primary_recipe/primary-recipe.html'
+  templateUrl: 'client/components/primary_recipe/primary-recipe.html'
 })

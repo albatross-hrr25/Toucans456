@@ -39,7 +39,8 @@ module.exports = function(config) {
       'node_modules/chai/chai.js',
       'test/front-end/*.js',
       'client/components/**/*.js',
-      'client/components/**/*.html'
+      'client/components/**/*.html',
+      'client/components/*.html'
     ],
 
 
