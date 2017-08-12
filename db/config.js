@@ -6,8 +6,6 @@ var db = new Sequelize('recipes', 'root', '', {
   dialect: 'mysql' //can be sqlite3
 });
 
-console.log('Our Database');
-
 db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
@@ -16,6 +14,61 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
+// create users table
+var User = db.define('User', {
+  id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
+  username: Sequelize.STRING,
+  salt: Sequelize.INTEGER,
+  hash: Sequelize.STRING
+});
+
+// create recipes table
+var Recipe = db.define('Recipe', {
+  id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+  imageURl: Sequelize.STRING,
+  title: Sequelize.STRING,
+  isStarred: Sequelize.INTEGER,
+  filename: Sequelize.STRING,
+})
+
+// create tags table
+var Tag = db.define('Tag', {
+  id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+  tag: Sequelize.STRING,
+})
+
+Recipe.belongsTo(User);
+Tag.belongsToMany(Recipe, {through: 'RecipeTag'});
+Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
 
 
-module.exports = db;
+
+// make dummy table entry
+// TODO: Turn this into a POST route
+// db.sync()
+//   .then(() => User.create({
+//     username: 'The Dude'
+//   }));
+
+// db.sync().then(() => Recipe.create({
+//   title: 'Baked Alaska1',
+//   Tags: [
+//     { tag: 'On Fisdgrsde1'},
+//     { tag: 'Ice Creasdfsdf'}
+//   ]
+// }, {
+//   include: [ Tag ]
+// }))
+
+// read the dummy data
+// TODO: Turn this into a GET route
+// User.findAll().then(data => {
+//   console.log('findAll data: ', data[0].dataValues.username);
+// });
+
+module.exports = {
+  db: db,
+  User: User,
+  Recipe: Recipe,
+  Tag: Tag
+};
