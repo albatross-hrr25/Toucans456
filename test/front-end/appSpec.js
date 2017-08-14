@@ -7,22 +7,23 @@ describe("A test suite", function() {
 });
 
 describe('app', function () {
-  var sonicElement;
+  var element;
 
   beforeEach(module('app'));
   beforeEach(module('templates'));
 
-  // beforeEach(inject(function($rootScope, $compile) {
-  //   var scope = $rootScope.$new();
-  //
-  //   sonicElement = angular.element('<app></app>');
-  //   sonicElement = $compile(sonicElement)(scope);
-  //
-  //   $rootScope.$digest();
-  // }));
+  beforeEach(inject(function($rootScope, $compile) {
+    var scope = $rootScope.$new();
+    //console.log('this is the scope', scope);
+    //console.log('this is the compile', $compile);
+    element = angular.element('<app></app>');
+    element = $compile(element)(scope);
+
+    $rootScope.$digest();
+  }));
 
   it('should have a selectRecipe function on the scope', function() {
-    expect(sonicElement.isolateScope().$ctrl.searchRecipe).to.exist;
+    expect(element.isolateScope().$ctrl.searchRecipe).to.exist;
   });
 
 
