@@ -1,3 +1,7 @@
 <div class="inventory">
-  <h1>This is the {{$ctrl.recipes[0].title}}!</h1>
+  <inventory-entry
+    ng-repeat="recipe in $ctrl.recipes"
+    recipe="recipe"
+  >
+  </inventory-entry>
 </div>

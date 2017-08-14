@@ -1,12 +1,11 @@
 angular.module('app')
 
-.controller ('InventoryTest', function () {
-  this.user = 'inventory';
-  console.log('InventoryTest controller has run: this is ', this);
+.controller ('InventoryCtrl', function () {
+
 })
 
 .component('inventory', {
-  controller: 'InventoryTest',
+  controller: 'InventoryCtrl',
   templateUrl: 'client/components/inventory/inventory.html',
   bindings: {
     recipes: '<'
