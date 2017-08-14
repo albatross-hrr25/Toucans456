@@ -6,6 +6,6 @@ angular.module('app')
 })
 
 .component('primaryRecipe', {
-  controller: 'PrimaryTest',
+  controller: 'PrimaryRecipeController',
   templateUrl: 'client/components/primary_recipe/primary-recipe.html'
 })
