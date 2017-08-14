@@ -1,11 +1,18 @@
 angular.module('app', [])
 
 .component('app', {
-  controller: 'ChangeLater',
+  controller: 'RecipeController',
   templateUrl: 'client/components/app/app.html',
 })
 
-.controller ('ChangeLater', function () {
+.controller ('RecipeController', ['$scope', 'get', function ($scope, get) {
 
-  console.log('ChangeLater is running: this is ', this);
-})
+  // Get recipes by user from server and set into scope
+  get.getRecipes(null, function (recipes) {
+    this.recipes = recipes;
+    this.primaryRecipe = recipes[0];
+  });
+
+
+
+}])
