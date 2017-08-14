@@ -7,5 +7,8 @@ angular.module('app')
 
 .component('inventory', {
   controller: 'InventoryTest',
-  templateUrl: 'client/components/inventory/inventory.html'
+  templateUrl: 'client/components/inventory/inventory.html',
+  bindings: {
+    recipes: '<'
+  }
 })
