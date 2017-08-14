@@ -1,7 +1,7 @@
-
 var express = require('express');
-var db = require('./../db/config.js')
+//var db = require('./../db/config.js')  THIS IS TO INITIALIZE MySQL
 var bodyParser = require('body-parser');
+var db = require('./../db/schema.js');
 
 var app = express();
 app.use(express.static(__dirname + '/../'));
