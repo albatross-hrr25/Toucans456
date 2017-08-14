@@ -1,3 +1,5 @@
+
+var cloudinary = require('cloudinary');
 var express = require('express');
 //var intalize = require('./../db/config.js');
 var bodyParser = require('body-parser');
@@ -8,18 +10,26 @@ app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 
-// var actions = {
-//   'GET': function() {},
-//   'POST': function() {},
-//   'Delete': function() {}
-// }
-// if action[req.url === 'GET']
-// action()
+// Finds all users from the database
+app.get('/api/users', (request, response) => {
+  // TODO: fine-tune the findAll method when we incorporate User-Auth.
+  db.User.findAll()
+    .then((users) => {
+      console.log(users);
+      response.send(users);
+    })
+    .catch((error) => {
+      response.send(error);
+    });
+});
+
+// Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
   // refactor to return tags as well as relevant data
-  // -----------------------FIX TO FILTER BY USERNAME
-  db.Recipe.findAll()
+  // TODO: FIX TO FILTER BY USERNAME
+  db.Recipes.findAll()
     .then((recipe) => {
+      console.log(recipe);
       response.send(recipe);
     })
     .catch((error) => {
@@ -27,45 +37,35 @@ app.get('/api/recipes', (request, response) => {
     });
 });
 
+// Adds a recipe and desired tags to the database
 app.post('/api/recipes', (request, response) => {
-  // get relevant info from request
-  console.log('REQUEST IS: ', request.body);
+  var userTags = [];
+  request.body.Tags.forEach(tag => userTags.push(tag));
 
   db.Recipe.create({
-    title: 'Fortune Cookie',
-    Tags: [
-      { tag: '123'},
-      { tag: 'abc'}
-    ]
+    title: request.body.title,
+    Tags: userTags
   }, {
     include: [ db.Tag ]
   })
-
   .then((recipeData) => {
     response.send(recipeData);
   })
   .catch((error) => {
-    console.log('BAD BAD BAD');
     response.send(error);
   });
 });
 
+// Deletes a recipe from the database
 app.delete('/api/recipes', (request, response) => {
-  db.Recipe.findAll() //use findAll here?
-    .then((recipes)=> {
-      console.log(recipes[0]);
+  db.Recipe.findAll({ title: request.body.title }) //use findAll here?
+    .then((recipe)=> {
+      console.log('Recipes is: ', recipes);
       return recipes[0].destroy();
     })
     .then(() => {
       console.log('Recipe DESTROYED.');
     });
 });
-// get /api/recipes -read from the recipes table
-// delete /api/recipes - delete from recipes table
-
-
-
-// get /api/users - read from users table
-// post /api/users - write to users table
 
 module.exports = app;

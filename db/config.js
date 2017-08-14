@@ -3,11 +3,9 @@ var dbConnection = mysql.createConnection({
   user: 'root',
   password: ''
 });
-
 //Create Recipe database if it doesn't exist
 exports.createDatabase = function () {
   return new Promise(function(resolve, reject) {
-
     dbConnection.connect(function(err) {
       if (err) {
         console.error('There was an error while connecting to MySQL', err);
