@@ -1,13 +1,11 @@
-var mysql = require('mysql');
+var mysql = require('mysql')
 var dbConnection = mysql.createConnection({
   user: 'root',
   password: ''
 });
-
 //Create Recipe database if it doesn't exist
 exports.createDatabase = function () {
   return new Promise(function(resolve, reject) {
-
     dbConnection.connect(function(err) {
       if (err) {
         console.error('There was an error while connecting to MySQL', err);
@@ -31,8 +29,5 @@ exports.createDatabase = function () {
           }
         });
       });
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-};
+    })
+  }
