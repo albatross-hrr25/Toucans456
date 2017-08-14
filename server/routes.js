@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 // Finds all users from the database
 app.get('/api/users', (request, response) => {
+  // TODO: fine-tune the findAll method when we incorporate User-Auth.
   db.User.findAll()
     .then((users) => {
       console.log(users);
@@ -25,7 +26,7 @@ app.get('/api/users', (request, response) => {
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
   // refactor to return tags as well as relevant data
-  // -----------------------FIX TO FILTER BY USERNAME
+  // TODO: FIX TO FILTER BY USERNAME
   db.Recipes.findAll()
     .then((recipe) => {
       console.log(recipe);
@@ -37,13 +38,16 @@ app.get('/api/recipes', (request, response) => {
 });
 
 // Adds a recipe and desired tags to the database
+// Expects a request object with title and up to 4 Tags properties
 app.post('/api/recipes', (request, response) => {
+  console.log('POST RECIPE REQUEST.body', request.body);
   db.Recipe.create({
-    // TODO: make adding title and Tags dynamic.
-    title: 'Berry Tart',
+    title: request.body.title,
     Tags: [
-      { tag: 'creme anglaise'},
-      { tag: 'almond crust'}
+      { tag: request.body.Tags},
+      { tag: request.body.Tags},
+      { tag: request.body.Tags},
+      { tag: request.body.Tags}
     ]
   }, {
     include: [ db.Tag ]
@@ -58,9 +62,9 @@ app.post('/api/recipes', (request, response) => {
 
 // Deletes a recipe from the database
 app.delete('/api/recipes', (request, response) => {
-  db.Recipe.findAll() //use findAll here?
-    .then((recipes)=> {
-      console.log(recipes[0]);
+  db.Recipe.findAll({ title: request.body.title }) //use findAll here?
+    .then((recipe)=> {
+      console.log('Recipes is: ', recipes);
       return recipes[0].destroy();
     })
     .then(() => {
