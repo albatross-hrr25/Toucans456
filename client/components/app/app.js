@@ -7,16 +7,12 @@ angular.module('app', [])
 
 .controller ('RecipeController', ['$scope', 'get', function ($scope, get) {
 
-  $scope.recipes = get.getRecipes();
+  // Get recipes by user from server and set into scope
+  get.getRecipes(null, function (recipes) {
+    this.recipes = recipes;
+    this.primaryRecipe = recipes[0];
+  });
 
-  console.log('this is $scope.recipes ', $scope.recipes);
 
-  $scope.primaryRecipe = []
-
-  console.log('ChangeLater is running: this is ', this);
 
 }])
-
-  // use get request service to grab all user's recipes
-  // set all as inventory
-  // set the first as primaryRecipe

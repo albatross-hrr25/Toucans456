@@ -3,10 +3,10 @@ angular.module('app')
 .service('get', function () {
 
   this.getRecipes = function (config, callback) {
-    // -----------------------FIX TO ADD USERNAME PARAMETER
+    // --------------------FIX TO ADD USERNAME PARAMETER
     axios.get('/api/recipes')
     .then(function (recipes) {
-      console.log('recipes from server', recipes);
+      callback(recipes.data);
     })
     .catch(function (err) {
       console.log(err);
