@@ -9,8 +9,9 @@ angular.module('app', [])
 
   // Get recipes by user from server and set into scope
   get.getRecipes(null, function (recipes) {
-    this.recipes = recipes;
-    this.primaryRecipe = recipes[0];
+    $scope.recipes = recipes;
+    $scope.primaryRecipe = recipes[0];
+    console.log($scope.recipes);
   });
 
 
