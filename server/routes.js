@@ -38,17 +38,13 @@ app.get('/api/recipes', (request, response) => {
 });
 
 // Adds a recipe and desired tags to the database
-// Expects a request object with title and up to 4 Tags properties
 app.post('/api/recipes', (request, response) => {
-  console.log('POST RECIPE REQUEST.body', request.body);
+  var userTags = [];
+  request.body.Tags.forEach(tag => userTags.push(tag));
+
   db.Recipe.create({
     title: request.body.title,
-    Tags: [
-      { tag: request.body.Tags},
-      { tag: request.body.Tags},
-      { tag: request.body.Tags},
-      { tag: request.body.Tags}
-    ]
+    Tags: userTags
   }, {
     include: [ db.Tag ]
   })
