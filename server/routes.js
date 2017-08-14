@@ -1,5 +1,5 @@
 var express = require('express');
-//var db = require('./../db/config.js')  THIS IS TO INITIALIZE MySQL
+//var intalize = require('./../db/config.js');
 var bodyParser = require('body-parser');
 var db = require('./../db/schema.js');
 
