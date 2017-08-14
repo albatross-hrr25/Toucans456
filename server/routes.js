@@ -1,3 +1,5 @@
+
+var cloudinary = require('cloudinary');
 var express = require('express');
 //var intalize = require('./../db/config.js');
 var bodyParser = require('body-parser');

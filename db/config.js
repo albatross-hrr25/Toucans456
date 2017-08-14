@@ -1,4 +1,4 @@
-var mysql = require('mysql')
+var mysql = require('mysql');
 var dbConnection = mysql.createConnection({
   user: 'root',
   password: ''
@@ -31,5 +31,8 @@ exports.createDatabase = function () {
           }
         });
       });
-    })
-  }
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+};
