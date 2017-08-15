@@ -1,7 +1,7 @@
 var mysql = require('./seedConfig.js');
 var Sequelize = require('sequelize');
-var data = require('./data/exampleData.js');
-var db = require('./seedSchema.js')
+var db = require('./seedSchema.js');
+var seed = require('./seedData.js');
 
 //drop and create recipe database
 mysql.createDatabase()
@@ -11,18 +11,12 @@ mysql.createDatabase()
     db.createTables()
       .then(function() {
 
-        //seed username
-        db.User.create({
-          username: 'UnicornKiller'
-        })
+        //upload seed data to tables
+        seed.seedData()
+          .then(function() {
 
-        //seed recipes from data folder
-        .then(() =>
-        data.forEach(function(recipe) {
-          db.Recipe.create(recipe, {
-            include: [ db.Tag ]
+            //close the connection
+            db.db.close();
           })
-        }));
       })
   })
-  .catch(console.error);
