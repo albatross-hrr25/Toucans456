@@ -6,6 +6,7 @@ angular.module('app', [])
 })
 
 .controller ('RecipeController', function ($scope, get) {
+  this.content = true;
 
   this.selectRecipe = (recipe) => {
     console.log(recipe);
@@ -14,6 +15,7 @@ angular.module('app', [])
 
   this.runUpload = () => {
     console.log("clicked");
+    this.content = false;
   };
 
 
