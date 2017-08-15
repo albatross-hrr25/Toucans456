@@ -40,7 +40,11 @@ Recipe.belongsTo(User);
 Tag.belongsToMany(Recipe, {through: 'RecipeTag'});
 Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
 
+
 db.sync();
+
+
+
 
 // read the dummy data
 // TODO: Turn this into a GET route
