@@ -1,5 +1,5 @@
 var db = require('./seedSchema.js');
-var data = require('./data/exampleData.js');
+var data = require('./../data/exampleData.js');
 
 //seed username
 
