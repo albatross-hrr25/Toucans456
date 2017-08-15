@@ -1,6 +1,16 @@
 # Contributing
 
 
+## Starting the program
+
+--- SEED EXAMPLE DATA ---
+1. node db/seed.js
+
+--- RUNNING PROGRAM ---
+
+1. npm install
+2. npm start
+
 ## Github Worflow
 
 --- SET UP ---

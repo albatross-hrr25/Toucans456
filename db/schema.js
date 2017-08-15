@@ -1,9 +1,9 @@
-//var db = require('./config.js');
 var Sequelize = require('sequelize');
 
 var db = new Sequelize('recipes', 'root', '', {
   dialect: 'mysql' //can be sqlite3
 });
+
 db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
@@ -12,10 +12,7 @@ db.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-  //module.exports = db;
 
-
-console.log('this is what was exported ');
 // create users table
 var User = db.define('User', {
   id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
@@ -43,24 +40,7 @@ Recipe.belongsTo(User);
 Tag.belongsToMany(Recipe, {through: 'RecipeTag'});
 Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
 
-
-
-// make dummy table entry
-// TODO: Turn this into a POST route
-// db.sync()
-//   .then(() => User.create({
-//     username: 'UnicornKiller'
-//   }));
-
-// db.sync().then(() => Recipe.create({
-//   title: 'cabeza',
-//   Tags: [
-//     { tag: 'tacos'},
-//     { tag: 'longpig'}
-//   ]
-// }, {
-//   include: [ Tag ]
-// }))
+db.sync();
 
 // read the dummy data
 // TODO: Turn this into a GET route
