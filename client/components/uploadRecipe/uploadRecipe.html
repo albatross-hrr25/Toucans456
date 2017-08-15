@@ -1,4 +1,12 @@
 <div>
-  <div>test</div>
-
+  <div ng-app="fileUpload" class="container">
+    <div class="row" ng-controller="upload">
+      <div class="col-md-6">
+        <input type="file" fileinput="file" filepreview="filepreview"/>
+      </div>
+      <div class="col-md-6">
+        <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview"/>
+      </div>
+    </div>
+  </div>
 </div>
