@@ -39,6 +39,7 @@ img #primary{
     line-height: 22px;
     cursor: text;
 }
+
 .bootstrap-tagsinput input {
     border: none;
     box-shadow: none;
@@ -48,6 +49,11 @@ img #primary{
     margin: 0;
     width: auto;
     max-width: inherit;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   background-color: white
 }
 
 
