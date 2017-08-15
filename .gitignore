@@ -16,4 +16,4 @@ node_modules/
 ~
 
 # Cloudinary #
-db/cloudinaryConfig.js
+client/cloudinary/cloudinary.env
