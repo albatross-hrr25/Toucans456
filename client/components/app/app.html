@@ -1,39 +1,18 @@
-<div>
+<div >
   <navbar>
     <div>
       <p> Nav bar goes here. </p>
     </div>
   </navbar>
   <!-- add container for primary recipe and inventory -->
-  <div class="recipe_container">
-    <!-- create container for primary recipe -->
-    <primary-recipe recipe="primaryRecipe">
-      <div>
-        <p> primary recipe focus goes here </p>
-      </div>
-    </primary-recipe>
+  <div class="row">
     <!-- create container for inventory -->
-    <inventory recipes="recipes" on-click="$ctrl.selectRecipe">
-      <div>
-        <p> inventory list goes here </p>
-      </div>
-    </inventory>
+    <div class="col-sm-3">
+      <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
+    </div>
+    <!-- create container for primary recipe -->
+    <div class="col-sm-9">
+      <primary-recipe recipe="primaryRecipe"></primary-recipe>
+    </div>
   </div>
 </div>
-
-<!--
-<div id="app container">
-  <nav class="navbar">
-    <div class="col-md-6 col-md-offset-3">
-      <search on-click="$ctrl.onSearchClick"><h5><em>search</em> component goes here</h5></search>
-    </div>
-  </nav>
-  <div class="row">
-    <div class="col-md-7">
-      <video-player video="$ctrl.video"><h5><em>videoPlayer</em> component goes here</h5></video-player>
-    </div>
-    <div class="col-md-5">
-      <video-list videos="$ctrl.videos" on-click="$ctrl.onClick"><h5><em>videoList</em> component goes here</h5></video-list>
-    </div>
-  <div>
-</div> -->
