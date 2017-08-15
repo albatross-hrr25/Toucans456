@@ -6,6 +6,7 @@
 0. npm install
 
 --- SEED EXAMPLE DATA ---
+
 1. npm run seed
 
 --- RUNNING PROGRAM ---
