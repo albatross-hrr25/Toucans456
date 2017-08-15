@@ -3,34 +3,26 @@ var Sequelize = require('sequelize');
 var data = require('./data/exampleData.js');
 var db = require('./seedSchema.js')
 
+//drop and create recipe database
 mysql.createDatabase()
   .then(function() {
-    console.log('error 1')
+
+    //create tables and then sync
     db.createTables()
       .then(function() {
-        //console.log('is the error here?', db.db.sync);
+
+        //seed username
         db.User.create({
           username: 'UnicornKiller'
         })
+
+        //seed recipes from data folder
         .then(() =>
         data.forEach(function(recipe) {
           db.Recipe.create(recipe, {
             include: [ db.Tag ]
           })
         }));
-
       })
   })
   .catch(console.error);
-
-
-  // db.sync()
-  //   .then(() => db.User.create({
-  //     username: 'UnicornKiller'
-  //   }))
-  //   .then(() =>
-  //   data.forEach(function(recipe) {
-  //     db.Recipe.create(recipe, {
-  //       include: [ Tag ]
-  //     })
-  //   }));

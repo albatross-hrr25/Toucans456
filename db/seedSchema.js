@@ -52,7 +52,7 @@ exports.createTables = function () {
     return new Promise(function(resolve, reject) {
       db.sync()
         .then(() => {
-          console.log('SYNCING!!!!!!');
+          console.log('Syncing the database');
           resolve();
         })
         .catch(err => {
@@ -65,16 +65,3 @@ exports.createTables = function () {
     console.error('Sync was unsuccessful:', err);
   })
 }
-
-
-
-
-
-
-
-// module.exports = {
-//   db: db,
-//   User: User,
-//   Recipe: Recipe,
-//   Tag: Tag
-// }

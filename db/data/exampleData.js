@@ -1,3 +1,5 @@
+//FEEL FREE TO MODIFY THIS FILE AS YOU LIKE
+
 module.exports = [
   {
     title: 'cabeza',
