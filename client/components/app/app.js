@@ -12,8 +12,13 @@ angular.module('app', [])
     $scope.primaryRecipe = recipe;
   };
 
+  this.runUpload = () => {
+    console.log("clicked");
+  };
+
+
   get.getRecipes(null, function (recipes) {
-    $scope.recipes = recipes.slice(0, 5);
+    $scope.recipes = recipes;
     $scope.primaryRecipe = recipes[0];
     $scope.$apply();
   });
