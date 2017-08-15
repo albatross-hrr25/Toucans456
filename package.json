@@ -4,6 +4,7 @@
   "description": "Let's write a letter...",
   "main": "index.js",
   "scripts": {
+    "seed": "node db/seed/seed.js",
     "test": "karma start",
     "start": "node index.js",
     "dev": "nodemon index.js"

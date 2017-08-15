@@ -41,7 +41,7 @@ app.get('/api/recipes', (request, response) => {
 app.post('/api/recipes', (request, response) => {
   var userTags = [];
   request.body.Tags.forEach(tag => userTags.push(tag));
-
+  //how do we save username to recipes??
   db.Recipe.create({
     title: request.body.title,
     Tags: userTags
