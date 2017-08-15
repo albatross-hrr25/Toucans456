@@ -31,7 +31,6 @@ angular.module('app', [])
   };
 
   this.handleClickHome = () => {
-    console.log("wut")
     get.getRecipes(null, function (recipes) {
       $scope.recipes = recipes;
       $scope.primaryRecipe = recipes[0];
