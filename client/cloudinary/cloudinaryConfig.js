@@ -3,15 +3,12 @@ var envs = require('envs');
 
 var cloudinary_key = process.env['CLOUDINARY_API_KEY'];
 var cloudinary_sec = process.env['CLOUDINARY_API_SECRET'];
-// console.log('Your keys and secret are: ', envs);
-console.log(cloudinary_key);
 
 var uploads = {};
 
 
 cloudinary.config({
   cloud_name: 'toucans456',
-  // TODO: place api key and secret in here
   api_key: cloudinary_key,
   api_secret: cloudinary_sec
 });
@@ -37,7 +34,7 @@ cloudinary.uploader.upload("IMG_5741.JPG", // TODO: make image path dynamic
         console.log('CLOUDINARY ERROR', error);
       }
 
-      waitForAllUploads('Endive Salad', error, image);
+      waitForAllUploads('Endive Salad', error, image); // dynamic image title here
 
     });
 
