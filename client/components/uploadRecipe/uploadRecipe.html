@@ -1,12 +1,21 @@
 <div>
-  <div ng-app="fileUpload" class="container">
-    <div class="row" ng-controller="upload">
-      <div class="col-md-6">
-        <input type="file" fileinput="file" filepreview="filepreview"/>
-      </div>
-      <div class="col-md-6">
-        <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview"/>
-      </div>
+  <form>
+    <div class="form-group">
+      <label for="name">Recipe Name</label>
+      <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name">
     </div>
-  </div>
+    <div class="form-group">
+      <label for="tags" >Tags</label>
+      <input type="text" class="form-control" id="Tags" placeholder="Tags">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" id="exampleInputFile">
+
+    </div>
+    <div class="checkbox">
+
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
 </div>

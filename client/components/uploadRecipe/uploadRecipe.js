@@ -1,6 +1,6 @@
 angular.module('app')
 
-.controller ('UploadRecipeCtrl', function ($scope) {
+.controller ('UploadRecipeCtrl', function ($scope, get) {
 
 })
 

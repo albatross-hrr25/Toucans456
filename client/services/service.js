@@ -13,6 +13,18 @@ angular.module('app')
     });
   }
 
+  // this.sendRecipe = function (query) {
+  //   // --------------------FIX TO ADD USERNAME PARAMETER
+  //   var {name, imageUrl, Tag} = query;
+  //   axios.post('/api/recipe', {name, imageUrl, Tag})
+  //   .then(function (res) {
+  //     console.log(res);
+  //   })
+  //   .catch(function (err) {
+  //     console.log(err);
+  //   });
+  // }
+
 });
 
 
