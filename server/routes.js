@@ -27,7 +27,7 @@ app.get('/api/users', (request, response) => {
 app.get('/api/recipes', (request, response) => {
   // refactor to return tags as well as relevant data
   // TODO: FIX TO FILTER BY USERNAME
-  db.Recipes.findAll()
+  db.Recipe.findAll()
     .then((recipe) => {
       console.log(recipe);
       response.send(recipe);
