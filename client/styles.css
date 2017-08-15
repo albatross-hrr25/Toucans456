@@ -1,9 +1,3 @@
-.navbar .row .form-inline.float-xs-right {
-    position: absolute;
-    right: 0;
-}
-
-
 body, html {
   margin: 0;
   overflow: hidden;
@@ -22,6 +16,13 @@ background-color: white;
 }
 
 
+/*.navbar {
+  border: 1px solid black;
+  box-sizing: border-box;
+  height: 100px
+}
 
-
-
+.navbar .row .form-inline.float-xs-right {
+    position: absolute;
+    right: 0;
+}*/
