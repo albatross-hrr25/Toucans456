@@ -1,31 +1,24 @@
 <div >
 <div class="container">
-  <navbar>
+  <navbar
+  handleclickhome="$ctrl.handleClickHome"
+  handlesearchresults="$ctrl.handleSearchResults">
     <div>
       <p> Nav bar goes here. </p>
     </div>
   </navbar>
   <!-- add container for primary recipe and inventory -->
-  <div class="row" ng-if="$ctrl.content">
+  <div class="row">
     <!-- create container for inventory -->
-    <div class="col-sm-2">
-      <div class="well" ng-click="$ctrl.runUpload()">
-        <img src=https://www.shareicon.net/data/2017/05/24/886398_add_512x512.png class="img-rounded"/>
-      </div>
-      <div id="left">
-        <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
-      </div>
+    <div class="col-sm-2" id="left">
+
+      <!-- <div class="well" ng-click="$ctrl.runUpload()"></div> -->
+      <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
     </div>
     <!-- create container for primary recipe -->
     <div class="col-sm-10">
       <primary-recipe recipe="primaryRecipe"></primary-recipe>
     </div>
   </div>
-
-
-  <div ng-if="!$ctrl.content">
-    <div class="col-sm-12">
-      <upload-recipe></upload-recipe>
-    </div>
-  </div>
 </div>
+
