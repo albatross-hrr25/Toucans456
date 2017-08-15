@@ -3,13 +3,15 @@
 
 ## Starting the program
 
+0. npm install
+
 --- SEED EXAMPLE DATA ---
-1. node db/seed.js
+
+1. npm run seed
 
 --- RUNNING PROGRAM ---
 
-1. npm install
-2. npm start
+1. npm start
 
 ## Github Worflow
 
@@ -94,6 +96,7 @@ your password : cz, sm ,ss
 
    cd + ls multiple times until you find the var folder
    cd /var/toucan/Toucan456
+   npm run seed
    npm start
 
 4. if nothing is broken:
