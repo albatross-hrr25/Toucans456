@@ -1,4 +1,5 @@
 <div >
+<div class="container">
   <navbar>
     <div>
       <p> Nav bar goes here. </p>
@@ -7,8 +8,9 @@
   <!-- add container for primary recipe and inventory -->
   <div class="row">
     <!-- create container for inventory -->
-    <div class="col-sm-2">
-      <div class="well" ng-click="$ctrl.runUpload()"></div>
+    <div class="col-sm-2" id="left">
+
+      <!-- <div class="well" ng-click="$ctrl.runUpload()"></div> -->
       <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
     </div>
     <!-- create container for primary recipe -->
