@@ -8,6 +8,7 @@ angular.module('app')
   controller: 'InventoryEntryCtrl',
   templateUrl: 'client/components/inventoryEntry/inventoryEntry.html',
   bindings: {
-    recipe: '<'
+    recipe: '<',
+    onClick:'<'
   }
 })

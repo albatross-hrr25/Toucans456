@@ -1,6 +1,7 @@
-<div class="inventory-entry media">
-
-    <div class="inventory-entry-title">
-      {{$ctrl.recipe.title}}
+<div>
+    <div class="inventory-entry-title" ng-click="$ctrl.onClick($ctrl.recipe)">
+      <div class="well">
+        {{$ctrl.recipe.title}}
+      </div>
     </div>
 </div>

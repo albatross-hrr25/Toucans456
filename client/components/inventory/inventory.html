@@ -1,7 +1,8 @@
-<div class="inventory">
+<div class="float-left" id="scrollArea" >
   <inventory-entry
     ng-repeat="recipe in $ctrl.recipes"
     recipe="recipe"
+    on-click="$ctrl.onClick"
   >
   </inventory-entry>
 </div>

@@ -1,4 +1,7 @@
-
+.navbar .row .form-inline.float-xs-right {
+    position: absolute;
+    right: 0;
+}
 
 body {
   background: #f1f1f1;
@@ -23,3 +26,9 @@ body {
   width: 30%;
   float: right;
 }
+
+#scrollArea {
+  height: 280px;
+  overflow: auto;
+}
+
