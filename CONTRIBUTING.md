@@ -78,11 +78,11 @@ git reflog
 ## Open Remote Server
 
 
-your username : cz, sm, ss  
+your username : cz, sm, ss
 your password : cz, sm ,ss
 
 1. open terminal, login to remote server by:
-       type:  ssh (your username)@107.170.212.197   
+       type:  ssh (your username)@107.170.212.197
        password: (your password)
 2. mysql server will be running automatically in the background
 
