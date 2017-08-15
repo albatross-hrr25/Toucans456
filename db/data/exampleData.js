@@ -1,5 +1,4 @@
 //FEEL FREE TO MODIFY THIS FILE AS YOU LIKE
-
 module.exports = [
   {
     title: 'cabeza',
@@ -57,6 +56,17 @@ module.exports = [
   },
   {
     title: 'burrito supreme',
+    isStarred: true,
+    imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
+    Tags: [
+      { tag: 'tortilla'},
+      { tag: 'beans'},
+      { tag: 'guacamole'},
+      { tag: 'hot sauce'}
+    ]
+  },
+  {
+    title: 'test supreme',
     isStarred: true,
     imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
     Tags: [

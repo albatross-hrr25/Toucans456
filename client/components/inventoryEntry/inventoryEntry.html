@@ -1,7 +1,8 @@
 <div>
     <div class="inventory-entry-title" ng-click="$ctrl.onClick($ctrl.recipe)">
       <div class="well">
-        {{$ctrl.recipe.title}}
+        <img id="thumb" src={{$ctrl.recipe.imageUrl}} class="img-rounded"/>
+        <p>{{$ctrl.recipe.title}}</p>
       </div>
     </div>
 </div>

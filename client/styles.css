@@ -12,7 +12,18 @@ body, html {
 }
 
 .well{
+height:100px;
 background-color: white;
+}
+
+img {
+  max-width: 100%
+
+}
+
+img #primary{
+  height:500px;
+
 }
 
 
