@@ -15,8 +15,9 @@ angular.module('app', [])
 
   this.runUpload = () => {
     console.log("clicked");
-    this.content = false;
+    // console.log(this.runTagManager);
     // this.runTagManager();
+    this.content = false;
   };
 
   this.handleSearchResults = (query) => {
@@ -32,6 +33,7 @@ angular.module('app', [])
   };
 
   // this.runTagManager = () => {
+  //   console.log("test")
   //   $(".tm-input").tagsManager();
   // };
 
