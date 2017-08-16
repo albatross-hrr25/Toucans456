@@ -25,12 +25,15 @@
 </head>
 <body ng-app="app">
   <!-- Put ui-view directive below? -->
+  <a ui-sref="tourist">TOURIST</a>
+  <a ui-sref="primary">PRIMARY</a>
+  <ui-view></ui-view>
+
   <app>
 
     <h1>This ought to disappear when things are properly rendered</h1>
 
   </app>
-  <ui-view></ui-view>
 
   <!-- angular files -->
   <script src="client/components/app/app.js"></script>

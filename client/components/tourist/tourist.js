@@ -1,4 +1,4 @@
-angular.module('app') // ADD $NGROUTER HERE OR IN APP.JS?
+angular.module('app')
 
   .config(function($stateProvider) {
 
@@ -15,16 +15,17 @@ angular.module('app') // ADD $NGROUTER HERE OR IN APP.JS?
       // }
     };
 
-    $stateProvider.state(touristState);
-  })
-  // .controller('TouristCtrl', function($scope) {
+    var primaryState = {
+      name: 'primary',
+      url: '/primary',
+      component: 'app'
+    };
 
-  // })
+    $stateProvider.state(touristState);
+    $stateProvider.state(primaryState);
+  })
   .component('tourist', {
-    bindings: {
-      tourist: '<'
-    },
-    //controller: 'TouristCtrl',
+
     templateUrl: 'client/components/tourist/tourist.html'
 
   });
