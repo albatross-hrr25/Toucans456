@@ -2,11 +2,22 @@ var cloudinary = require('cloudinary');
 var express = require('express');
 var bodyParser = require('body-parser');
 var db = require('./../db/schema.js');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
 
 var app = express();
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
+
+//Setting up tokens
+app.use(expressJWT({
+  secret: 'rowdyHouse'
+}).unless({
+  path: ['/api/login', '/api/recipes']
+}));
+
+
 
 /////////////////////////////////////////////////////////////
 /////////////////////// GET REQUESTS ///////////////////////
@@ -84,12 +95,44 @@ app.get('/api/tags', (request, response) => {
   })
 });
 
+
+
+app.get('/api/login', (request, response) => {
+  // TODO: fine-tune the findAll method when we incorporate User-Auth.
+  db.User.findAll({
+    where: {
+      username: request.query.username
+    }
+  })
+    .then((user) => {
+      console.log(user);
+      // compare passwords
+      //TODO: FIX this next line (not suppose to be hash)
+      if (user[0].dataValues.username === request.query.username) {
+        var myToken = jwt.sign({
+          username: request.query.username
+        }, 'rowdyHouse');
+        // redirect to homepage with token as header
+        response.status(200).json(myToken);
+      } else {
+        // redirect back to login
+        response.status(401).send('Invalid password');
+      }
+    })
+    .catch((error) => {
+      response.send(error);
+    });
+});
+
 //////////////////////////////////////////////////////////////
 /////////////////////// POST REQUESTS ///////////////////////
 /////////////////////////////////////////////////////////////
 
+
+
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', (request, response) => {
+  console.log('RECIPE request', request);
   var userTags = [];
   request.body.Tags.forEach(tag => userTags.push(tag));
 

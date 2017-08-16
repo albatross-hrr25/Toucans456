@@ -64,6 +64,23 @@ angular.module('app')
     })
   }
 
+  this.login = function (config, callback) {
+    console.log('login is running')
+    axios.get('/api/login', {
+      params: {
+        username: 'UnicornKiller'
+      }
+    })
+    .then(function (token) {
+      console.log('this is to grab attention')
+      // this callback ought to set the token on users headers
+      callback(token);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
+
 
 
 });

@@ -20,7 +20,7 @@
 0.1 fork the repo
 0.2 git clone
 0.3 git remote add origin master (to your own branch)
-0.4 git remote add upstream master (to the toucan)
+0.4 git remote add upstream (to the toucan)
 
 --- SUBMITTING CHANGES TO THE REPO ---
 
