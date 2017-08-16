@@ -4,6 +4,7 @@ angular.module('app')
   this.newRecipe = {};
 
   this.handlePhotoSubmit = () => {
+<<<<<<< HEAD
 
     //Retrieves all files from angular component
     var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
@@ -18,6 +19,15 @@ angular.module('app')
 
     get.uploadFileToUrl(this.newRecipe, '/api/recipes')
 
+=======
+    var addedPhotos = angular.element(document.querySelector("#imageUploads"))[0].files;
+    //console.log("addedPhotos", addedPhotos[0].name);  //(an obj={i:{name:xx, time:xx}})
+    var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
+    this.newRecipe["Tags"] = addedTags.split(",");
+    this.newRecipe["Photos"] = addedPhotos;
+    console.log("reqObj", this.newRecipe);
+    get.sendRecipe(this.newRecipe);
+>>>>>>> Ready for backend post request
   };
 
 

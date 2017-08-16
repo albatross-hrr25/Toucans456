@@ -1,8 +1,9 @@
 var mysql = require('mysql')
 var dbConnection = mysql.createConnection({
-  user: 'root',
+  user: process.env.DB_USER,
   password: ''
 });
+
 //Create Recipe database if it doesn't exist
 exports.createDatabase = function () {
   return new Promise(function(resolve, reject) {
