@@ -27,9 +27,9 @@ angular.module('app', [])
   };
 
   this.runUpload = () => {
-    console.log("clicked");
+    //console.log("clicked");
     // console.log(this.runTagManager);
-    // this.runTagManager();
+    this.runTagManager();
     this.content = false;
   };
 
@@ -45,10 +45,12 @@ angular.module('app', [])
 
   };
 
-  // this.runTagManager = () => {
-  //   console.log("test")
-  //   $(".tm-input").tagsManager();
-  // };
+  this.runTagManager = () => {
+    console.log("test")
+    console.log("tunTagManager", angular.element(document.getElementsByClassName("tm-input")))
+    //jQuery(".tm-input").tagsManager({ hiddenTagListName:"yolo" });
+    // angular.element(document.getElementsByClassName(".tm-input")).tagsManager({ hiddenTagListName:"yolo" });
+  };
 
   this.handleClickHome = () => {
     this.content = true;

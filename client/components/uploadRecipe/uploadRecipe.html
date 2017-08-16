@@ -1,10 +1,10 @@
 <div>
  <form>
     <div class="form-group">
-      <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name" ng-model="$ctrl.newRecipe.title">
+      <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name" ng-change="$ctrl.invoke()" ng-model="$ctrl.newRecipe.title">
       <label for="name">Recipe Name</label>
     </div>
-    <div class="form-group">
+    <div class="form-group" >
         <input type="text" name="tags" placeholder="Tags" class="tm-input form-control tm-input-info">
       <label for="tags" >Tags</label>
     </div>
@@ -16,9 +16,9 @@
     <button type="button" class="btn btn-default" ng-click="$ctrl.handlePhotoSubmit()"> Submit</button>
   </form>
 
-  <script type="text/javascript">
+<!--   <script type="text/javascript">
     $(".tm-input").tagsManager(
        { hiddenTagListName:"yolo" }
       );
-  </script>
+  </script> -->
 </div>

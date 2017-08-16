@@ -1,8 +1,6 @@
 angular.module('app')
 
-.controller ('UploadRecipeCtrl', function (get) {
-  // console.log($scope.tm-input)
-  // $(".tm-input").tagsManager();
+.controller ('UploadRecipeCtrl', function ($timeout, get) {
   this.newRecipe = {};
 
   this.handlePhotoSubmit = () => {
@@ -10,6 +8,13 @@ angular.module('app')
     this.newRecipe["tags"] = x.split(",");
     console.log(this.newRecipe);
   };
+
+  $timeout(function() {
+    // code to execute after directives goes here
+    $(".tm-input").tagsManager(
+       { hiddenTagListName:"yolo" }
+      );
+  });
 
 })
 
