@@ -14,7 +14,6 @@ app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 
-<<<<<<< HEAD
 //Setting up tokens
 // app.use(expressJWT({
 //   secret: 'rowdyHouse'
@@ -22,8 +21,6 @@ app.use(bodyParser.json());
 //   path: ['/api/login', '/api/recipes']
 // }));
 
-=======
->>>>>>> Ready for backend post request
 
 
 /////////////////////////////////////////////////////////////
@@ -136,7 +133,6 @@ app.get('/api/login', (request, response) => {
 /////////////////////// POST REQUESTS ///////////////////////
 /////////////////////////////////////////////////////////////
 
-<<<<<<< HEAD
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
@@ -166,34 +162,6 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
   //   response.send(error);
   // });
 });
-=======
-// // Adds a recipe, desired tags, thumbnail url, and photos to the database
-// app.post('/api/recipes', (request, response) => {
-//   var userTags = [];
-//   request.body.Tags.forEach(tag => userTags.push(tag));
-
-//   var photoUrls = [];
-//   request.body.Photos.forEach(url => photoUrls.push(url));
-
-//   //UPDATE THIS TO HANDLE USERNAME
-//   db.Recipe.create({
-//     title: request.body.title,
-//     imageUrl: request.body.imageUrl,
-//     Photos: photoUrls,
-//     Tags: userTags
-//   }, {
-//     include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
-//   })
-//   .then((recipeData) => {
-//     console.log('Server POST Recipe success');
-//     response.send(recipeData);
-//   })
-//   .catch((error) => {
-//     console.log('Server POST Recipe error');
-//     response.send(error);
-//   });
-// });
->>>>>>> Ready for backend post request
 
 ///////////////////////////////////////////////////////////////
 /////////////////////// OTHER REQUESTS ///////////////////////
