@@ -21,26 +21,38 @@ exports.createTables = function () {
       // create recipes table
       var Recipe = db.define('Recipe', {
         id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
-        imageUrl: Sequelize.STRING,
         title: Sequelize.STRING,
         isStarred: Sequelize.INTEGER,
         //filename: Sequelize.STRING,
-      })
+      });
 
       // create tags table
       var Tag = db.define('Tag', {
         id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
         tag: Sequelize.STRING,
-      })
+      });
+
+      // create photos table
+      var Photo = db.define('Photo', {
+        id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+        image: Sequelize.STRING
+      });
+
 
       Recipe.belongsTo(User);
       Tag.belongsToMany(Recipe, {through: 'RecipeTag'});
       Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
+      Recipe.hasMany(Photo);
 
+
+      //IF YOU ADD ANOTHER SCHEMA EXPORT IT HERE
+      module.exports.Photo = Photo;
       module.exports.User = User;
       module.exports.Recipe = Recipe;
       module.exports.Tag = Tag;
       module.exports.db = db;
+
+
       resolve();
     })
     .catch(err => {

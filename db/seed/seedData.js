@@ -19,15 +19,25 @@ exports.seedData = function () {
   })
   .then(function() {
     return new Promise(function(resolve, reject) {
-      db.Recipe.bulkCreate(data)
-      .then(function() {
-        console.log('Recipes seeded');
-        resolve();
+      data.forEach(function(recipe) {
+        db.Recipe.create({
+          title: recipe.title,
+          Photos: recipe.Photos,
+          Tags: recipe.Tags
+         }, {
+           include: [ db.Tag, db.Photo]
+        })
+        .then(function() {
+          console.log('Recipe saved');
+          resolve();
+        })
+        .catch(err => {
+          console.error('Unable to seed recipe', err);
+          reject(err);
+        })
       })
-      .catch(err => {
-        console.error('Unable to seed recipe', err);
-        reject(err);
-      })
+
+
     });
   }).catch(err => {
     console.error('Seeding was unsuccessful:', err);

@@ -16,7 +16,7 @@ mysql.createDatabase()
           .then(function() {
 
             //close the connection
-            db.db.close();
+            db.db.close(); 
           })
       })
   })
