@@ -53,10 +53,9 @@ angular.module('app', [])
     $scope.$apply();
   });
 
-
-  //get photos function here
-  //add this to service
-  //have it invoked here
-  //pass down photos
+  get.getPhotos(null, function(photos) {
+    $scope.photos = photos;
+    $scope.$apply();
+  });
 
 });

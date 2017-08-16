@@ -1,5 +1,4 @@
 var mysql = require('./seedConfig.js');
-var Sequelize = require('sequelize');
 var db = require('./seedSchema.js');
 var seed = require('./seedData.js');
 
@@ -16,7 +15,7 @@ mysql.createDatabase()
           .then(function() {
 
             //close the connection
-            db.db.close(); 
+            db.db.close();
           })
       })
   })

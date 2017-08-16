@@ -25,6 +25,18 @@ angular.module('app')
   //   });
   // }
 
+  this.getPhotos = function(config, callback) {
+    axios.get('/api/photos')
+      .then(function(photos) {
+        console.log('GET photos success', photos.data);
+        callback(photos.data);
+      })
+      .catch(function(err) {
+        console.log('GET photos error', err);
+      });
+  }
+
+
 });
 
 
