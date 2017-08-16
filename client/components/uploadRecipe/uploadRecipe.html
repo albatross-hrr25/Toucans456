@@ -1,12 +1,12 @@
 <div>
-  <form>
+ <form>
     <div class="form-group">
-      <label for="name">Recipe Name</label>
       <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name">
+      <label for="name">Recipe Name</label>
     </div>
     <div class="form-group">
+        <input type="text" name="tags" placeholder="Tags" class="tm-input form-control tm-input-info"/>
       <label for="tags" >Tags</label>
-      <input type="text" class="form-control" id="Tags" placeholder="Tags" data-role="tagsinput">
     </div>
     <div class="form-group">
       <label for="exampleInputFile">File input</label>
@@ -16,4 +16,8 @@
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+
+  <script type="text/javascript">
+    $(".tm-input").tagsManager();
+  </script>
 </div>

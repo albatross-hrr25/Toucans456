@@ -15,6 +15,8 @@ angular.module('app', [])
 
   this.runUpload = () => {
     console.log("clicked");
+    // console.log(this.runTagManager);
+    // this.runTagManager();
     this.content = false;
   };
 
@@ -30,7 +32,13 @@ angular.module('app', [])
 
   };
 
+  // this.runTagManager = () => {
+  //   console.log("test")
+  //   $(".tm-input").tagsManager();
+  // };
+
   this.handleClickHome = () => {
+    this.content = true;
     get.getRecipes(null, function (recipes) {
       $scope.recipes = recipes;
       $scope.primaryRecipe = recipes[0];
