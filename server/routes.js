@@ -28,13 +28,14 @@ app.get('/api/users', (request, response) => {
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
   // TODO: FIX TO FILTER BY USERNAME
+
   //query username to retrieve their recipeId's
   console.log('Server GET Recipes request', request.query);
 
   db.Recipe.findAll()
     .then((recipe) => {
       console.log(recipe);
-      response.send(recipe);
+      // response.send(recipe);
     })
     .catch((error) => {
       response.send(error);
