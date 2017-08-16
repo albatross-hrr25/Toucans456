@@ -4,6 +4,8 @@ angular.module('app')
 
   this.getRecipes = function (config, callback) {
     // --------------------FIX TO ADD USERNAME PARAMETER
+    //Look below at getPhotos method to find out how
+
     axios.get('/api/recipes')
     .then(function (recipes) {
       callback(recipes.data);
@@ -25,6 +27,44 @@ angular.module('app')
   //   });
   // }
 
+  this.getPhotos = function(config, callback) {
+    console.log('getPhotos config', config);
+    axios.get('/api/photos', {
+      params: {
+        UserId: config.UserId,
+        id: config.id,
+        title: config.title  //probably don't need this
+      }
+    })
+    .then(function(photos) {
+      console.log('Frontend GET photos success', photos.data);
+      callback(photos.data);
+    })
+    .catch(function(err) {
+      console.log('Frontend GET photos error', err);
+    });
+  }
+
+  this.getTags = function(config, callback) {
+    console.log('getTags config', config);
+    axios.get('/api/tags', {
+      params: {
+        UserId: config.UserId,
+        id: config.id,
+        title: config.title //probably don't need this
+      }
+    })
+    .then(function(tags) {
+      console.log('Frontend GET Tags success', tags.data);
+      callback(tags.data);
+    })
+    .catch(function(err) {
+      console.log('Frontend GET Tags error', err);
+    })
+  }
+
+
+  
 });
 
 

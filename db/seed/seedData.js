@@ -22,10 +22,12 @@ exports.seedData = function () {
       data.forEach(function(recipe) {
         db.Recipe.create({
           title: recipe.title,
+          imageUrl: recipe.imageUrl,
           Photos: recipe.Photos,
-          Tags: recipe.Tags
+          Tags: recipe.Tags,
+          //User: recipe.user,
          }, {
-           include: [ db.Tag, db.Photo]
+           include: [db.Tag, db.Photo]  //add user here?
         })
         .then(function() {
           console.log('Recipe saved');

@@ -17,3 +17,6 @@ node_modules/
 
 # Cloudinary #
 client/cloudinary/cloudinary.env
+
+# Notes #
+notes.txt

@@ -8,9 +8,22 @@ angular.module('app', [])
 .controller ('RecipeController', function ($scope, get) {
   this.content = true;
 
+
   this.selectRecipe = (recipe) => {
     console.log(recipe);
     $scope.primaryRecipe = recipe;
+
+    //retrieve photos
+    get.getPhotos(recipe, function(photos) {
+      $scope.photos = photos;
+      $scope.$apply();
+    });
+
+    //retrieve tags
+    get.getTags(recipe, function(tags) {
+      $scope.tags = tags;
+      $scope.$apply();
+    });
   };
 
   this.runUpload = () => {
@@ -52,5 +65,6 @@ angular.module('app', [])
     $scope.primaryRecipe = recipes[0];
     $scope.$apply();
   });
+
 
 });

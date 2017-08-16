@@ -23,6 +23,7 @@ var User = db.define('User', {
 // create recipes table
 var Recipe = db.define('Recipe', {
   id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+  imageUrl: Sequelize.STRING,
   title: Sequelize.STRING,
   isStarred: Sequelize.INTEGER,
   //filename: Sequelize.STRING,  //WHY IS THIS HERE
