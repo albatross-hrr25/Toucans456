@@ -8,6 +8,7 @@ angular.module('app')
 
     axios.get('/api/recipes')
     .then(function (recipes) {
+      //console.log('get', recipes);
       callback(recipes.data);
     })
     .catch(function (err) {
@@ -64,7 +65,7 @@ angular.module('app')
   }
 
 
-  
+
 });
 
 

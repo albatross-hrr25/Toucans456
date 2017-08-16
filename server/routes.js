@@ -34,8 +34,8 @@ app.get('/api/recipes', (request, response) => {
 
   db.Recipe.findAll()
     .then((recipe) => {
-      console.log(recipe);
-      // response.send(recipe);
+      //console.log(recipe);
+      response.send(recipe);
     })
     .catch((error) => {
       response.send(error);
