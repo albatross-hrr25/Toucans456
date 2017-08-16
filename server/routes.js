@@ -1,4 +1,3 @@
-
 var cloudinary = require('cloudinary');
 var express = require('express');
 //var intalize = require('./../db/config.js');
@@ -27,6 +26,15 @@ app.get('/api/users', (request, response) => {
 app.get('/api/recipes', (request, response) => {
   // refactor to return tags as well as relevant data
   // TODO: FIX TO FILTER BY USERNAME
+
+  //query username to retrieve their recipeId's
+    //use these recipeId's to query the Recipe table
+      //retrieve recipes
+        //send recipes as a response
+
+
+
+
   db.Recipe.findAll()
     .then((recipe) => {
       console.log(recipe);
@@ -35,6 +43,18 @@ app.get('/api/recipes', (request, response) => {
     .catch((error) => {
       response.send(error);
     });
+});
+
+
+app.get('/api/photos', function(request, response) {
+  db.Photo.findAll()
+    .then(function(photos) {
+      response.send(photos)
+    })
+    .catch(function(error) {
+      console.log('There was an error while retrieving photos');
+      response.send(error);
+    })
 });
 
 // Adds a recipe and desired tags to the database
@@ -48,6 +68,7 @@ app.post('/api/recipes', (request, response) => {
   //how do we save username to recipes??
   db.Recipe.create({
     title: request.body.title,
+    imageUrl: request.body.imageUrl,
     Photos: photoUrls,
     Tags: userTags
   }, {
