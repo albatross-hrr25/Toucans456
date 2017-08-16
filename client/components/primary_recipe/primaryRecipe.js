@@ -1,9 +1,9 @@
 angular.module('app')
 
 .controller ('PrimaryRecipeController', function ($scope) {
-  console.log('PrimaryTest controller has run: this is ', this);
+  //console.log('PrimaryTest controller has run: this is ', this);
 
-  console.log($scope)
+  //console.log($scope)
 
 })
 

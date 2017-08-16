@@ -1,7 +1,7 @@
 angular.module('app')
 
 .controller ('InventoryCtrl', function () {
-  console.log("inventory", this);
+  //console.log("inventory", this);
 })
 
 .component('inventory', {
