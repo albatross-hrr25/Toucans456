@@ -18,5 +18,7 @@ node_modules/
 # Cloudinary #
 client/cloudinary/cloudinary.env
 
+
 # Env #
 .env
+

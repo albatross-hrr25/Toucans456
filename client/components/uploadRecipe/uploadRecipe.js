@@ -4,6 +4,7 @@ angular.module('app')
   this.newRecipe = {};
 
   this.handlePhotoSubmit = () => {
+
     //Retrieves all files from angular component
     var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
     console.log("addedPhotos", addedPhotos);
@@ -16,7 +17,9 @@ angular.module('app')
 
 
     get.uploadFileToUrl(this.newRecipe, '/api/recipes')
+
   };
+
 
   $timeout(function() {
     // code to execute after directives goes here
