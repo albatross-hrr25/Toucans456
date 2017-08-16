@@ -43,7 +43,7 @@ var Photo = db.define('Photo', {
 Recipe.belongsTo(User);
 Tag.belongsToMany(Recipe, {through: 'RecipeTag'});
 Recipe.belongsToMany(Tag, {through: 'RecipeTag'});
-Recipe.belongsToMany(Photo, {through: 'RecipePhoto'});
+Recipe.hasMany(Photo);
 
 db.sync();
 
