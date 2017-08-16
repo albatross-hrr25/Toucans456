@@ -16,23 +16,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-touch.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
   <!-- Include axios library -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Include local css style sheet-->
   <link href="client/styles.css" rel="stylesheet"/>
   <title>test</title>
 </head>
-<body>
-  <app ng-app="app">
+<body ng-app="app">
+  <!-- Put ui-view directive below? -->
+  <app>
+
     <h1>This ought to disappear when things are properly rendered</h1>
 
   </app>
-  <!-- Put ui-view directive below? -->
-  <div ui-view>
-    <li><a ui-sref="tourist">Tourist</a></li>
-  </div>
+  <ui-view></ui-view>
+
   <!-- angular files -->
   <script src="client/components/app/app.js"></script>
   <script src="client/components/primary_recipe/primaryRecipe.js"></script>
