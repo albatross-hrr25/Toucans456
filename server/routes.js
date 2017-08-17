@@ -105,8 +105,6 @@ app.get('/api/tags', (request, response) => {
   })
 });
 
-
-
 app.get('/api/login', (request, response) => {
   // TODO: fine-tune the findAll method when we incorporate User-Auth.
   db.User.findAll({
@@ -116,7 +114,6 @@ app.get('/api/login', (request, response) => {
   })
     .then((user) => {
       // compare passwords
-      //TODO: FIX this next line (not suppose to be hash)
       if (user[0].dataValues.hash === request.query.hash) {
         var myToken = jwt.sign({
           username: request.query.username
@@ -124,8 +121,7 @@ app.get('/api/login', (request, response) => {
         // redirect to homepage with token as header
         response.status(200).json(myToken);
       } else {
-        // redirect back to login
-        response.status(401).send('Invalid password');  //Change to redirect to login
+        response.status(401).send('Invalid password');
       }
     })
     .catch((error) => {
