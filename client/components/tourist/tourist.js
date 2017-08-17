@@ -11,6 +11,8 @@ angular.module('app')
         // Get User's Personal Hompage
         get.getHomepage(null, null);
         // route to primary view
+        //on sucess:
+        $state.go('primary');
       });
     }
   })
