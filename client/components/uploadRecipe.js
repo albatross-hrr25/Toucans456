@@ -3,6 +3,7 @@ angular.module('app')
 
     this.newRecipe = {};
 
+
     this.handlePhotoSubmit = () => {
       //Retrieves all files from angular component
       var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
@@ -31,4 +32,5 @@ angular.module('app')
   .component('uploadRecipe', {
     controller: 'UploadRecipeCtrl',
     templateUrl: 'templates/uploadRecipe.html',
+
   });
