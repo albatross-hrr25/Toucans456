@@ -41,7 +41,8 @@ exports.seedData = function () {
 
 
     });
-  }).catch(err => {
+  })
+  .catch(err => {
     console.error('Seeding was unsuccessful:', err);
   })
 }

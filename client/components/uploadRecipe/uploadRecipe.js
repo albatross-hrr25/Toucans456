@@ -12,8 +12,6 @@ angular.module('app')
     var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
     this.newRecipe["Tags"] = addedTags.split(",");
     this.newRecipe["Photos"] = addedPhotos;
-    console.log('memememm', this.newRecipe)
-
 
     get.uploadFileToUrl(this.newRecipe, '/api/recipes')
   };
