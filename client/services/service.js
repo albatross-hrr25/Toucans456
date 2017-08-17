@@ -14,7 +14,7 @@ angular.module('app')
     .catch(function (err) {
       console.log(err);
     });
-  }
+  };
 
   // this.sendRecipe = function (query) {
   //   // --------------------FIX TO ADD USERNAME PARAMETER
@@ -44,7 +44,7 @@ angular.module('app')
     .catch(function(err) {
       console.log('Frontend GET photos error', err);
     });
-  }
+  };
 
   this.getTags = function(config, callback) {
     console.log('getTags config', config);
@@ -61,16 +61,12 @@ angular.module('app')
     })
     .catch(function(err) {
       console.log('Frontend GET Tags error', err);
-    })
-  }
+    });
+  };
 
   this.login = function (config, callback) {
     console.log('login is running')
-    axios.get('/api/login', {
-      params: {
-        username: 'UnicornKiller'//config.username  //change this
-      }
-    })
+    axios.get('/api/login', config)
     .then(function (token) {
       console.log('Frontend GET login success', token);
       callback(token);
@@ -81,23 +77,27 @@ angular.module('app')
   }
 
   this.uploadFileToUrl = function(file, uploadUrl){
-        var fd = new FormData();
-        fd.append('title', file.Title);
-        fd.append('tags', file.Tags);
-        fd.append('file', file.Photos[0]);
+    var fd = new FormData();
+    fd.append('title', file.Title);
+    fd.append('tags', file.Tags);
+    fd.append('file', file.Photos[0]);
 
-        axios.post(uploadUrl, fd, {
-          headers: {'Content-type': 'multipart/form-data'}
-        })
-        .then(function(file) {
-          console.log('uploadFile sucess');
-        })
-        .catch(function(err) {
-          console.error(err);
-        })
-  }
+    axios.post(uploadUrl, fd, {
+      headers: {'Content-type': 'multipart/form-data'}
+    })
+    .then(function(file) {
+      console.log('uploadFile sucess');
+    })
+    .catch(function(err) {
+      console.error(err);
+    })
+  };
 
-
+  this.getHomepage = function() {
+    axios.get('/primary')
+      .then((primaryView) => {console.log('GETHOMEPAGE PRIMARYVIEW', primaryView);})
+      .catch((error) => {});
+  };
 
 });
 

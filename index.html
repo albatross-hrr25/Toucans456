@@ -16,24 +16,35 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-touch.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
   <!-- Include axios library -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Include local css style sheet-->
   <link href="client/styles.css" rel="stylesheet"/>
   <title>test</title>
 </head>
-<body>
-  <app ng-app="app">
-    <h1>This ought to disappear when things are properly rendered</h1>
-  </app>
+<body ng-app="app">
+
+  <div >
+  <!-- Put ui-view directive below? -->
+    <a ui-sref="tourist">TOURIST</a>
+    <a ui-sref="primary">PRIMARY</a>
+
+    <ui-view>
+      <app></app>
+      <tourist></tourist>
+    </ui-view>
+  </div>
   <!-- angular files -->
-  <script src="client/components/app/app.js"></script>
+  <script src="client/config.js"></script>
   <script src="client/components/primary_recipe/primaryRecipe.js"></script>
   <script src="client/components/inventory/inventory.js"></script>
   <script src="client/components/inventoryEntry/inventoryEntry.js"></script>
   <script src="client/components/uploadRecipe/uploadRecipe.js"></script>
   <script src="client/components/nav/nav.js"></script>
   <script src="client/components/login/login.js"></script>
+  <script src="client/components/tourist/tourist.js"></script>
+  <script src="client/components/app/app.js"></script>
   <script src="client/services/service.js"></script>
 </body>
 

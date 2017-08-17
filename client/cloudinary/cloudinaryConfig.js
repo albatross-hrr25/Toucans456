@@ -47,9 +47,6 @@ var uploadPhoto = function(inputfilepath, title, tags) {
     console.log('Unique cloudinary image url (not secure): ', uploads[id].url);
     return uploads[id].url
   }
-
-
-
 }
 
 module.exports = {cloudinary, uploadPhoto}
