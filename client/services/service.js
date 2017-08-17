@@ -91,7 +91,14 @@ angular.module('app')
     .catch(function(err) {
       console.error(err);
     })
-  }
+  };
+
+  this.getHomepage = function() {
+    axios.get('/primary')
+      .then((primaryView) => {console.log('GETHOMEPAGE PRIMARYVIEW', primaryView);})
+      .catch((error) => {});
+  };
+
 });
 
 
