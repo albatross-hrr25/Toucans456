@@ -12,10 +12,10 @@ cloudinary.config({
   api_secret: cloudinary_sec
 });
 
-var uploadPhoto = function(inputfile) {
+var uploadPhoto = function(inputfilepath, title, tags) {
   let reterivedUrl;
   console.log('upload invoked');
-  return cloudinary.uploader.upload(inputfile, // TODO: make image path dynamic
+  return cloudinary.uploader.upload(inputfilepath, // TODO: make image path dynamic
       // { // This sizing might be OK for primary view
       //   width: 2000,
       //   height: 1000,
@@ -24,12 +24,12 @@ var uploadPhoto = function(inputfile) {
       //   tags: ['endive', 'roquefort']
       // },
       { // This sizing might be OK for thumbnail views
-        public_id: 'yolo',
+        public_id: title,
         width: 300,
         height: 225,
         crop: "fit",
-        effect: 'art:incognito', // 'auto_color' is a good effect, too.
-        tags: ['endive', 'roquefort'] // TODO: make tags dynamic
+       // effect: 'art:incognito', // 'auto_color' is a good effect, too.
+        tags: tags // TODO: make tags dynamic
       },
       function(error, image) {
         if (error) {

@@ -140,21 +140,37 @@ app.get('/api/login', (request, response) => {
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
 
-  console.log('server recipe POST request', request.file.path);
-  console.log('server recipe POST requestbody', request.body.title);
-  console.log('server recipe POST requestbody', typeof request.body.tags.split(","));
-  // return new Promise(function(resolve, reject){
-  //   cloudConfig.uploadPhoto(request.file.path)
-  //   .then(function(response){
-  //     console.log('responsefromCloudinary', response.secure_url);
-  //     resolve();
-  //   })
-  //   .catch(err => {
-  //     console.error('Unable to upload', err);
-  //     reject(err);
-  //   })
-  // })
-  // .catch(err => console.error)
+  let photoPath = request.file.path;
+  let photoTitle = request.body.title;
+  let photoTags = request.body.tags.split(",");
+  console.log(photoTags);
+  return new Promise(function(resolve, reject){
+    cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
+    .then(function(response){
+      db.Recipe.create({
+        title: response.public_id,
+        imageUrl: response.secure_url,
+        Photos: response.secure_url,
+        Tags: response.tags
+      }, {
+        include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
+      })
+      .then((recipeData) => {
+        console.log('Server POST Recipe success');
+        // response.send(recipeData);
+      })
+      .catch((error) => {
+        console.log('Server POST Recipe error');
+        // response.send(error);
+      });
+      resolve();
+    })
+    .catch(err => {
+      console.error('Unable to upload', err);
+      reject(err);
+    })
+  })
+
 
   // var userTags = [];
   // request.body.Tags.forEach(tag => userTags.push(tag));
@@ -163,22 +179,7 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
   // request.body.Photos.forEach(url => photoUrls.push(url));
   //
   // //UPDATE THIS TO HANDLE USERNAME
-  // db.Recipe.create({
-  //   title: request.body.title,
-  //   imageUrl: request.body.imageUrl,
-  //   Photos: photoUrls,
-  //   Tags: userTags
-  // }, {
-  //   include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
-  // })
-  // .then((recipeData) => {
-  //   console.log('Server POST Recipe success');
-  //   response.send(recipeData);
-  // })
-  // .catch((error) => {
-  //   console.log('Server POST Recipe error');
-  //   response.send(error);
-  // });
+
 });
 
 ///////////////////////////////////////////////////////////////
