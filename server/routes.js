@@ -140,11 +140,10 @@ app.get('/api/login', (request, response) => {
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
   //UPDATE THIS TO HANDLE USERNAME
-
   let photoPath = request.file.path;
   let photoTitle = request.body.title;
   let photoTags = request.body.tags.split(",");
-  console.log(photoTags);
+
   return new Promise(function(resolve, reject){
     cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
     .then(function(response){
