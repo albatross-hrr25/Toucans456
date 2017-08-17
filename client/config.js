@@ -1,5 +1,4 @@
-angular.module('app')
-
+angular.module('app', ['ui.router'])
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('primary');
 
@@ -19,7 +18,7 @@ angular.module('app')
     var primaryState = {
       name: 'primary',
       url: '/primary',
-      component: 'primary',
+      component: 'app',
       // resolve: {
       //   primary: function(primaryService) {
       //     // delegate to services which return a promise
