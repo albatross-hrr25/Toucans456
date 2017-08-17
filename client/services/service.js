@@ -47,7 +47,9 @@ angular.module('app')
   };
 
   this.getTags = function(config, callback) {
-    console.log('getTags config', config);
+    //console.log('getTags config', config);
+    //console.log('GetTags service is running');
+
     axios.get('/api/tags', {
       params: {
         UserId: config.UserId,
@@ -56,6 +58,7 @@ angular.module('app')
       }
     })
     .then(function(tags) {
+      //console.log('GetTags service finished');
       console.log('Frontend GET Tags success', tags.data);
       callback(tags.data);
     })
@@ -98,6 +101,20 @@ angular.module('app')
       .then((primaryView) => {console.log('GETHOMEPAGE PRIMARYVIEW', primaryView);})
       .catch((error) => {});
   };
+
+  this.search = function(config, callback) {
+  axios.get('/api/search', {
+    params: {
+      query: config.query
+    }
+  })
+  .then(function(results) {
+    callback(results.data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+}
 
 });
 

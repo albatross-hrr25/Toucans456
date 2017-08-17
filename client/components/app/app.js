@@ -15,14 +15,15 @@ angular.module('app')
   };
 
 ////////search bar//////////////////////////
+
   this.handleSearchResults = (query) => {
-    var results = $scope.recipes.filter((recipe) => {
-      var pattern = ".*" + query.toString() + ".*";
-      var re = new RegExp(pattern, "i");
-      return recipe.title.toString().match(re) ? true : false;
-    })
-    $scope.recipes = results;
+    get.search({query: query}, function(recipes){
+      $scope.recipes = recipes
+      $scope.$apply();
+      console.log(recipes);
+    });
   };
+
 
   this.handleClickHome = () => {
     this.content = true;
@@ -57,5 +58,8 @@ angular.module('app')
     $scope.primaryRecipe = recipes[0];
     $scope.$apply();
   });
+
+
+
 
 });

@@ -1,4 +1,4 @@
-//FEEL FREE TO MODIFY THIS FILE AS YOU LIKE {image: }
+//FEEL FREE TO MODIFY THIS FILE AS YOU LIKE
 module.exports = [
   {
     user: 'UnicornKiller',
@@ -16,7 +16,7 @@ module.exports = [
     ]
   },
   {
-    user: 'Scott',
+    user: 'UnicornKiller',
     imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/04/52/7b/80/city-pizza-italian-cuisine.jpg',
     title: 'meat lovers pizza',
     Photos: [
@@ -51,7 +51,7 @@ module.exports = [
     ]
   },
   {
-    user: 'Christine',
+    user: 'UnicornKiller',
     imageUrl: 'https://www.yogurt-land.com/assets/635.png',
     title: 'root beer float',
     isStarred: false,
@@ -81,7 +81,7 @@ module.exports = [
     ]
   },
   {
-    user: 'Sonrisa',
+    user: 'UnicornKiller',
     imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
     title: 'burrito supreme',
     isStarred: true,
@@ -97,7 +97,7 @@ module.exports = [
     ]
   },
   {
-    user: 'Sonrisa',
+    user: 'UnicornKiller',
     imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
     title: 'test supreme',
     isStarred: true,
@@ -109,6 +109,35 @@ module.exports = [
       { tag: 'beans'},
       { tag: 'guacamole'},
       { tag: 'hot sauce'}
+    ]
+  },
+  {
+    user: 'Sonrisa',
+    imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
+    title: 'Sonrisa burrito',
+    isStarred: true,
+    Photos: [
+      {image: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg'}
+    ],
+    Tags: [
+      { tag: 'tortilla'},
+      { tag: 'beans'},
+      { tag: 'guacamole'},
+      { tag: 'hot sauce'}
+    ]
+  },
+  {
+    user: 'Sonrisa',
+    imageUrl: 'http://assets.marthastewart.com/styles/wmax-1500/d31/how_to_peel_a_hard-boiled_egg_1/how_to_peel_a_hard-boiled_egg_1_horiz.jpg?itok=ia2mlBlT',
+    title: 'Sonrisa boiled egg',
+    isStarred: true,
+    Photos: [
+      {image: 'http://www.inspiredtaste.net/wp-content/uploads/2011/12/How-to-Cook-Hard-Boiled-Eggs-2-1200.jpg'},
+      {image: 'http://www.olgasflavorfactory.com/wp-content/uploads/2012/02/Hard-Boiled-Eggs-550x430.jpg'}
+    ],
+    Tags: [
+      { tag: 'egg'},
+      { tag: 'water'}
     ]
   }
 ]
