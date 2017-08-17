@@ -68,12 +68,11 @@ angular.module('app')
     console.log('login is running')
     axios.get('/api/login', {
       params: {
-        username: 'UnicornKiller'
+        username: 'UnicornKiller'//config.username  //change this
       }
     })
     .then(function (token) {
-      console.log('this is to grab attention')
-      // this callback ought to set the token on users headers
+      console.log('Frontend GET login success', token);
       callback(token);
     })
     .catch(function (err) {

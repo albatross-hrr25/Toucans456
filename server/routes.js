@@ -108,7 +108,7 @@ app.get('/api/login', (request, response) => {
       console.log(user);
       // compare passwords
       //TODO: FIX this next line (not suppose to be hash)
-      if (user[0].dataValues.username === request.query.username) {
+      if (user[0].dataValues.hash === request.query.hash) {
         var myToken = jwt.sign({
           username: request.query.username
         }, 'rowdyHouse');
@@ -116,10 +116,11 @@ app.get('/api/login', (request, response) => {
         response.status(200).json(myToken);
       } else {
         // redirect back to login
-        response.status(401).send('Invalid password');
+        response.status(401).send('Invalid password');  //Change to redirect to login
       }
     })
     .catch((error) => {
+      console.log('User does not exist');
       response.send(error);
     });
 });
