@@ -5,9 +5,12 @@ var db = require('./../db/schema.js');
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
+var cloudConfig = require('./../client/cloudinary/cloudinaryConfig')
+
 
 var multer  = require('multer');
-var upload = multer({ dest: '/tmp/'});
+var upload = multer({ dest: 'uploads/'});
+//clean storage
 
 var app = express();
 app.use(express.static(__dirname + '/../'));
@@ -136,31 +139,39 @@ app.get('/api/login', (request, response) => {
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
+  //UPDATE THIS TO HANDLE USERNAME
+  let photoPath = request.file.path;
+  let photoTitle = request.body.title;
+  let photoTags = request.body.tags.split(",");
 
-  console.log('server recipe POST request', request.file);
-  // var userTags = [];
-  // request.body.Tags.forEach(tag => userTags.push(tag));
-  //
-  // var photoUrls = [];
-  // request.body.Photos.forEach(url => photoUrls.push(url));
-  //
-  // //UPDATE THIS TO HANDLE USERNAME
-  // db.Recipe.create({
-  //   title: request.body.title,
-  //   imageUrl: request.body.imageUrl,
-  //   Photos: photoUrls,
-  //   Tags: userTags
-  // }, {
-  //   include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
-  // })
-  // .then((recipeData) => {
-  //   console.log('Server POST Recipe success');
-  //   response.send(recipeData);
-  // })
-  // .catch((error) => {
-  //   console.log('Server POST Recipe error');
-  //   response.send(error);
-  // });
+  return new Promise(function(resolve, reject){
+    cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
+    .then(function(response){
+      db.Recipe.create({
+        title: response.public_id,
+        imageUrl: response.secure_url,
+        Photos: response.secure_url,
+        Tags: response.tags
+      }, {
+        include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
+      })
+      .then((recipeData) => {
+        console.log('Server POST Recipe success');
+        // response.send(recipeData);
+      })
+      .catch((error) => {
+        console.log('Server POST Recipe error');
+        // response.send(error);
+      });
+      resolve();
+    })
+    .catch(err => {
+      console.error('Unable to upload', err);
+      reject(err);
+    })
+  })
+
+
 });
 
 ///////////////////////////////////////////////////////////////

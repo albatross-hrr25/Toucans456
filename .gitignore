@@ -15,8 +15,9 @@ node_modules/
 .flooignore
 ~
 
-# Cloudinary #
-client/cloudinary/cloudinary.env
-
 # Env #
 .env
+
+
+# Multer#
+uploads/
