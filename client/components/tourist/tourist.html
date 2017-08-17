@@ -3,6 +3,12 @@
   <h2>Most especially yours.</h2>
   <h5>Snap. Tag. Find.</h5>
   <button>Sign Up</button>
-  <button>Login</button>
+  <div>
+    <h1>Login</h1>
+    <form ng-submit="$ctrl.loginClick(username, password)">
+    user: <input ng-model="username" type="text"/>
+    password: <input ng-model="password" type="text"/>
+    <input type="submit" value="login">
+  </div>
   <img src="http://www.happy-pixels.com/wp-content/uploads/2011/04/michael-roulier-01.jpg"/>
 </div>

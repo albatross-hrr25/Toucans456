@@ -66,11 +66,7 @@ angular.module('app')
 
   this.login = function (config, callback) {
     console.log('login is running')
-    axios.get('/api/login', {
-      params: {
-        username: 'UnicornKiller'//config.username  //change this
-      }
-    })
+    axios.get('/api/login', config)
     .then(function (token) {
       console.log('Frontend GET login success', token);
       callback(token);
@@ -81,24 +77,21 @@ angular.module('app')
   }
 
   this.uploadFileToUrl = function(file, uploadUrl){
-        var fd = new FormData();
-        fd.append('title', file.Title);
-        fd.append('tags', file.Tags);
-        fd.append('file', file.Photos[0]);
+    var fd = new FormData();
+    fd.append('title', file.Title);
+    fd.append('tags', file.Tags);
+    fd.append('file', file.Photos[0]);
 
-        axios.post(uploadUrl, fd, {
-          headers: {'Content-type': 'multipart/form-data'}
-        })
-        .then(function(file) {
-          console.log('uploadFile sucess');
-        })
-        .catch(function(err) {
-          console.error(err);
-        })
+    axios.post(uploadUrl, fd, {
+      headers: {'Content-type': 'multipart/form-data'}
+    })
+    .then(function(file) {
+      console.log('uploadFile sucess');
+    })
+    .catch(function(err) {
+      console.error(err);
+    })
   }
-
-
-
 });
 
 
