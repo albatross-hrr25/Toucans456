@@ -24,8 +24,6 @@ app.use(expressJWT({
   path: ['/#!/tourist', '/api/login']
 }));
 
-
-
 /////////////////////////////////////////////////////////////
 /////////////////////// GET REQUESTS ///////////////////////
 ////////////////////////////////////////////////////////////
@@ -131,8 +129,7 @@ app.get('/api/login', (request, response) => {
       }
     })
     .catch((error) => {
-      console.log('User does not exist');
-      response.send(error);
+      response.status(401).send(error);
     });
 });
 

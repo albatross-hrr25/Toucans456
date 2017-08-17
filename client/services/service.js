@@ -72,7 +72,7 @@ angular.module('app')
       callback(token);
     })
     .catch(function (err) {
-      console.log(err);
+      console.log('This is the error form logn', err);
     });
   }
 
