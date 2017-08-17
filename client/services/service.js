@@ -47,7 +47,9 @@ angular.module('app')
   };
 
   this.getTags = function(config, callback) {
-    console.log('getTags config', config);
+    //console.log('getTags config', config);
+    //console.log('GetTags service is running');
+
     axios.get('/api/tags', {
       params: {
         UserId: config.UserId,
@@ -56,6 +58,7 @@ angular.module('app')
       }
     })
     .then(function(tags) {
+      //console.log('GetTags service finished');
       console.log('Frontend GET Tags success', tags.data);
       callback(tags.data);
     })
