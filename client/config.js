@@ -1,6 +1,6 @@
 angular.module('app', ['ui.router'])
   .config(function($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('primary');
+    $urlRouterProvider.otherwise('tourist');
 
     var touristState = {
       name: 'tourist',

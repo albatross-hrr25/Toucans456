@@ -1,5 +1,7 @@
 angular.module('app')
-  .controller('TouristCtrl', function($scope, get) {
+
+  .controller('TouristCtrl', ['$scope', 'get', '$state', function ($scope, get, $state) {
+
     this.loginClick = (username, password) => {
       var config = {
         params: { username: username, hash: password }
@@ -15,7 +17,8 @@ angular.module('app')
         $state.go('primary');
       });
     }
-  })
+  }])
+
   .component('tourist', {
     controller: 'TouristCtrl',
     templateUrl: 'client/components/tourist/tourist.html'
