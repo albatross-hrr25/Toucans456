@@ -14,7 +14,7 @@ angular.module('app')
     .catch(function (err) {
       console.log(err);
     });
-  }
+  };
 
   // this.sendRecipe = function (query) {
   //   // --------------------FIX TO ADD USERNAME PARAMETER
@@ -44,7 +44,7 @@ angular.module('app')
     .catch(function(err) {
       console.log('Frontend GET photos error', err);
     });
-  }
+  };
 
   this.getTags = function(config, callback) {
     console.log('getTags config', config);
@@ -61,8 +61,8 @@ angular.module('app')
     })
     .catch(function(err) {
       console.log('Frontend GET Tags error', err);
-    })
-  }
+    });
+  };
 
   this.login = function (config, callback) {
     console.log('login is running')

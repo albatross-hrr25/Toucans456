@@ -1,7 +1,7 @@
 angular.module('app')
 
-  .config(function($stateProvider) {
-    //$urlRouterProvider.otherwise('primary');
+  .config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('primary');
 
     var touristState = {
       name: 'tourist',
@@ -31,14 +31,4 @@ angular.module('app')
 
     $stateProvider.state(touristState);
     $stateProvider.state(primaryState);
-  })
-  .component('tourist', {
-
-    templateUrl: 'client/components/tourist/tourist.html'
-
-  })
-   .component('primary', {
-
-    templateUrl: 'client/components/app/primary.html'
-
   });
