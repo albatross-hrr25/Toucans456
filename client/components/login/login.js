@@ -1,5 +1,4 @@
 angular.module('app')
-
 .controller ('LoginController', function ($scope, get) {
 
   get.login(null, function (token) {
