@@ -5,8 +5,9 @@ var data = require('./../data/exampleData.js');
 
 exports.seedData = function () {
   return new Promise(function(resolve, reject) {
-    db.User.create({
-      username: 'UnicornKiller'
+    db.User.create({  //POSSIBLY SEED ALL USERS HERE
+      username: 'UnicornKiller',
+      hash: 'password'
     })
     .then(function() {
       console.log('Seeding username');
@@ -25,9 +26,9 @@ exports.seedData = function () {
           imageUrl: recipe.imageUrl,
           Photos: recipe.Photos,
           Tags: recipe.Tags,
-          //User: recipe.user,
+          ///User: recipe.user,
          }, {
-           include: [db.Tag, db.Photo]  //add user here?
+           include: [db.Tag, db.Photo]  //RETHINK THIS!!!!!! User
         })
         .then(function() {
           console.log('Recipe saved');
