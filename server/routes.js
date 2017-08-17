@@ -136,6 +136,41 @@ app.get('/api/login', (request, response) => {
 /////////////////////// POST REQUESTS ///////////////////////
 /////////////////////////////////////////////////////////////
 
+app.post('/api/signup', (request, response) => {
+  var username = request.query.username;
+  var hash = request.query.hash;
+  if (!username) {
+    console.log('this is username', username)
+    response.status(404).send('invalid username');
+  }
+  if (!hash) {
+    console.log('this is password', hash)
+    response.status(404).send('invalid password');
+  }
+  db.User.findAll({where: {username: username}})
+  .then ((userData) => {
+    if(userData.length > 0) {
+      response.status(404).send('User already exists')
+    } else {
+      db.User.create({
+        username: username,
+        hash: hash
+      })
+      .then((user) => {
+        var myToken = jwt.sign({
+            username: username
+        }, 'rowdyHouse');
+        response.status(200).json(myToken);
+      })
+      .catch((error) => {
+        response.status(404).json(error);
+      })
+    }
+  })
+  .catch((error) => {
+    response.status(404).json(error);
+  })
+})
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
