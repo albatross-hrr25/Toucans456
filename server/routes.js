@@ -21,8 +21,15 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
+<<<<<<< HEAD
   path: ['/#!/tourist', '/api/login', '/api/signup']
 }));
+=======
+  path: ['/#!/tourist', '/api/login']
+}));
+
+
+>>>>>>> Commit before rebase
 
 /////////////////////////////////////////////////////////////
 /////////////////////// GET REQUESTS ///////////////////////
@@ -42,10 +49,10 @@ app.get('/api/users', (request, response) => {
 });
 
 // Gets a user's primary homepage
-app.get('/primary', (request, response) => {
-  // redirects user to /#!/primary
+// app.get('/primary', (request, response) => {
+//   // redirects user to /#!/primary
 
-})
+// })
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
