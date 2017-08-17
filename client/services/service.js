@@ -81,19 +81,23 @@ angular.module('app')
   }
 
   this.uploadFileToUrl = function(file, uploadUrl){
-
+        console.log('uploading file', file);
+        console.log('uploading file', file.Tags);
+        console.log('uploading file', file.Title);
         console.log('uploading file', file.Photos[0]);
+
         var fd = new FormData();
+        fd.append('title', file.Title);
+        fd.append('tags', file.Tags);
         fd.append('file', file.Photos[0]);
-        console.log('FD contents', fd.get('file'));
-
-
+        console.log('FD contents photo', fd.get('file'));
+        console.log('FD contents tags', fd.get('tags'));
 
         axios.post(uploadUrl, fd, {
           headers: {'Content-type': 'multipart/form-data'}
         })
         .then(function(file) {
-          console.log('uploadFile sucess', file);
+          console.log('uploadFile sucess');
         })
         .catch(function(err) {
           console.error(err);

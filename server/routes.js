@@ -141,18 +141,20 @@ app.get('/api/login', (request, response) => {
 app.post('/api/recipes', upload.single('file'), (request, response) => {
 
   console.log('server recipe POST request', request.file.path);
-  return new Promise(function(resolve, reject){
-    cloudConfig.uploadPhoto(request.file.path)
-    .then(function(response){
-      console.log('responsefromCloudinary', response.secure_url);
-      resolve();
-    })
-    .catch(err => {
-      console.error('Unable to upload', err);
-      reject(err);
-    })
-  })
-  .catch(err => console.error)
+  console.log('server recipe POST requestbody', request.body.title);
+  console.log('server recipe POST requestbody', typeof request.body.tags.split(","));
+  // return new Promise(function(resolve, reject){
+  //   cloudConfig.uploadPhoto(request.file.path)
+  //   .then(function(response){
+  //     console.log('responsefromCloudinary', response.secure_url);
+  //     resolve();
+  //   })
+  //   .catch(err => {
+  //     console.error('Unable to upload', err);
+  //     reject(err);
+  //   })
+  // })
+  // .catch(err => console.error)
 
   // var userTags = [];
   // request.body.Tags.forEach(tag => userTags.push(tag));
