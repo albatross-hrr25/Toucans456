@@ -139,6 +139,7 @@ app.get('/api/login', (request, response) => {
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
+  //UPDATE THIS TO HANDLE USERNAME
 
   let photoPath = request.file.path;
   let photoTitle = request.body.title;
@@ -171,14 +172,6 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
     })
   })
 
-
-  // var userTags = [];
-  // request.body.Tags.forEach(tag => userTags.push(tag));
-  //
-  // var photoUrls = [];
-  // request.body.Photos.forEach(url => photoUrls.push(url));
-  //
-  // //UPDATE THIS TO HANDLE USERNAME
 
 });
 
