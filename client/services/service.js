@@ -93,7 +93,7 @@ angular.module('app')
           headers: {'Content-type': 'multipart/form-data'}
         })
         .then(function(file) {
-          console.log('uploadFile sucess');
+          console.log('uploadFile sucess', file);
         })
         .catch(function(err) {
           console.error(err);

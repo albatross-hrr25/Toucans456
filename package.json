@@ -7,7 +7,7 @@
     "seed": "node db/seed/seed.js",
     "test": "karma start",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon --inspect index.js"
   },
   "repository": {
     "type": "git",

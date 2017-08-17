@@ -5,9 +5,12 @@ var db = require('./../db/schema.js');
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
+var cloudConfig = require('./../client/cloudinary/cloudinaryConfig')
+
 
 var multer  = require('multer');
-var upload = multer({ dest: '/tmp/'});
+var upload = multer({ dest: 'uploads/'});
+//clean storage
 
 var app = express();
 app.use(express.static(__dirname + '/../'));
@@ -137,7 +140,20 @@ app.get('/api/login', (request, response) => {
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
 
-  console.log('server recipe POST request', request.file);
+  console.log('server recipe POST request', request.file.path);
+  return new Promise(function(resolve, reject){
+    cloudConfig.uploadPhoto(request.file.path)
+    .then(function(response){
+      console.log('responsefromCloudinary', response.secure_url);
+      resolve();
+    })
+    .catch(err => {
+      console.error('Unable to upload', err);
+      reject(err);
+    })
+  })
+  .catch(err => console.error)
+
   // var userTags = [];
   // request.body.Tags.forEach(tag => userTags.push(tag));
   //

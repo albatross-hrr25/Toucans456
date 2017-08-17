@@ -22,3 +22,6 @@ client/cloudinary/cloudinary.env
 # Env #
 .env
 
+
+# Multer#
+uploads/
