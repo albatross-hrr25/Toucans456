@@ -75,7 +75,8 @@ angular.module('app')
       callback(token);
     })
     .catch(function (err) {
-      console.log(err);
+      alert('login unsuccessful');
+      console.log('This is the error form logn', err);
     });
   }
 

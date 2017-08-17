@@ -18,13 +18,11 @@ app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 
 //Setting up tokens
-// app.use(expressJWT({
-//   secret: 'rowdyHouse'
-// }).unless({
-//   path: ['/api/login', '/api/recipes']
-// }));
-
-
+app.use(expressJWT({
+  secret: 'rowdyHouse'
+}).unless({
+  path: ['/#!/tourist', '/api/login']
+}));
 
 /////////////////////////////////////////////////////////////
 /////////////////////// GET REQUESTS ///////////////////////
@@ -54,7 +52,6 @@ app.get('/api/recipes', (request, response) => {
   // TODO: FIX TO FILTER BY USERNAME
 
   //query username to retrieve their recipeId's
-  console.log('Server GET Recipes request', request.query);
 
   db.Recipe.findAll()
     .then((recipe) => {
@@ -108,8 +105,6 @@ app.get('/api/tags', (request, response) => {
   })
 });
 
-
-
 app.get('/api/login', (request, response) => {
   // TODO: fine-tune the findAll method when we incorporate User-Auth.
   db.User.findAll({
@@ -118,9 +113,7 @@ app.get('/api/login', (request, response) => {
     }
   })
     .then((user) => {
-      console.log(user);
       // compare passwords
-      //TODO: FIX this next line (not suppose to be hash)
       if (user[0].dataValues.hash === request.query.hash) {
         var myToken = jwt.sign({
           username: request.query.username
@@ -128,13 +121,11 @@ app.get('/api/login', (request, response) => {
         // redirect to homepage with token as header
         response.status(200).json(myToken);
       } else {
-        // redirect back to login
-        response.status(401).send('Invalid password');  //Change to redirect to login
+        response.status(401).send('Invalid password');
       }
     })
     .catch((error) => {
-      console.log('User does not exist');
-      response.send(error);
+      response.status(401).send(error);
     });
 });
 
@@ -160,11 +151,9 @@ app.post('/api/signup', (request, response) => {
   var username = request.query.username;
   var hash = request.query.hash;
   if (!username) {
-    console.log('this is username', username)
     response.status(404).send('invalid username');
   }
   if (!hash) {
-    console.log('this is password', hash)
     response.status(404).send('invalid password');
   }
   db.User.findAll({where: {username: username}})
