@@ -25,6 +25,7 @@ exports.seedData = function () {
           title: recipe.title,
           imageUrl: recipe.imageUrl,
           Photos: recipe.Photos,
+          isStarred: recipe.isStarred,
           Tags: recipe.Tags,
           ///User: recipe.user,
          }, {

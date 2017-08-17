@@ -102,6 +102,20 @@ angular.module('app')
       .catch((error) => {});
   };
 
+  this.search = function(config, callback) {
+  axios.get('/api/search', {
+    params: {
+      query: config.query
+    }
+  })
+  .then(function(results) {
+    callback(results.data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+}
+
 });
 
 
