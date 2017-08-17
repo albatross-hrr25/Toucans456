@@ -1,12 +1,21 @@
 angular.module('app')
 
-.controller ('UploadRecipeCtrl', function ($timeout, get) {
+.controller ('UploadRecipeCtrl', function ($scope, $timeout, get) {
   this.newRecipe = {};
 
   this.handlePhotoSubmit = () => {
-    var x = angular.element(document.getElementsByName("yolo"))[0].value;
-    this.newRecipe["tags"] = x.split(",");
-    console.log(this.newRecipe);
+    //Retrieves all files from angular component
+    var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
+    console.log("addedPhotos", addedPhotos);
+
+    //Retrieves all tags from angular component
+    var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
+    this.newRecipe["Tags"] = addedTags.split(",");
+    this.newRecipe["Photos"] = addedPhotos;
+
+
+
+    get.uploadFileToUrl(this.newRecipe, '/api/recipes')
   };
 
   $timeout(function() {
@@ -17,9 +26,7 @@ angular.module('app')
   });
 
 })
-
 .component('uploadRecipe', {
   controller: 'UploadRecipeCtrl',
   templateUrl: 'client/components/uploadRecipe/uploadRecipe.html',
-
-})
+});

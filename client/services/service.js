@@ -64,6 +64,42 @@ angular.module('app')
     })
   }
 
+  this.login = function (config, callback) {
+    console.log('login is running')
+    axios.get('/api/login', {
+      params: {
+        username: 'UnicornKiller'//config.username  //change this
+      }
+    })
+    .then(function (token) {
+      console.log('Frontend GET login success', token);
+      callback(token);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  }
+
+  this.uploadFileToUrl = function(file, uploadUrl){
+
+        console.log('uploading file', file.Photos[0]);
+        var fd = new FormData();
+        fd.append('file', file.Photos[0]);
+        console.log('FD contents', fd.get('file'));
+
+
+
+        axios.post(uploadUrl, fd, {
+          headers: {'Content-type': 'multipart/form-data'}
+        })
+        .then(function(file) {
+          console.log('uploadFile sucess');
+        })
+        .catch(function(err) {
+          console.error(err);
+        })
+  }
+
 
 
 });
