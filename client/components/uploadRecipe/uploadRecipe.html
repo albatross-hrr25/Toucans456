@@ -1,24 +1,38 @@
 <div>
- <form>
-    <div class="form-group">
-      <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name" ng-change="$ctrl.invoke()" ng-model="$ctrl.newRecipe.title">
+  <form>
+     <div class="form-group">
+      <input type="text"
+             class="form-control"
+             id="recipeName"
+             placeholder="Recipe Name"
+             ng-model="$ctrl.newRecipe.title">
       <label for="name">Recipe Name</label>
     </div>
-    <div class="form-group" >
-        <input type="text" name="tags" placeholder="Tags" class="tm-input form-control tm-input-info">
-      <label for="tags" >Tags</label>
-    </div>
-    <div class="form-group">
-      <input type="file" id="exampleInputFile">
-    </div>
-    <div class="checkbox">
-    </div>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.handlePhotoSubmit()"> Submit</button>
-  </form>
 
-<!--   <script type="text/javascript">
-    $(".tm-input").tagsManager(
-       { hiddenTagListName:"yolo" }
-      );
-  </script> -->
+    <div class="form-group" >
+      <input type="text"
+             name="tags"
+             placeholder="Tags"
+             class="tm-input form-control tm-input-info">
+      <label for="tags">Tags</label>
+    </div>
+
+    <div class="form-group">
+      <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
+
+        <input type="file"
+               file-model="myFile"
+               id="upload_field"
+               name="file"
+               accept=".jpg, .jpeg, .png"
+               multiple>
+
+
+
+    </div>
+
+    <div class="form-group">
+      <button type="button" class="btn btn-default" ng-click="$ctrl.handlePhotoSubmit()">Submit</button>
+    </div>
+  </form>
 </div>
