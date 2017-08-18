@@ -5,7 +5,7 @@ angular.module('app')
   templateUrl: 'client/components/app/app.html',
 })
 
-.controller ('RecipeController', function ($scope, get) {
+.controller ('RecipeController', ['$scope', 'get', '$state', function ($scope, get, $state) {
 
 ////////handle switch views via ng-if///////
   this.content = true;
@@ -57,7 +57,15 @@ angular.module('app')
     $scope.recipes = recipes;
     $scope.primaryRecipe = recipes[0];
     $scope.$apply();
-  });
+
+    this.logout = () => {
+      console.log('Logging out!');
+      $state.go('tourist');
+    }
+
+
+
+  }]);
 
 
 

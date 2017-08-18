@@ -23,6 +23,7 @@ angular.module('app')
 
     this.logout = () => {
       console.log('LOGOUT SPARKLE UNICORN!');
+      axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
       $state.go('tourist');
     };
 
