@@ -3,6 +3,7 @@ angular.module('app')
 
     this.newRecipe = {};
 
+
     this.handlePhotoSubmit = () => {
       //Retrieves all files from angular component
       var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
@@ -19,7 +20,11 @@ angular.module('app')
       return false;
     }
 
+    $('#form_id').trigger("reset");
+    $(".tm-input").tagsManager('empty');
+
   };
+
 
     $timeout(function() {
       // code to execute after directives goes here
@@ -31,4 +36,7 @@ angular.module('app')
   .component('uploadRecipe', {
     controller: 'UploadRecipeCtrl',
     templateUrl: 'templates/uploadRecipe.html',
+
+
+
   });

@@ -15,38 +15,17 @@ angular.module('app')
       });
   };
 
-  this.getPhotos = function(config, callback) {
-    console.log('getPhotos config', config);
-    axios.get('/api/photos', {
-      params: {
-        UserId: config.UserId,
-        id: config.id,
-        title: config.title
-      }
+
+  this.getRecipe = function(config, callback) {
+      console.log('getPhotos config', config);
+      axios.get('/api/recipe', {params: {config}
     })
-    .then(function(photos) {
-      console.log('Frontend GET photos success', photos.data);
-      callback(photos.data);
+    .then(function(responseObj) {
+      console.log('Frontend GET photos success', responseObj);
+      callback(responseObj);
     })
     .catch(function(err) {
       console.log('Frontend GET photos error', err);
-    });
-  };
-
-  this.getTags = function(config, callback) {
-    axios.get('/api/tags', {
-      params: {
-        UserId: config.UserId,
-        id: config.id,
-        title: config.title
-      }
-    })
-    .then(function(tags) {
-      console.log('Frontend GET Tags success', tags.data);
-      callback(tags.data);
-    })
-    .catch(function(err) {
-      console.log('Frontend GET Tags error', err);
     });
   };
 
@@ -79,7 +58,13 @@ angular.module('app')
     var fd = new FormData();
     fd.append('title', file.Title);
     fd.append('tags', file.Tags);
-    fd.append('file', file.Photos[0]);
+
+    for(var i =0; i < file.Photos.length; i++){
+       fd.append('file', file.Photos[i]);
+    }
+   // console.log(fd.get("file", file));
+   // console.log(fd.getAll("file", file));
+
 
     axios.post(uploadUrl, fd, {
       headers: {'Content-type': 'multipart/form-data'}

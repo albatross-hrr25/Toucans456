@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
   <!-- Include bootstrap css library -->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,14 +23,21 @@
   <link href="styles.css" rel="stylesheet"/>
   <title>test</title>
 </head>
+
 <body ng-app="app">
   <div >
+
+  <!-- Put ui-view directive below? -->
+    <a ui-sref="tourist">TOURIST</a>
+    <a ui-sref="primary">PRIMARY</a>
+
     <ui-view>
       <app></app>
       <tourist></tourist>
     </ui-view>
-  </div>
+
   <!-- angular components -->
+
   <script src="config.js"></script>
   <script src="components/primaryRecipe.js"></script>
   <script src="components/inventory.js"></script>
