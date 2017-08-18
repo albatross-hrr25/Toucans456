@@ -13,7 +13,7 @@ var upload = multer({ dest: 'uploads/'});
 //clean storage
 
 var app = express();
-app.use(express.static(__dirname + '/../'));
+app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 
@@ -199,7 +199,7 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
-        response.send(error);
+        //response.send(error);
       });
       resolve();
     })

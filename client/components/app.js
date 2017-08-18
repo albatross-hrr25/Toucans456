@@ -2,7 +2,7 @@ angular.module('app')
   .component('app', {
 
     controller: 'RecipeController',
-    templateUrl: 'client/components/app/app.html'
+    templateUrl: 'templates/app.html'
 
   })
   .controller ('RecipeController', ['$scope', 'get', '$state', function ($scope, get, $state) {

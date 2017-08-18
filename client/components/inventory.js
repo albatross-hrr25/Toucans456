@@ -5,7 +5,7 @@ angular.module('app')
   .component('inventory', {
 
     controller: 'InventoryCtrl',
-    templateUrl: 'client/components/inventory/inventory.html',
+    templateUrl: 'templates/inventory.html',
     bindings: {
       recipes: '<',
       onClick: '<'
