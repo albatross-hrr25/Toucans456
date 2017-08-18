@@ -182,6 +182,7 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
   var photoTitle = request.body.title;
   var photoTags = request.body.tags.split(",");
 
+<<<<<<< HEAD
   return new Promise(function(resolve, reject){
     cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
     .then(function(response){
@@ -208,6 +209,36 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
       reject(err);
     })
   })
+=======
+  // return new Promise(function(resolve, reject){
+  //   cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
+  //   .then(function(response){
+  //     db.Recipe.create({
+  //       title: response.public_id,
+  //       imageUrl: response.secure_url,
+  //       Photos: response.secure_url,
+  //       Tags: response.tags
+  //     }, {
+  //       include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
+  //     })
+  //     .then((recipeData) => {
+  //       console.log('Server POST Recipe success');
+  //       // response.send(recipeData);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Server POST Recipe error');
+  //       // response.send(error);
+  //     });
+  //     resolve();
+  //   })
+  //   .catch(err => {
+  //     console.error('Unable to upload', err);
+  //     reject(err);
+  //   })
+  // })
+
+
+>>>>>>> Update reset form once submmit
 });
 
 
