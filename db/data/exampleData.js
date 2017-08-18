@@ -111,33 +111,33 @@ module.exports = [
       { tag: 'hot sauce'}
     ]
   },
-  {
-    user: 'Sonrisa',
-    imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
-    title: 'Sonrisa burrito',
-    isStarred: true,
-    Photos: [
-      {image: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg'}
-    ],
-    Tags: [
-      { tag: 'tortilla'},
-      { tag: 'beans'},
-      { tag: 'guacamole'},
-      { tag: 'hot sauce'}
-    ]
-  },
-  {
-    user: 'Sonrisa',
-    imageUrl: 'http://assets.marthastewart.com/styles/wmax-1500/d31/how_to_peel_a_hard-boiled_egg_1/how_to_peel_a_hard-boiled_egg_1_horiz.jpg?itok=ia2mlBlT',
-    title: 'Sonrisa boiled egg',
-    isStarred: true,
-    Photos: [
-      {image: 'http://www.inspiredtaste.net/wp-content/uploads/2011/12/How-to-Cook-Hard-Boiled-Eggs-2-1200.jpg'},
-      {image: 'http://www.olgasflavorfactory.com/wp-content/uploads/2012/02/Hard-Boiled-Eggs-550x430.jpg'}
-    ],
-    Tags: [
-      { tag: 'egg'},
-      { tag: 'water'}
-    ]
-  }
-];
+//   {
+//     user: 'Sonrisa',
+//     imageUrl: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg',
+//     title: 'Sonrisa burrito',
+//     isStarred: true,
+//     Photos: [
+//       {image: 'http://2.bp.blogspot.com/_HMnmAXT8bdc/TSZsBk0woaI/AAAAAAAAESc/4PSOVUo0-vQ/s1600/OnePoundBurritoChicken_Burritos.jpg'}
+//     ],
+//     Tags: [
+//       { tag: 'tortilla'},
+//       { tag: 'beans'},
+//       { tag: 'guacamole'},
+//       { tag: 'hot sauce'}
+//     ]
+//   },
+//   {
+//     user: 'Sonrisa',
+//     imageUrl: 'http://assets.marthastewart.com/styles/wmax-1500/d31/how_to_peel_a_hard-boiled_egg_1/how_to_peel_a_hard-boiled_egg_1_horiz.jpg?itok=ia2mlBlT',
+//     title: 'Sonrisa boiled egg',
+//     isStarred: true,
+//     Photos: [
+//       {image: 'http://www.inspiredtaste.net/wp-content/uploads/2011/12/How-to-Cook-Hard-Boiled-Eggs-2-1200.jpg'},
+//       {image: 'http://www.olgasflavorfactory.com/wp-content/uploads/2012/02/Hard-Boiled-Eggs-550x430.jpg'}
+//     ],
+//     Tags: [
+//       { tag: 'egg'},
+//       { tag: 'water'}
+//     ]
+//   }
+// ];

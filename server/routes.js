@@ -142,17 +142,17 @@ app.get('/api/search', (request, response) => {
 app.post('/api/signup', (request, response) => {
   var username = request.body.username;
   var hash = request.body.hash;
-  console.log('!!!!!', username)
+
   if (!username) {
     response.status(404).send('invalid username');
   }
-  console.log('!!!!!', hash)
   if (!hash) {
     response.status(404).send('invalid password');
   }
   db.User.findAll({where: {username: username}})
   .then ((userData) => {
     if(userData.length > 0) {
+      console.log('User already exists');
       response.status(404).send('User already exists')
     } else {
       db.User.create({
@@ -227,11 +227,11 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
             })
             .then((recipeData) => {
               console.log('Server POST Recipe success', recipeData);
-              // response.send(recipeData);
+              response.status(200);
             })
             .catch((error) => {
               console.log('Server POST Recipe error');
-              // response.send(error);
+              response.status(200);
             })
           ))
         })

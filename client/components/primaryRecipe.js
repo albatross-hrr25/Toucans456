@@ -11,7 +11,11 @@ angular.module('app')
     controller: 'PrimaryRecipeController',
     templateUrl: 'templates/primary-recipe.html',
     bindings: {
-      recipe: '<'
+      recipe: '<',
+      photos: '<',
+      tags: '<',
+      star: '<',
+      title: '<'
     }
 
 });
