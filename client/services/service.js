@@ -16,18 +16,6 @@ angular.module('app')
     });
   };
 
-  // this.sendRecipe = function (query) {
-  //   // --------------------FIX TO ADD USERNAME PARAMETER
-  //   var {name, imageUrl, Tag} = query;
-  //   axios.post('/api/recipe', {name, imageUrl, Tag})
-  //   .then(function (res) {
-  //     console.log(res);
-  //   })
-  //   .catch(function (err) {
-  //     console.log(err);
-  //   });
-  // }
-
   this.getPhotos = function(config, callback) {
     console.log('getPhotos config', config);
     axios.get('/api/photos', {
@@ -78,7 +66,7 @@ angular.module('app')
       alert('login unsuccessful');
       console.log('This is the error form logn', err);
     });
-  }
+  };
 
   this.signUp = (config, callback) => {
     // post request to '/api/signup'
@@ -87,9 +75,9 @@ angular.module('app')
       callback(token);
     })
     .catch((error) => {
-      alert('Sign Up Failed!')
+      alert('Sign Up Failed!');
     });
-  }
+  };
 
   this.uploadFileToUrl = function(file, uploadUrl){
     var fd = new FormData();
@@ -129,17 +117,3 @@ angular.module('app')
 }
 
 });
-
-
-
-// axios.get('/user', {
-//     params: {
-//       ID: 12345
-//     }
-//   })
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });

@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
-  path: ['/#!/tourist', '/api/login', '/api/signup']
+  path: ['/#!/tourist', '/api/login', '/api/signup', '/']
 }));
 
 /////////////////////////////////////////////////////////////
@@ -42,10 +42,10 @@ app.get('/api/users', (request, response) => {
 });
 
 // Gets a user's primary homepage
-app.get('/primary', (request, response) => {
-  // redirects user to /#!/primary
+// app.get('/primary', (request, response) => {
+//   // redirects user to /#!/primary
 
-})
+// })
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
@@ -125,6 +125,7 @@ app.get('/api/login', (request, response) => {
       }
     })
     .catch((error) => {
+      console.log('User does not exist');
       response.status(401).send(error);
     });
 });
@@ -216,9 +217,11 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
       reject(err);
     })
   })
-
-
 });
+
+app.get('/', (request, response) => {
+  // sends to login screen
+})
 
 ///////////////////////////////////////////////////////////////
 /////////////////////// OTHER REQUESTS ///////////////////////
