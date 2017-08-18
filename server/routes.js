@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
-  path: ['/#!/tourist', '/api/login', '/api/signup', '/']
+  path: ['/api/login', '/api/signup', '/']  //'/#!/tourist',
 }));
 
 /////////////////////////////////////////////////////////////
@@ -130,6 +130,7 @@ app.get('/api/login', (request, response) => {
     });
 });
 
+//Returns all recipes based on what was typed in search bar
 app.get('/api/search', (request, response) => {
 
   var queryString = "SELECT Recipes.* FROM RecipeTag LEFT JOIN Recipes on RecipeTag.RecipeId = Recipes.id LEFT JOIN Tags on RecipeTag.TagId = Tags.id WHERE Recipes.title like '%" + request.query.query.toString() + "%' OR Tags.tag like '%" + request.query.query.toString() + "%' GROUP BY id"
@@ -219,9 +220,9 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
   })
 });
 
-app.get('/', (request, response) => {
-  // sends to login screen
-})
+// app.get('/', (request, response) => {
+//   // sends to login screen
+// })
 
 ///////////////////////////////////////////////////////////////
 /////////////////////// OTHER REQUESTS ///////////////////////

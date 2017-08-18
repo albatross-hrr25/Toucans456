@@ -21,11 +21,6 @@ angular.module('app')
       });
     };
 
-    this.logout = () => {
-      console.log('LOGOUT SPARKLE UNICORN!');
-      $state.go('tourist');
-    };
-
   }])
   .component('tourist', {
 

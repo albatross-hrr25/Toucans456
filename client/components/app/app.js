@@ -5,7 +5,7 @@ angular.module('app')
   templateUrl: 'client/components/app/app.html',
 })
 
-.controller ('RecipeController', function ($scope, get) {
+.controller ('RecipeController', ['$scope', 'get', '$state', function ($scope, get, $state) {
 
 ////////handle switch views via ng-if///////
   this.content = true;
@@ -59,7 +59,12 @@ angular.module('app')
     $scope.$apply();
   });
 
+  this.logout = () => {
+    console.log('Logging out');
+    axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
+    $state.go('tourist');
+  };
 
 
 
-});
+  }]);

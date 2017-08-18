@@ -10,8 +10,8 @@ angular.module('app')
   templateUrl: 'client/components/nav/nav.html',
   bindings: {
     handlesearchresults: '<',
-    handleclickhome: '<'
+    handleclickhome: '<',
+    logout: '<'
   }
 
 })
-
