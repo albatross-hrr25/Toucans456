@@ -13,7 +13,7 @@ cloudinary.config({
 });
 
 var uploadPhoto = function(inputfilepath, title, tags) {
-  let reterivedUrl;
+  var reterivedUrl;
   console.log('upload invoked');
   return cloudinary.uploader.upload(inputfilepath,
       // { // This sizing might be OK for primary view
