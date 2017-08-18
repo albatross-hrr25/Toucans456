@@ -2,22 +2,33 @@
   <!-- tourist landing page with signup and login -->
   <span class="login">
     <form ng-submit="$ctrl.loginClick(username, password)">
-      user: <input ng-model="username" type="text" value="username"/>
-      password: <input ng-model="password" type="password"/>
+      <div class="form-inline">
+        <label for="username"></label>
+        <input ng-click="username" type="username" class="form-inline" id="username" placeholder="Enter username" ng-model="username">
+      </div>
+      <div class="form-inline">
+        <label for="pwd"></label>
+        <input ng-model="password" type="password" class="form-inline" id="pwd" placeholder="Enter password">
+      </div>
       <input type="submit" value="login">
     </form>
   </span>
-
-  <h1>Recipe Archive</h1>
-  <h2>Saving your family legacy in one place.</h2>
-  <h4>Capture Recipe. Add Tag. Get Cooking.</h4>
-  <div>
-    <h1>Sign Up</h1>
-    <form ng-submit="$ctrl.signUpClick(signUser, signPassword)">
-      user: <input ng-model="signUser" type="text"/>
-      password: <input ng-model="signPassword" type="password"/>
-      <input type="submit" value="sign up">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">Recipe Archive</h1>
+      <p class="lead">Saving your family legacy in one place.</p>
+    </div>
+  </div>
+  <div class="signUpForm">
+    <form form ng-submit="$ctrl.signUpClick(signUser, signPassword)" class="form-inline">
+    <h3 id="signUpNow">Sign Up Now</h1>
+      <input ng-model="signUser" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="username">
+      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <input ng-model="signPassword" type="text" class="form-control" id="inlineFormInputGroup" placeholder="password">
+      </div>
+      <input type="submit" class="" text="Submit">
     </form>
   </div>
-  <img src="http://www.happy-pixels.com/wp-content/uploads/2011/04/michael-roulier-01.jpg"/>
+  <img class="img-fluid" width="100%" height="auto" alt="Responsive image" src="http://www.happy-pixels.com/wp-content/uploads/2011/04/michael-roulier-01.jpg"/>
 </div>
+
