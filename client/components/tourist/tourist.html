@@ -2,7 +2,13 @@
   <h1>Digitize your Dinner!</h1>
   <h2>Making the world a better place through RECIPES</h2>
   <h5>Snap. Tag. Find.</h5>
-  <button>Sign Up</button>
+  <div>
+    <h1>Sign Up</h1>
+    <form ng-submit="$ctrl.signUpClick(signUser, signPassword)">
+    user: <input ng-model="signUser" type="text"/>
+    password: <input ng-model="signPassword" type="text"/>
+    <input type="submit" value="sign up">
+  </div>
   <div>
     <h1>Login</h1>
     <form ng-submit="$ctrl.loginClick(username, password)">

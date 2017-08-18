@@ -7,16 +7,25 @@ angular.module('app')
         params: { username: username, hash: password }
       }
       get.login(config, (token) => {
-        console.log('TOKEN:',token);
-        //SET THE USERNAME ON THE APP MODULE SCOPE.
+
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
         // Get User's Personal Hompage
-        get.getHomepage(null, null);
-        // route to primary view
-        //on sucess:
         $state.go('primary');
       });
     }
+
+    this.signUpClick = (username, password) => {
+
+      var config = {username: username, hash: password}
+
+      get.signUp (config, (token) => {
+
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
+        // Get User's Personal Hompage route to primary view
+        $state.go('primary');
+      });
+    }
+
   }])
 
   .component('tourist', {
