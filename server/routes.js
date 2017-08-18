@@ -21,15 +21,8 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
-<<<<<<< HEAD
   path: ['/#!/tourist', '/api/login', '/api/signup']
 }));
-=======
-  path: ['/#!/tourist', '/api/login']
-}));
-
-
->>>>>>> Commit before rebase
 
 /////////////////////////////////////////////////////////////
 /////////////////////// GET REQUESTS ///////////////////////
@@ -132,6 +125,7 @@ app.get('/api/login', (request, response) => {
       }
     })
     .catch((error) => {
+      console.log('User does not exist');
       response.status(401).send(error);
     });
 });

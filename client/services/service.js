@@ -78,7 +78,7 @@ angular.module('app')
       alert('login unsuccessful');
       console.log('This is the error form logn', err);
     });
-  }
+  };
 
   this.signUp = (config, callback) => {
     // post request to '/api/signup'
@@ -87,9 +87,9 @@ angular.module('app')
       callback(token);
     })
     .catch((error) => {
-      alert('Sign Up Failed!')
+      alert('Sign Up Failed!');
     });
-  }
+  };
 
   this.uploadFileToUrl = function(file, uploadUrl){
     var fd = new FormData();
