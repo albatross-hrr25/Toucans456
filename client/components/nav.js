@@ -5,7 +5,7 @@ angular.module('app')
   .component('navbar', {
 
     controller: 'NavTest',
-    templateUrl: 'components/nav/nav.html',
+    templateUrl: 'templates/nav.html',
     bindings: {
       handlesearchresults: '<',
       handleclickhome: '<',
