@@ -42,8 +42,12 @@ app.get('/api/users', (request, response) => {
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
+<<<<<<< HEAD
   //query username to retrieve their recipeId's
 
+=======
+  // TODO: FIX TO FILTER BY USERNAME
+>>>>>>> Update post method to pass databack to clientside
   db.Recipe.findAll()
     .then((recipe) => {
       //console.log(recipe);
@@ -54,48 +58,51 @@ app.get('/api/recipes', (request, response) => {
     });
 });
 
-//Returns all photos that was associated with the recipe that was clicked on
-app.get('/api/photos', (request, response) => {
-  //the query contains title, (recipe)iD,  and UserId
-  console.log('Server GET Photos request', request.query);
-
-  db.Photo.findAll({
-    where: {
-      RecipeId: request.query.id
-    }
-  })
-    .then(function(photos) {
-      console.log('Server GET Photos success');
-      response.send(photos)
-    })
-    .catch(function(error) {
-      console.log('Server GET Photos error');
-      response.send(error);
-    })
-});
 
 //Returns all tags associated with the recipe that was clicked on
-app.get('/api/tags', (request, response) => {
-  console.log('Server GET Tags request', request.query);
+app.get('/api/recipe', (request, response) => {
+  console.log('Server GET Recipes request', typeof request.query.config);
+  var responseObj = {};
+  var queryStringPhoto = "SELECT Image FROM Photos WHERE RecipeId = " + request.query.config;
+  var queryStringTag = "SELECT Tag FROM Tags LEFT JOIN RecipeTag on RecipeTag.tagId = tags.id WHERE RecipeTag.RecipeId = " + request.query.config;
+  var queryStringTitleAndStars = "SELECT title, isStarred FROM Recipes WHERE id = " + request.query.config;
 
-  db.Tag.findAll({
-    include: [{
-      model: db.Recipe,
-      where: {
-        id: request.query.id
-      }
-    }]
-  })
-  .then(function(tags) {
-    console.log('Server GET Tags success');
-    response.send(tags);
+  return new Promise(function(resolve, reject) {
+    db.db.query(queryStringPhoto)
+    .spread(function(photos) {
+      responseObj["Photos"] = photos;   //[array of photos]
+      db.db.query(queryStringTag)
+      .spread(function(tags) {
+        responseObj["Tags"] = tags;   //[array of tags]
+        db.db.query(queryStringTitleAndStars)
+        .spread(function(titleAndStars) {
+          responseObj["title"] = titleAndStars[0].title;
+          responseObj["isStarred"] = titleAndStars[0].isStarred;
+          resolve();
+        })
+      })
+    })
+   })
+  .then(function() {
+    response.send(responseObj);
   })
   .catch(function(error) {
+<<<<<<< HEAD
     console.log('Server GET Tags error');
     response.send(error);
   });
 });
 
+=======
+    console.log('Server GET photos error');
+    //response.send(error);
+  })
+});
+
+
+
+
+>>>>>>> Update post method to pass databack to clientside
 app.get('/api/login', (request, response) => {
   db.User.findAll({
     where: {
@@ -122,6 +129,8 @@ app.get('/api/login', (request, response) => {
 
 //Returns all recipes based on what was typed in search bar
 app.get('/api/search', (request, response) => {
+
+
 
   var queryString = "SELECT Recipes.* FROM RecipeTag LEFT JOIN Recipes on RecipeTag.RecipeId = Recipes.id LEFT JOIN Tags on RecipeTag.TagId = Tags.id WHERE Recipes.title like '%" + request.query.query.toString() + "%' OR Tags.tag like '%" + request.query.query.toString() + "%' GROUP BY id"
 
