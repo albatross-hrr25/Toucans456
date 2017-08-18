@@ -3,17 +3,16 @@ angular.module('app')
 .service('get', function () {
 
   this.getRecipes = function (config, callback) {
-    // --------------------FIX TO ADD USERNAME PARAMETER
+    // --------------------FIX TO ADD USERNAME PARAMETER -stretch goal
     //Look below at getPhotos method to find out how
 
     axios.get('/api/recipes')
-    .then(function (recipes) {
-      //console.log('get', recipes);
-      callback(recipes.data);
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+      .then(function (recipes) {
+        callback(recipes.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   };
 
   this.getPhotos = function(config, callback) {
@@ -22,7 +21,7 @@ angular.module('app')
       params: {
         UserId: config.UserId,
         id: config.id,
-        title: config.title  //probably don't need this
+        title: config.title
       }
     })
     .then(function(photos) {
@@ -35,18 +34,14 @@ angular.module('app')
   };
 
   this.getTags = function(config, callback) {
-    //console.log('getTags config', config);
-    //console.log('GetTags service is running');
-
     axios.get('/api/tags', {
       params: {
         UserId: config.UserId,
         id: config.id,
-        title: config.title //probably don't need this
+        title: config.title
       }
     })
     .then(function(tags) {
-      //console.log('GetTags service finished');
       console.log('Frontend GET Tags success', tags.data);
       callback(tags.data);
     })
@@ -56,27 +51,27 @@ angular.module('app')
   };
 
   this.login = function (config, callback) {
-    console.log('login is running')
+    console.log('login is running');
     axios.get('/api/login', config)
-    .then(function (token) {
-      console.log('Frontend GET login success', token);
-      callback(token);
-    })
-    .catch(function (err) {
-      alert('login unsuccessful');
-      console.log('This is the error form logn', err);
-    });
+      .then(function (token) {
+        console.log('Frontend GET login success', token);
+        callback(token);
+      })
+      .catch(function (err) {
+        alert('login unsuccessful');
+        console.log('This is the error form logn', err);
+      });
   };
 
   this.signUp = (config, callback) => {
     // post request to '/api/signup'
     axios.post('/api/signup', config)
-    .then((token) => {
-      callback(token);
-    })
-    .catch((error) => {
-      alert('Sign Up Failed!');
-    });
+      .then((token) => {
+        callback(token);
+      })
+      .catch((error) => {
+        alert('Sign Up Failed!');
+      });
   };
 
   this.uploadFileToUrl = function(file, uploadUrl){
@@ -93,7 +88,7 @@ angular.module('app')
     })
     .catch(function(err) {
       console.error(err);
-    })
+    });
   };
 
   this.getHomepage = function() {
@@ -103,17 +98,17 @@ angular.module('app')
   };
 
   this.search = function(config, callback) {
-  axios.get('/api/search', {
-    params: {
-      query: config.query
-    }
-  })
-  .then(function(results) {
-    callback(results.data);
-  })
-  .catch(function(err) {
-    console.log(err);
-  })
-}
+    axios.get('/api/search', {
+      params: {
+        query: config.query
+      }
+    })
+    .then(function(results) {
+      callback(results.data);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  };
 
 });

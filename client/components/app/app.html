@@ -2,6 +2,7 @@
  <login>
  </login>
 <div class="container">
+  <!-- container for nav bar -->
   <navbar
     handleclickhome="$ctrl.handleClickHome"
     handlesearchresults="$ctrl.handleSearchResults"
@@ -10,9 +11,8 @@
       <p> Nav bar goes here. </p>
     </div>
   </navbar>
-  <!-- add container for primary recipe and inventory -->
   <div class="row" ng-if="$ctrl.content">
-    <!-- create container for inventory -->
+    <!-- container for inventory -->
     <div class="col-sm-2">
       <div class="well" ng-click="$ctrl.runUpload()">
         <img ng-src=https://www.shareicon.net/data/2017/05/24/886398_add_512x512.png class="img-rounded"/>
@@ -21,7 +21,7 @@
         <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
       </div>
     </div>
-    <!-- create container for primary recipe -->
+    <!-- container for primary recipe -->
     <div class="col-sm-10">
       <primary-recipe recipe="primaryRecipe"></primary-recipe>
     </div>

@@ -1,5 +1,5 @@
 var cloudinary = require('cloudinary').v2;
-//var envs = require('envs');
+
 var cloudinary_key = process.env.DB_CLOUDINARY_API_KEY;
 var cloudinary_sec = process.env.DB_CLOUDINARY_API_SECRET;
 var cloudinary_name = process.env.DB_CLOUDINARY_API_NAME;
@@ -15,7 +15,7 @@ cloudinary.config({
 var uploadPhoto = function(inputfilepath, title, tags) {
   let reterivedUrl;
   console.log('upload invoked');
-  return cloudinary.uploader.upload(inputfilepath, // TODO: make image path dynamic
+  return cloudinary.uploader.upload(inputfilepath,
       // { // This sizing might be OK for primary view
       //   width: 2000,
       //   height: 1000,
@@ -29,14 +29,14 @@ var uploadPhoto = function(inputfilepath, title, tags) {
         height: 225,
         crop: "fit",
        // effect: 'art:incognito', // 'auto_color' is a good effect, too.
-        tags: tags // TODO: make tags dynamic
+        tags: tags
       },
       function(error, image) {
         if (error) {
           console.log('CLOUDINARY ERROR', error);
         }
 
-        waitForAllUploads('Endive Salad', error, image); // dynamic image title here
+        waitForAllUploads(inputfilepath, error, image);
 
       });
 
@@ -45,8 +45,8 @@ var uploadPhoto = function(inputfilepath, title, tags) {
     uploads[id] = image;
     console.log('Uploaded image to Cloudinary. Response object: ', uploads[id]);
     console.log('Unique cloudinary image url (not secure): ', uploads[id].url);
-    return uploads[id].url
+    return uploads[id].url;
   }
-}
+};
 
-module.exports = {cloudinary, uploadPhoto}
+module.exports = {cloudinary, uploadPhoto};

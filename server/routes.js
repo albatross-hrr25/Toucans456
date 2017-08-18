@@ -5,7 +5,7 @@ var db = require('./../db/schema.js');
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 
-var cloudConfig = require('./../client/cloudinary/cloudinaryConfig')
+var cloudConfig = require('./../client/cloudinary/cloudinaryConfig');
 
 
 var multer  = require('multer');
@@ -30,7 +30,6 @@ app.use(expressJWT({
 
 // Finds all users from the database
 app.get('/api/users', (request, response) => {
-  // TODO: fine-tune the findAll method when we incorporate User-Auth.
   db.User.findAll()
     .then((users) => {
       console.log(users);
@@ -41,16 +40,8 @@ app.get('/api/users', (request, response) => {
     });
 });
 
-// Gets a user's primary homepage
-// app.get('/primary', (request, response) => {
-//   // redirects user to /#!/primary
-
-// })
-
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
-  // TODO: FIX TO FILTER BY USERNAME
-
   //query username to retrieve their recipeId's
 
   db.Recipe.findAll()
@@ -102,11 +93,10 @@ app.get('/api/tags', (request, response) => {
   .catch(function(error) {
     console.log('Server GET Tags error');
     response.send(error);
-  })
+  });
 });
 
 app.get('/api/login', (request, response) => {
-  // TODO: fine-tune the findAll method when we incorporate User-Auth.
   db.User.findAll({
     where: {
       username: request.query.username
@@ -187,7 +177,7 @@ app.post('/api/signup', (request, response) => {
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 app.post('/api/recipes', upload.single('file'), (request, response) => {
-  //UPDATE THIS TO HANDLE USERNAME
+  //UPDATE THIS TO HANDLE USERNAME -stretch goal
   var photoPath = request.file.path;
   var photoTitle = request.body.title;
   var photoTags = request.body.tags.split(",");
@@ -201,15 +191,15 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
         Photos: response.secure_url,
         Tags: response.tags
       }, {
-        include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
+        include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME -stretch goal
       })
       .then((recipeData) => {
         console.log('Server POST Recipe success');
-        // response.send(recipeData);
+        response.send(recipeData);
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
-        // response.send(error);
+        response.send(error);
       });
       resolve();
     })
@@ -220,9 +210,6 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
   })
 });
 
-// app.get('/', (request, response) => {
-//   // sends to login screen
-// })
 
 ///////////////////////////////////////////////////////////////
 /////////////////////// OTHER REQUESTS ///////////////////////
