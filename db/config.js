@@ -1,4 +1,4 @@
-var mysql = require('mysql')
+var mysql = require('mysql');
 var dbConnection = mysql.createConnection({
   user: process.env.DB_USER,
   password: ''
@@ -30,5 +30,5 @@ exports.createDatabase = function () {
           }
         });
       });
-    })
-  }
+    });
+  };

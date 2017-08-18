@@ -21,8 +21,7 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading ##
     Recipe Archive: Digitize Your Dinner
 ## Sub-Heading ##
-    Anyone looking for a quick laugh while bonding with small community of
-    random people.
+    Capture Recipe. Add Tags. Get Cooking.
 ## Summary ##
     Our recipe archiver allows users to upload and save photos of their handwritten recipes,
     as well as add a name and tags to each. The user can then use our search functionality to
@@ -37,7 +36,7 @@ Once the project moves into development, the press release can be used as a touc
 ## Quote from You ##
     "Spend your time cooking, not rifling through your recipe bin."
 ## How to Get Started ##
-    Simply Login, add recipes and tags, and get cooking!
+    Simply login, add recipes and tags, and get cooking!
 ## Customer Quote ##
     "It's nice to have all my loose recipes in one place!"
 ## Closing and Call to Action ##

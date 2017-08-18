@@ -54,4 +54,4 @@ module.exports = {
   Recipe: Recipe,
   Tag: Tag,
   Photo: Photo
-}
+};

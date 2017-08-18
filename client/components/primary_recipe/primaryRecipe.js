@@ -1,16 +1,13 @@
 angular.module('app')
+  .controller ('PrimaryRecipeController', function ($scope) {
 
-.controller ('PrimaryRecipeController', function ($scope) {
-  //console.log('PrimaryTest controller has run: this is ', this);
+  })
+  .component('primaryRecipe', {
 
-  console.log($scope)
+    controller: 'PrimaryRecipeController',
+    templateUrl: 'client/components/primary_recipe/primary-recipe.html',
+    bindings: {
+      recipe: '<'
+    }
 
-})
-
-.component('primaryRecipe', {
-  controller: 'PrimaryRecipeController',
-  templateUrl: 'client/components/primary_recipe/primary-recipe.html',
-  bindings: {
-    recipe: '<'
-  }
-})
+  });
