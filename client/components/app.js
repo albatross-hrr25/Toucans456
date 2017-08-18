@@ -5,7 +5,7 @@ angular.module('app')
     templateUrl: 'templates/app.html'
 
   })
-  .controller ('RecipeController', ['$scope', 'get', '$state', function ($scope, get, $state) {
+  .controller ('RecipeController', function ($scope, get, $state) {
 
 
   ////////handle switch views via ng-if///////
@@ -76,4 +76,4 @@ angular.module('app')
       $state.go('tourist');
     };
 
-  }]);
+  });

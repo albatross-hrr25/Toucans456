@@ -15,21 +15,10 @@ angular.module('app')
       });
   };
 
-<<<<<<< HEAD
-  this.getPhotos = function(config, callback) {
-    console.log('getPhotos config', config);
-    axios.get('/api/photos', {
-      params: {
-        UserId: config.UserId,
-        id: config.id,
-        title: config.title
-      }
-=======
 
   this.getRecipe = function(config, callback) {
       console.log('getPhotos config', config);
       axios.get('/api/recipe', {params: {config}
->>>>>>> Update post method to pass databack to clientside
     })
     .then(function(responseObj) {
       console.log('Frontend GET photos success', responseObj);
@@ -39,26 +28,6 @@ angular.module('app')
       console.log('Frontend GET photos error', err);
     });
   };
-
-<<<<<<< HEAD
-  this.getTags = function(config, callback) {
-    axios.get('/api/tags', {
-      params: {
-        UserId: config.UserId,
-        id: config.id,
-        title: config.title
-      }
-    })
-    .then(function(tags) {
-      console.log('Frontend GET Tags success', tags.data);
-      callback(tags.data);
-    })
-    .catch(function(err) {
-      console.log('Frontend GET Tags error', err);
-    });
-  };
-=======
->>>>>>> Update post method to pass databack to clientside
 
   this.login = function (config, callback) {
     console.log('login is running');

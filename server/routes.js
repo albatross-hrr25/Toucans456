@@ -42,12 +42,9 @@ app.get('/api/users', (request, response) => {
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
-<<<<<<< HEAD
-  //query username to retrieve their recipeId's
 
-=======
   // TODO: FIX TO FILTER BY USERNAME
->>>>>>> Update post method to pass databack to clientside
+
   db.Recipe.findAll()
     .then((recipe) => {
       //console.log(recipe);
@@ -87,22 +84,16 @@ app.get('/api/recipe', (request, response) => {
     response.send(responseObj);
   })
   .catch(function(error) {
-<<<<<<< HEAD
-    console.log('Server GET Tags error');
+    console.log('Server GET photos error');
     response.send(error);
   });
 });
 
-=======
-    console.log('Server GET photos error');
-    //response.send(error);
-  })
-});
 
 
 
 
->>>>>>> Update post method to pass databack to clientside
+
 app.get('/api/login', (request, response) => {
   db.User.findAll({
     where: {
