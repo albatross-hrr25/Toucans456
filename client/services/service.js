@@ -64,6 +64,7 @@ angular.module('app')
   };
 
   this.signUp = (config, callback) => {
+    console.log(config)
     // post request to '/api/signup'
     axios.post('/api/signup', config)
       .then((token) => {
