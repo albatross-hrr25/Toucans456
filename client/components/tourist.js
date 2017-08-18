@@ -15,8 +15,7 @@ angular.module('app')
     this.signUpClick = (username, password) => {
       var config = {username: username, hash: password};
 
-      get.signUp (config, (token) => {
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
+      get.signUp (config, (token) => {axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
         // Get User's Personal Hompage route to primary view
         $state.go('primary');
       });
