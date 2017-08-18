@@ -21,7 +21,7 @@ module.exports = function(config) {
     },
 
     preprocessors: {
-      'client/components/**/*.html': ['ng-html2js']
+      'client/templates/*.html': ['ng-html2js']
     },
 
     ngHtml2JsPreprocessor: {
@@ -37,10 +37,12 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/sinon/pkg/sinon-1.17.7.js',
       'node_modules/chai/chai.js',
+      'client/*.html',
       'test/front-end/*.js',
-      'client/components/**/*.js',
-      'client/components/**/*.html',
-      'client/components/*.html'
+      'client/*.js',
+      'client/components/*.js',
+      'client/templates/*.html',
+
     ],
 
 

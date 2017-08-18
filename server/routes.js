@@ -42,13 +42,8 @@ app.get('/api/users', (request, response) => {
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
-<<<<<<< e7851c83371b8d778275a016168dbf6230b0ba54
-
-  // TODO: FIX TO FILTER BY USERNAME
-=======
   //STRETCH GOAL:  Account for username here
   //query username to retrieve their recipeId's
->>>>>>> Code cleanup
 
   db.Recipe.findAll()
     .then((recipe) => {
@@ -60,29 +55,6 @@ app.get('/api/recipes', (request, response) => {
     });
 });
 
-<<<<<<< e7851c83371b8d778275a016168dbf6230b0ba54
-=======
-//Returns all photos that was associated with the recipe that was clicked on
-app.get('/api/photos', (request, response) => {
-  //STRETCH GOAL:  Account for username here
-  //the query contains title, (recipe)iD,  and UserId
-  console.log('Server GET Photos request', request.query);
-
-  db.Photo.findAll({
-    where: {
-      RecipeId: request.query.id
-    }
-  })
-    .then(function(photos) {
-      console.log('Server GET Photos success');
-      response.send(photos)
-    })
-    .catch(function(error) {
-      console.log('Server GET Photos error');
-      response.send(error);
-    })
-});
->>>>>>> Code cleanup
 
 //Returns all tags associated with the recipe that was clicked on
 app.get('/api/recipe', (request, response) => {
@@ -228,6 +200,7 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
+        response.send(error);
       });
       resolve();
     })
