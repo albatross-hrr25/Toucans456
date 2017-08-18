@@ -25,6 +25,6 @@ angular.module('app')
   .component('tourist', {
 
     controller: 'TouristCtrl',
-    templateUrl: 'client/components/tourist/tourist.html'
+    templateUrl: 'components/tourist/tourist.html'
 
   });

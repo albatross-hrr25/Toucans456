@@ -5,7 +5,7 @@ angular.module('app')
   .component('primaryRecipe', {
 
     controller: 'PrimaryRecipeController',
-    templateUrl: 'client/components/primary_recipe/primary-recipe.html',
+    templateUrl: 'components/primary_recipe/primary-recipe.html',
     bindings: {
       recipe: '<'
     }

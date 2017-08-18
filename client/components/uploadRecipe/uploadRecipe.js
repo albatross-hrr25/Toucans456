@@ -30,5 +30,5 @@ angular.module('app')
   })
   .component('uploadRecipe', {
     controller: 'UploadRecipeCtrl',
-    templateUrl: 'client/components/uploadRecipe/uploadRecipe.html',
+    templateUrl: 'components/uploadRecipe/uploadRecipe.html',
   });
