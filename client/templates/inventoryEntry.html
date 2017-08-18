@@ -1,8 +1,6 @@
-<div>
-    <div class="inventory-entry-title" ng-click="$ctrl.onClick($ctrl.recipe)">
-      <div class="well">
-        <img id="thumb" ng-src={{$ctrl.recipe.imageUrl}} class="img-rounded"/>
-        <p class="">{{$ctrl.recipe.title}}</p>
-      </div>
-    </div>
+
+<div ng-click="$ctrl.onClick($ctrl.recipe)">
+  <div class="well">
+    <img ng-src={{$ctrl.recipe.imageUrl}} class="img-rounded img-fluid" width="auto" height="100%" />
+  </div>
 </div>
