@@ -57,17 +57,14 @@ angular.module('app')
     $scope.recipes = recipes;
     $scope.primaryRecipe = recipes[0];
     $scope.$apply();
+  });
 
-    this.logout = () => {
-      console.log('Logging out!');
-      $state.go('tourist');
-    }
+  this.logout = () => {
+    console.log('Logging out');
+    axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
+    $state.go('tourist');
+  };
 
 
 
   }]);
-
-
-
-
-});

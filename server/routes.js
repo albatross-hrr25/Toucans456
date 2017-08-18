@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
-  path: ['/#!/tourist', '/api/login', '/api/signup', '/']
+  path: ['/api/login', '/api/signup', '/']  //'/#!/tourist',
 }));
 
 /////////////////////////////////////////////////////////////
@@ -220,9 +220,9 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
   })
 });
 
-app.get('/', (request, response) => {
-  // sends to login screen
-})
+// app.get('/', (request, response) => {
+//   // sends to login screen
+// })
 
 ///////////////////////////////////////////////////////////////
 /////////////////////// OTHER REQUESTS ///////////////////////
