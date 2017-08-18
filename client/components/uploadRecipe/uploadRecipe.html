@@ -26,12 +26,13 @@
                id="upload_field"
                name="file"
                accept=".jpg, .jpeg, .png"
-               multiple>
+               multiple
+               required>
 
     </div>
 
     <div class="form-group">
-      <button type="button" class="btn btn-default" ng-click="$ctrl.handlePhotoSubmit()">Submit</button>
+      <button type="button" class="btn btn-default" ng-click="$ctrl.handlePhotoSubmit($event)">Submit</button>
     </div>
   </form>
 

@@ -3,17 +3,23 @@ angular.module('app')
 .controller ('UploadRecipeCtrl', function ($scope, $timeout, get) {
   this.newRecipe = {};
 
-  this.handlePhotoSubmit = () => {
+  this.handlePhotoSubmit = (event) => {
+
     //Retrieves all files from angular component
     var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
-    //console.log("addedPhotos", addedPhotos);
 
     //Retrieves all tags from angular component
     var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
     this.newRecipe["Tags"] = addedTags.split(",");
     this.newRecipe["Photos"] = addedPhotos;
 
-    get.uploadFileToUrl(this.newRecipe, '/api/recipes')
+    if(!!this.newRecipe.Title && addedPhotos.length !==0) {
+      get.uploadFileToUrl(this.newRecipe, '/api/recipes')
+    } else {
+      alert('Recipe Title and file are required');
+      return false;
+    }
+
   };
 
   $timeout(function() {
