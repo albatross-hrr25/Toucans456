@@ -21,7 +21,7 @@ img {
   max-width: 100%;
 }
 
-img #primary{
+#primary {
   height:500px;
 
 }
@@ -54,6 +54,15 @@ img #primary{
 
 #plusSign {
   border: 1px solid black;
+}
+
+.container {
+  margin-top: 10px;
+}
+
+.display-1 {
+  text-transform: capitalize;
+  font-family: 'Roboto', sans-serif;
 }
 
 
