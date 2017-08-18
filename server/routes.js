@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 
 //Setting up tokens
-// app.use(expressJWT({
-//   secret: 'rowdyHouse'
-// }).unless({
-//   path: ['/api/login', '/api/signup', '/']  //'/#!/tourist',
-// }));
+app.use(expressJWT({
+  secret: 'rowdyHouse'
+}).unless({
+  path: ['/api/login', '/api/signup', '/']  //'/#!/tourist',
+}));
 
 /////////////////////////////////////////////////////////////
 /////////////////////// GET REQUESTS ///////////////////////
