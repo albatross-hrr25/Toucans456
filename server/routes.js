@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
-  path: ['/api/login', '/api/signup', '/']  //'/#!/tourist',
+  path: ['/api/login', '/api/signup', '/']
 }));
 
 /////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ app.use(expressJWT({
 app.get('/api/users', (request, response) => {
   db.User.findAll()
     .then((users) => {
-      console.log(users);
+      // console.log(users);
       response.send(users);
     })
     .catch((error) => {
@@ -42,8 +42,8 @@ app.get('/api/users', (request, response) => {
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
-
-  // TODO: FIX TO FILTER BY USERNAME
+  //STRETCH GOAL:  Account for username here
+  //query username to retrieve their recipeId's
 
   db.Recipe.findAll()
     .then((recipe) => {
@@ -200,6 +200,7 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
+        response.send(error);
       });
       resolve();
     })
