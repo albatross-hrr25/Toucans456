@@ -50,7 +50,7 @@ angular.module('app')
         callback(token);
       })
       .catch((error) => {
-        alert('Sign Up Failed!');
+        alert('Username already exists!');
       });
   };
 

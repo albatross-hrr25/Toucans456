@@ -1,4 +1,6 @@
 <div class="container">
+  <div>
+  </div>
   <h1 class="display-1">{{$ctrl.recipe.title}}</h1>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -15,11 +17,11 @@
       </div>
 
       <div class="item">
-        <img id="primary" ng-src={{$ctrl.recipe.imageUrl}}>
+        <img id="primary" ng-src={{$ctrl.photos[0].Image}}>
       </div>
 
       <div class="item">
-        <img id="primary" ng-src={{$ctrl.recipe.imageUrl}}>
+        <img id="primary" ng-src={{$ctrl.photos[1].Image}}>
       </div>
     </div>
 

@@ -64,7 +64,17 @@ angular.module('app')
   get.getRecipes(null, function (recipes) {
     $scope.recipes = recipes;
     $scope.primaryRecipe = recipes[0];
-    $scope.$apply();
+
+    get.getRecipe($scope.primaryRecipe.id, function(resObj) {
+      console.log('Retrieved data', resObj.data)
+
+      $scope.selectRecipePhotos = resObj.data.Photos;
+      $scope.selectRecipeTags = resObj.data.Tags;
+      $scope.selectRecipeIsStarred = resObj.data.isStarred;
+      $scope.selectRecipeTitle = resObj.data.title;
+
+      $scope.$apply();
+    });
   });
 
 
