@@ -176,31 +176,30 @@ app.post('/api/signup', (request, response) => {
 })
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
-app.post('/api/recipes', upload.single('file'), (request, response) => {
-  //UPDATE THIS TO HANDLE USERNAME -stretch goal
-  var photoPath = request.file.path;
-  var photoTitle = request.body.title;
-  var photoTags = request.body.tags.split(",");
 
-<<<<<<< HEAD
+app.post('/api/recipes', upload.array('file', 4), (request, response) => {
+  //UPDATE THIS TO HANDLE USERNAME
+  var photoPathforOne = request.files[0].path;
+  var photoTitle = request.body.title + "thumbnail";
+  var photoTags = request.body.tags.split(",");
+  var photoData = request.files;
+
   return new Promise(function(resolve, reject){
-    cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
+    cloudConfig.uploadPhoto(photoPathforOne, photoTitle, photoTags)
     .then(function(response){
       db.Recipe.create({
-        title: response.public_id,
+        title: request.body.title,
         imageUrl: response.secure_url,
-        Photos: response.secure_url,
         Tags: response.tags
       }, {
-        include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME -stretch goal
+        include: [ db.Tag]  //UPDATE THIS TO HANDLE USERNAME
       })
       .then((recipeData) => {
         console.log('Server POST Recipe success');
-        response.send(recipeData);
+        // response.send(recipeData);
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
-        //response.send(error);
       });
       resolve();
     })
@@ -209,38 +208,40 @@ app.post('/api/recipes', upload.single('file'), (request, response) => {
       reject(err);
     })
   })
-=======
-  // return new Promise(function(resolve, reject){
-  //   cloudConfig.uploadPhoto(photoPath, photoTitle, photoTags)
-  //   .then(function(response){
-  //     db.Recipe.create({
-  //       title: response.public_id,
-  //       imageUrl: response.secure_url,
-  //       Photos: response.secure_url,
-  //       Tags: response.tags
-  //     }, {
-  //       include: [ db.Tag, db.Photo ]  //UPDATE THIS TO HANDLE USERNAME
-  //     })
-  //     .then((recipeData) => {
-  //       console.log('Server POST Recipe success');
-  //       // response.send(recipeData);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Server POST Recipe error');
-  //       // response.send(error);
-  //     });
-  //     resolve();
-  //   })
-  //   .catch(err => {
-  //     console.error('Unable to upload', err);
-  //     reject(err);
-  //   })
-  // })
+  .then(function() {
+    photoData.forEach(function(cur, index){
+      var photoPath = cur.path;
+      var photoTitle = request.body.title + index;
+      var receivedUrl ='';
+      return new Promise(function(resolve, reject) {
+        cloudConfig.uploadPhoto(photoPath, photoTitle)
+        .then(function(response){
+          receivedUrl = response.secure_url;
+          db.Recipe.findOne({where: {title: request.body.title}})
+          .then(recipe =>(
+
+            db.Photo.create({
+              RecipeId: recipe.id,
+              image:receivedUrl
+            })
+            .then((recipeData) => {
+              console.log('Server POST Recipe success', recipeData);
+              // response.send(recipeData);
+            })
+            .catch((error) => {
+              console.log('Server POST Recipe error');
+              // response.send(error);
+            })
+          ))
+        })
+      });
+    })
+
+  })
+  .catch(err => console.error)
 
 
->>>>>>> Update reset form once submmit
 });
-
 
 ///////////////////////////////////////////////////////////////
 /////////////////////// OTHER REQUESTS ///////////////////////

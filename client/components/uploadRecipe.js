@@ -24,6 +24,7 @@ angular.module('app')
   };
 =======
     get.uploadFileToUrl(this.newRecipe, '/api/recipes');
+
     $('#form_id').trigger("reset");
     $(".tm-input").tagsManager('empty');
   };

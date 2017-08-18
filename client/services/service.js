@@ -79,7 +79,13 @@ angular.module('app')
     var fd = new FormData();
     fd.append('title', file.Title);
     fd.append('tags', file.Tags);
-    fd.append('file', file.Photos[0]);
+
+    for(var i =0; i < file.Photos.length; i++){
+       fd.append('file', file.Photos[i]);
+    }
+   // console.log(fd.get("file", file));
+   // console.log(fd.getAll("file", file));
+
 
     axios.post(uploadUrl, fd, {
       headers: {'Content-type': 'multipart/form-data'}
