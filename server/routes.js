@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(expressJWT({
   secret: 'rowdyHouse'
 }).unless({
-  path: ['/#!/tourist', '/api/login']
+  path: ['/#!/tourist', '/api/login', '/api/signup']
 }));
 
 /////////////////////////////////////////////////////////////
@@ -148,11 +148,13 @@ app.get('/api/search', (request, response) => {
 /////////////////////////////////////////////////////////////
 
 app.post('/api/signup', (request, response) => {
-  var username = request.query.username;
-  var hash = request.query.hash;
+  var username = request.body.username;
+  var hash = request.body.hash;
+  console.log('!!!!!', username)
   if (!username) {
     response.status(404).send('invalid username');
   }
+  console.log('!!!!!', hash)
   if (!hash) {
     response.status(404).send('invalid password');
   }
