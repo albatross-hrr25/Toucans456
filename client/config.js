@@ -5,29 +5,16 @@ angular.module('app', ['ui.router'])
     var touristState = {
       name: 'tourist',
       url: '/tourist',
-      component: 'tourist',
-      // Resolve block will be needed if we do any routing for touristState
-      // resolve: {
-      //   tourist: function(touristService) {
-      //     // delegate to services which return a promise
-      //     //
-      //   }
-      // }
+      component: 'tourist'
     };
 
     var primaryState = {
       name: 'primary',
       url: '/primary',
-      component: 'app',
-      // resolve: {
-      //   primary: function(primaryService) {
-      //     // delegate to services which return a promise
-      //     // serves up a User's primary view
-      //     return get.getRecipes();
-      //   }
-      // }
+      component: 'app'
     };
 
     $stateProvider.state(touristState);
     $stateProvider.state(primaryState);
+
   });
