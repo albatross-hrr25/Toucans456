@@ -2,7 +2,6 @@ angular.module('app')
   .controller('TouristCtrl', ['$scope', 'get', '$state', function ($scope, get, $state) {
 
     this.loginClick = (username, password) => {
-      console.log('fuck')
       var config = {
         params: { username: username, hash: password }
       };
