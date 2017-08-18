@@ -15,7 +15,6 @@ angular.module('app')
   };
 
 ////////search bar//////////////////////////
-
   this.handleSearchResults = (query) => {
     get.search({query: query}, function(recipes){
       $scope.recipes = recipes
@@ -64,7 +63,5 @@ angular.module('app')
     axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
     $state.go('tourist');
   };
-
-
 
   }]);

@@ -20,7 +20,6 @@ angular.module('app')
         $state.go('primary');
       });
     };
-
   }])
   .component('tourist', {
 
