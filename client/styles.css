@@ -7,7 +7,7 @@ body, html {
 
 #left {
 /*  position: absolute;*/
-  height:500px;
+  height:475px;
   overflow-y: scroll;
 }
 
@@ -65,6 +65,78 @@ img {
   font-family: 'Roboto', sans-serif;
 }
 
+
+
+/*
+carousel-control without transparent area
+*/
+.carousel-control {
+   height:0;
+   top:50%;
+}
+
+/*
+carousel background white
+*/
+.carousel {
+      background: url(http://www.solidbackgrounds.com/images/2560x1440/2560x1440-white-solid-color-background.jpg);
+      position: relative;
+      padding: 10px;     /* Shows as a border around the carousel */
+  }
+
+
+/*
+carousel arrow color
+*/
+.glyphicon.glyphicon-chevron-right{
+   color:black;
+}
+
+.glyphicon.glyphicon-chevron-left{
+   color:black;
+}
+
+/*
+carousel indicator color
+*/
+.carousel-indicators .active{
+  background-color:black;
+}
+
+.carousel-indicators li{
+   background-color:black;
+   opacity: 0.5;
+}
+
+
+/*
+Sign Up Failed modal color
+*/
+.modal-header-danger {
+  color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #d9534f;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
+.modal-header-cool {
+    color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #5bc0de;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
 
 
 /*.navbar {
