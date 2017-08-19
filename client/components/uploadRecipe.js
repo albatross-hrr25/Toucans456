@@ -2,6 +2,13 @@ angular.module('app')
   .controller ('UploadRecipeCtrl', function ($scope, $timeout, get) {
 
     this.newRecipe = {};
+    this.showFailModal = () => {
+          $("#myModalfailed").modal('show')
+        };
+
+    this.showSuccessModal = () => {
+          $("#myModalsuccess").modal('show')
+        };
 
 
     this.handlePhotoSubmit = () => {
@@ -13,17 +20,18 @@ angular.module('app')
       this.newRecipe["Tags"] = addedTags.split(",");
       this.newRecipe["Photos"] = addedPhotos;
 
-    if(!!this.newRecipe.Title && addedPhotos.length !==0) {
-      get.uploadFileToUrl(this.newRecipe, '/api/recipes')
-    } else {
-      alert('Recipe Title and file are required');
-      return false;
-    }
+      if(!!this.newRecipe.Title && addedPhotos.length !==0) {
+        get.uploadFileToUrl(this.newRecipe, '/api/recipes');
+        this.showSuccessModal();
+      } else {
+        this.showFailModal();
+        return false;
+      }
 
-    $('#form_id').trigger("reset");
-    $(".tm-input").tagsManager('empty');
+      $('#form_id').trigger("reset");
+      $(".tm-input").tagsManager('empty');
 
-  };
+    };
 
 
     $timeout(function() {
@@ -36,7 +44,4 @@ angular.module('app')
   .component('uploadRecipe', {
     controller: 'UploadRecipeCtrl',
     templateUrl: 'templates/uploadRecipe.html',
-
-
-
   });

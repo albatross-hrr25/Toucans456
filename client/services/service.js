@@ -42,7 +42,7 @@ angular.module('app')
       });
   };
 
-  this.signUp = (config, callback, failedFun) => {
+  this.signUp = (config, callback, failedAlert) => {
     console.log(config)
     // post request to '/api/signup'
     axios.post('/api/signup', config)
@@ -50,7 +50,8 @@ angular.module('app')
         callback(token);
       })
       .catch((error) => {
-        alert('Username already exists!');
+        failedAlert();
+        //alert('Username already exists!');
         console.log(error);
       });
   };
