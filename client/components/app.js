@@ -43,21 +43,17 @@ angular.module('app')
 
     //retrieve photos
     get.getRecipe(recipe.id, function(resObj) {
-      console.log('Retrieved data', resObj.data)
+      console.log('Retrieved data', resObj.data);
+      var tags = resObj.data.Tags;
 
       $scope.selectRecipePhotos = resObj.data.Photos;
-      $scope.selectRecipeTags = resObj.data.Tags;
+      $scope.selectRecipeTags = tags.map((cur)=> cur = cur.Tag);
       $scope.selectRecipeIsStarred = resObj.data.isStarred;
       $scope.selectRecipeTitle = resObj.data.title;
 
       $scope.$apply();
     });
 
-    //retrieve tags
-    // get.getTags(recipe, function(tags) {
-    //   $scope.tags = tags;
-    //   $scope.$apply();
-    // });
   };
 
 ////////get service for inventory ///////////
@@ -67,9 +63,10 @@ angular.module('app')
 
     get.getRecipe($scope.primaryRecipe.id, function(resObj) {
       console.log('Retrieved data', resObj.data)
+      var tags = resObj.data.Tags;
 
       $scope.selectRecipePhotos = resObj.data.Photos;
-      $scope.selectRecipeTags = resObj.data.Tags;
+      $scope.selectRecipeTags = tags.map((cur)=> cur = cur.Tag);
       $scope.selectRecipeIsStarred = resObj.data.isStarred;
       $scope.selectRecipeTitle = resObj.data.title;
 
