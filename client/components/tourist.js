@@ -34,9 +34,6 @@ angular.module('app')
     this.signAfterClick = () => {
       var username = angular.element(document.getElementById("signupUserId"))[0].value;
       var password = angular.element(document.getElementById("signupUserPwd"))[0].value;
-
-      var config = {username: username, hash: password};
-
       var config = {username: username, hash: password};
 
       get.signUp (config, (token) => {
