@@ -7,7 +7,6 @@ angular.module('app')
   })
   .controller ('RecipeController', function ($scope, get, $state) {
 
-
   ////////handle switch views via ng-if///////
     this.content = true;
     this.runUpload = () => {
@@ -82,5 +81,11 @@ angular.module('app')
       axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
       $state.go('tourist');
     };
+
+    // $timeout(function() {
+    //   // code to execute after directives goes here
+    //   // $("#signUpModal").modal('hide');
+
+    // });
 
   });
