@@ -15,29 +15,29 @@ angular.module('app', ['ui.router'])
     };
 
     //TESTING//
-    $stateProvider.state('home', {
-      url: '/',
-      templateUrl: 'views/home.html',
-      resolve: {
-        user: function($auth) {
-          return $auth.getUser();
-        }
-      }
-    });
-    //to allow access to a view to go through or not
-    $stateProvider.state('home', {
-      url: '/',
-      templateUrl: 'views/home.html',
-      resolve: {
-        user: function($auth) {
-          return $auth.getUser()
-            .then(function(user) {
-              //can access resource?
-              //return true/false
-            })
-        }
-      }
-    })
+    // $stateProvider.state('home', {
+    //   url: '/',
+    //   templateUrl: 'views/home.html',
+    //   resolve: {
+    //     user: function($auth) {
+    //       return $auth.getUser();
+    //     }
+    //   }
+    // });
+    // //to allow access to a view to go through or not
+    // $stateProvider.state('home', {
+    //   url: '/',
+    //   templateUrl: 'views/home.html',
+    //   resolve: {
+    //     user: function($auth) {
+    //       return $auth.getUser()
+    //         .then(function(user) {
+    //           //can access resource?
+    //           //return true/false
+    //         })
+    //     }
+    //   }
+    // })
 
     //TESTING//
 

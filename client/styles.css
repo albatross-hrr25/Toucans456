@@ -259,7 +259,7 @@
 
 #left {
 /*  position: absolute;*/
-  height:475px;
+  height: 500px;
   overflow-y: scroll;
 }
 
@@ -276,6 +276,24 @@ img {
 #primary {
   height:500px;
 
+}
+
+.row {
+
+}
+.upload-title {
+  text-align: center;
+  font-size: 36px;
+}
+
+.upload {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 300px;
+  height: 300px;
 }
 
 .form-group.required .control-label:after {
@@ -317,6 +335,8 @@ img {
   font-family: 'Roboto', sans-serif;
 }
 
+#form_id {
+}
 
 
 
@@ -537,9 +557,3 @@ Sign Up Failed modal color
   .button:hover {
     background-color: rgba(144, 144, 144, 0.25);
   }
-
-
-
-
-
-
