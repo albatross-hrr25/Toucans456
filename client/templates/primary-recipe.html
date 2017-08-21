@@ -1,8 +1,4 @@
-<div class="container">
-  <div>
-    <h1 class="display-1">{{$ctrl.recipe.title}}</h1>
-    <p class="tm-tag tm-tag-info" ng-repeat="tag in $ctrl.tags">{{tag}}</p>
-  </div>
+<div>
   <style>
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
@@ -34,7 +30,6 @@
       </div>
     </div>
 
-
     <!-- Left and right controls -->
     <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
@@ -45,7 +40,10 @@
       <span class="sr-only">Next</span>
     </a> -->
 
+  </div>
 
-
+  <div align="center">
+    <h1 id="primaryTitle" class="display-1">{{$ctrl.recipe.title}}</h1>
+    <p class="tm-tag tm-tag-small" ng-repeat="tag in $ctrl.tags">{{tag}}</p>
   </div>
 </div>
