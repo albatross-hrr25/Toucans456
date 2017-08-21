@@ -34,20 +34,20 @@ angular.module('app')
     this.signAfterClick = () => {
       var username = angular.element(document.getElementById("signupUserId"))[0].value;
       var password = angular.element(document.getElementById("signupUserPwd"))[0].value;
+
       var config = {username: username, hash: password};
 
-      get.signUp (
-        config,
-        (token) => {
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
-          //save token to local storage
-          store.set('id_token', token);
-          // Get User's Personal Hompage route to primary view
-          $state.go('primary');
-        },
+      var config = {username: username, hash: password};
+
+      get.signUp (config, (token) => {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
+        // Get User's Personal Hompage route to primary view
+        $state.go('primary');
+      },
         () => {
           $("#signUpFailedModal").modal('show')
-      })
+      });
+
     };
 
     this.signUpClick = (username, password) => {
