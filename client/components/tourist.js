@@ -1,6 +1,8 @@
 angular.module('app')
   .controller('TouristCtrl', function ($scope, get, $state, $timeout, store) {
-
+    this.showSignUp = () => {
+      $("#signUpModal").modal('show');
+    };
 
     this.loginAfterClick= () => {
       var username = angular.element(document.getElementById("username"))[0].value;
@@ -9,14 +11,25 @@ angular.module('app')
         params: { username: username, hash: password }
       };
 
-      get.login(config, (token) => {
+      get.login(config,
+        (token) => {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
         //save token to local storage
         store.set('id_token', token);
-
+        // Get User's Personal Hompage route to primary view
         $state.go('primary');
-      });
+        },
+        () => {
+          $("#logInFailedModal").modal('show')
+        }
+      );
     };
+
+    this.loginClick = () => {
+      $("#signUpModal").modal('hide');
+      $timeout(() => this.loginAfterClick(), 200);
+    };
+
 
     this.signAfterClick = () => {
       var username = angular.element(document.getElementById("signupUserId"))[0].value;
@@ -29,22 +42,12 @@ angular.module('app')
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
           //save token to local storage
           store.set('id_token', token);
-
           // Get User's Personal Hompage route to primary view
           $state.go('primary');
         },
         () => {
-          $("#getCodeModal").modal('show')
+          $("#signUpFailedModal").modal('show')
       })
-    };
-
-    this.loginClick = () => {
-      $("#signUpModal").modal('hide');
-      $timeout(() => this.loginAfterClick(), 200);
-    };
-
-    this.showSignUp = () => {
-      $("#signUpModal").modal('show');
     };
 
     this.signUpClick = (username, password) => {

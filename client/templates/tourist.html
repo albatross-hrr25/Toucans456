@@ -1,20 +1,6 @@
 <!-- Page Wrapper -->
   <div id="page-wrapper">
 
-  <!-- tourist landing page with signup and login -->
-
-
-
- <!--  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-3">Recipe Archive</h1>
-      <p class="lead">Saving your family legacy in one place.</p>
-    </div>
-  </div> -->
-
-
-
-
 <!-- Banner -->
 <section id="banner">
   <div class="inner">
@@ -25,17 +11,6 @@
     </ul>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Modal Sign Up Form-->
   <!-- Modal -->
@@ -54,6 +29,7 @@
         <div class="tab-pane active in" id="signin">
             <form class="form-horizontal">
             <fieldset>
+
             <!-- Sign In Form -->
             <!-- Text input-->
             <div class="control-group">
@@ -83,27 +59,13 @@
             </form>
         </div>
 
+        <!-- Sign Up Form -->
         <div class="tab-pane" id="signup">
             <form class="form-horizontal">
             <fieldset>
-
-
-<!--   <div class="signUpForm">
-    <form  ng-submit="$ctrl.signUpClick(signUser, signPassword)" class="form-inline">
-    <h3 id="signUpNow">Sign Up Now</h1>
-      <input ng-model="signUser" type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="username">
-      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-        <input ng-model="signPassword" type="password" class="form-control" id="inlineFormInputGroup" placeholder="password">
-      </div>
-      <input type="submit" class="" text="Submit">
-    </form>
-  </div> -->
-
-
-            <!-- Sign Up Form -->
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="userid">Alias:</label>
+              <label class="control-label" for="userid">Username:</label>
               <div class="controls">
                 <!-- <input id="userid" name="userid" class="form-control" type="text" placeholder="JoeSixpack" class="input-large" required=""> -->
                 <input type="text" class="form-control" id="signupUserId" placeholder="username" required="">
@@ -127,6 +89,7 @@
                 <button id="signin" name="signin" class="btn btn-default" ng-click="$ctrl.signUpClick()">Sign Up</button>
               </div>
             </div>
+
             </fieldset>
             </form>
           </div>
@@ -137,19 +100,38 @@
 </div>
 <!-- Modal End-->
 
-
-
 <!-- Modal Sign up faild-->
-   <div class="modal fade" id="getCodeModal" role="dialog" >
+   <div class="modal fade" id="signUpFailedModal" role="dialog" >
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header modal-header-danger" >
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Sign up failed</h4>
+          <h4 class="modal-title">SignUp failed</h4>
         </div>
         <div class="modal-body">
           <p>Username already exists!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal End-->
+
+
+<!-- Modal LogIn failed-->
+   <div class="modal fade" id="logInFailedModal" role="dialog" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header modal-header-danger" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">LogIn failed</h4>
+        </div>
+        <div class="modal-body">
+          <p>Invalid username and/or password</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
