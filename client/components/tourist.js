@@ -38,6 +38,7 @@ angular.module('app')
 
       get.signUp (config, (token) => {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
+        store.set('id_token', token);
         // Get User's Personal Hompage route to primary view
         $state.go('primary');
       },
