@@ -184,16 +184,16 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
   return new Promise(function(resolve, reject){
     cloudConfig.uploadPhoto(photoPathforOne, photoTitle, photoTags)
     .then(function(response){
+      var inputTags = photoTags.map(cur => cur={tag:cur});
       db.Recipe.create({
         title: request.body.title,
         imageUrl: response.secure_url,
-        Tags: response.tags
+        Tags: inputTags
       }, {
-        include: [ db.Tag]  //UPDATE THIS TO HANDLE USERNAME
+        include: [db.Tag]  //UPDATE THIS TO HANDLE USERNAME
       })
-      .then((recipeData) => {
+      .then(() => {
         console.log('Server POST Recipe success');
-        // response.send(recipeData);
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
