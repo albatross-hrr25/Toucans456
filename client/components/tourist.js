@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('TouristCtrl', function ($scope, get, $state, $timeout) {
+  .controller('TouristCtrl', function ($scope, get, $state, $timeout, store) {
 
 
     this.loginAfterClick= () => {
@@ -11,6 +11,9 @@ angular.module('app')
 
       get.login(config, (token) => {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
+        //save token to local storage
+        store.set('id_token', token);
+
         $state.go('primary');
       });
     };
@@ -24,6 +27,9 @@ angular.module('app')
         config,
         (token) => {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.data;
+          //save token to local storage
+          store.set('id_token', token);
+
           // Get User's Personal Hompage route to primary view
           $state.go('primary');
         },

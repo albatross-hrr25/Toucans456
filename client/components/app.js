@@ -5,7 +5,7 @@ angular.module('app')
     templateUrl: 'templates/app.html'
 
   })
-  .controller ('RecipeController', function ($scope, get, $state) {
+  .controller ('RecipeController', function ($scope, get, $state, store) {
 
 
   ////////handle switch views via ng-if////////
@@ -75,6 +75,8 @@ angular.module('app')
     this.logout = () => {
       console.log('Logging out');
       axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
+      store.remove('id_token');
+
       $state.go('tourist');
     };
 
