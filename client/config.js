@@ -61,7 +61,7 @@ angular.module('app', ['angular-storage', 'ui.router', 'angular-jwt'])
           token = token.data;
         }
         if (jwtHelper.isTokenExpired(token) === false) {  //is it expired?
-          console.log('going to primary');
+          console.log('Staying at primary');
           axios.defaults.headers.common.Authorization = 'Bearer ' + token;
 
           $location.path('/primary');  //head to the primary page
