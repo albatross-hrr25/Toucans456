@@ -180,6 +180,7 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
   var photoTitle = request.body.title + "thumbnail";
   var photoTags = request.body.tags.split(",");
   var photoData = request.files;
+  var endThisResponse = response;
 
   return new Promise(function(resolve, reject){
     cloudConfig.uploadPhoto(photoPathforOne, photoTitle, photoTags)
@@ -194,6 +195,7 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
       })
       .then(() => {
         console.log('Server POST Recipe success');
+
       })
       .catch((error) => {
         console.log('Server POST Recipe error');
@@ -224,11 +226,11 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
             })
             .then((recipeData) => {
               console.log('Server POST Recipe success', recipeData);
-              //response.send('Recipe uploaded');
+              endThisResponse.send(recipeData);
             })
             .catch((error) => {
               console.log('Server POST Recipe error: ', error);
-              //response.send('Recipe upload error');
+              endThisResponse.end('Recipe upload error');
             })
           ))
         })
