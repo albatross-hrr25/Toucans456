@@ -224,11 +224,11 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
             })
             .then((recipeData) => {
               console.log('Server POST Recipe success', recipeData);
-              response.status(200);
+              //response.send('Recipe uploaded');
             })
             .catch((error) => {
-              console.log('Server POST Recipe error');
-              response.status(200);
+              console.log('Server POST Recipe error: ', error);
+              //response.send('Recipe upload error');
             })
           ))
         })
