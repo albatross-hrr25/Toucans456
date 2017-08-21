@@ -13,12 +13,20 @@
     width: device-width;
   }
 
-  body, input, select, textarea {
+  body, select, textarea {
     color: #fff;
     font-size: 15pt;
     font-weight: 400;
     letter-spacing: 0.075em;
     line-height: 1.65em;
+  }
+
+  input {
+    color: black;
+    font-size: 8pt;
+    /*font-weight: 400;
+    letter-spacing: 0.075em;
+    line-height: 1.65em;*/
   }
 
   strong, b {
@@ -75,6 +83,13 @@ img {
 }
 
 /* Inventory scroll bar End*/
+
+#primaryTitleGroup {
+ /* position: relative;
+  left:25%;*/
+  width: 600px;
+}
+
 #primaryTitle {
   color:black;
 }
