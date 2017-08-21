@@ -185,8 +185,6 @@ app.post('/api/recipes', upload.array('file', 4), (request, response) => {
     cloudConfig.uploadPhoto(photoPathforOne, photoTitle, photoTags)
     .then(function(response){
       var inputTags = photoTags.map(cur => cur={tag:cur});
-      console.log("memememememem", inputTags)
-
       db.Recipe.create({
         title: request.body.title,
         imageUrl: response.secure_url,
