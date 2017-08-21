@@ -29,7 +29,7 @@ angular.module('app')
     });
   };
 
-  this.login = function (config, callback) {
+  this.login = function (config, callback, failedAlert) {
     console.log('login is running');
     axios.get('/api/login', config)
       .then(function (token) {
@@ -37,7 +37,7 @@ angular.module('app')
         callback(token);
       })
       .catch(function (err) {
-        alert('login unsuccessful');
+        failedAlert();
         console.log('This is the error form logn', err);
       });
   };
@@ -51,7 +51,6 @@ angular.module('app')
       })
       .catch((error) => {
         failedAlert();
-        //alert('Username already exists!');
         console.log(error);
       });
   };
