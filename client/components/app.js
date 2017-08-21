@@ -7,14 +7,15 @@ angular.module('app')
   })
   .controller ('RecipeController', function ($scope, get, $state) {
 
-  ////////handle switch views via ng-if///////
+
+  ////////handle switch views via ng-if////////
     this.content = true;
     this.runUpload = () => {
       this.content = false;
     };
 
 
-  ////////search bar//////////////////////////
+  //////// search bar ////////
     this.handleSearchResults = (query) => {
       get.search({query: query}, function(recipes){
         $scope.recipes = recipes;
@@ -33,14 +34,12 @@ angular.module('app')
       });
     };
 
-
-
-////////get service for primary recipe//////
+  //////// GET service for primary recipe ////////
   this.selectRecipe = (recipe) => {
     console.log(recipe.id);
     $scope.primaryRecipe = recipe;
 
-    //retrieve photos
+    // retrieve photos and associated data //
     get.getRecipe(recipe.id, function(resObj) {
       console.log('Retrieved data', resObj.data);
       var tags = resObj.data.Tags;
@@ -52,13 +51,12 @@ angular.module('app')
 
       $scope.$apply();
     });
-
   };
 
-////////get service for inventory ///////////
-  get.getRecipes(null, function (recipes) {
-    $scope.recipes = recipes;
-    $scope.primaryRecipe = recipes[0];
+  //////// recipe app initializion ////////
+    get.getRecipes(null, function (recipes) {
+      $scope.recipes = recipes;
+      $scope.primaryRecipe = recipes[0];
 
     get.getRecipe($scope.primaryRecipe.id, function(resObj) {
       console.log('Retrieved data', resObj.data)
@@ -69,13 +67,11 @@ angular.module('app')
       $scope.selectRecipeIsStarred = resObj.data.isStarred;
       $scope.selectRecipeTitle = resObj.data.title;
 
-      $scope.$apply();
+        $scope.$apply();
+      });
     });
-  });
 
-
-
-
+  //////// allows user to logout ////////
     this.logout = () => {
       console.log('Logging out');
       axios.defaults.headers.common['Authorization'] = 'Bearer logged out';

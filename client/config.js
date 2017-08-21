@@ -12,7 +12,11 @@ angular.module('app', ['ui.router'])
       name: 'primary',
       url: '/primary',
       component: 'app'
+      // resolve: {
+      //
+      // }
     };
+
 
     $stateProvider.state(touristState);
     $stateProvider.state(primaryState);

@@ -56,7 +56,7 @@ app.get('/api/recipes', (request, response) => {
 });
 
 
-//Returns all tags associated with the recipe that was clicked on
+//Returns all data associated with the recipe that was clicked on
 app.get('/api/recipe', (request, response) => {
   console.log('Server GET Recipes request', typeof request.query.config);
   var responseObj = {};
@@ -88,9 +88,6 @@ app.get('/api/recipe', (request, response) => {
     response.send(error);
   });
 });
-
-
-
 
 
 
