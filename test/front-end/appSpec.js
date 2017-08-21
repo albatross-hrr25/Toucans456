@@ -6,23 +6,26 @@ describe("A test suite", function() {
    it('should fail', function() { expect(true).to.be.false; });
 });
 
-describe('app', function () {
-  var element;
+describe('tourist component', function () {
+  var element, $controller;
 
   beforeEach(module('app'));
   beforeEach(module('templates'));
 
-  beforeEach(inject(function($rootScope, $compile) {
+  beforeEach(inject(function($controller, $rootScope, $compile) {
     var scope = $rootScope.$new();
-    //console.log('this is the scope', scope);
-    //console.log('this is the compile', $compile);
+    //$controller('RecipeController', {$scope: scope});
+    //console.log('!!!!!!!!!!scope', scope);
     element = angular.element('<app></app>');
     element = $compile(element)(scope);
-
-    $rootScope.$digest();
+    //$rootScope.$digest();
   }));
 
+
   it('should have a selectRecipe function on the scope', function() {
+    var $scope = {};
+    //controller = $controller('TouristCtrl', {$scope: $scope});
+    console.log(controller);
     expect(element.isolateScope().$ctrl.searchRecipe).to.exist;
   });
 
