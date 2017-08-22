@@ -1,6 +1,6 @@
-# Project Name
+# Recipe Archive
 
-> Pithy project description
+Recipe Archive is a platform to capture, tag, and save handwritten recipes
 
 ## Team
 
@@ -20,15 +20,26 @@
 
 ## Usage
 
-> Some usage instructions
+1. Fork the Toucans456 repo.
+1. Clone your fork of the repo.
+1. From within the root directory of your cloned repo
+```sh
+git remote add upstream https://github.com/Toucans456/Toucans456.git
+git clone [your fork.git]
+npm install
+npm run seed
+```
+1. If you are developing: npm run develop (will initiate nodemon --inspect)
+1. If you are using: npm start
+1. Navigate browser to localhost at port 8000
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 4.4.3
+- Express 4.15.4
+- mySql2 1.4.0
+- Angular 1.6.5
+
 
 ## Development
 
@@ -37,13 +48,12 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/Toucans456/Toucans456/issues)
 
 
 ## Contributing
