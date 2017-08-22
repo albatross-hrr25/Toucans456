@@ -80,10 +80,5 @@ angular.module('app')
       $state.go('tourist');
     };
 
-    // $timeout(function() {
-    //   // code to execute after directives goes here
-    //   // $("#signUpModal").modal('hide');
-
-    // });
-
   });
+
