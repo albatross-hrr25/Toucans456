@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/albatross-hrr25/Toucans456.png?label=ready&title=Ready)](https://waffle.io/albatross-hrr25/Toucans456?utm_source=badge)
 # Recipe Archive
 
 Recipe Archive is a platform to capture, tag, and save handwritten recipes
