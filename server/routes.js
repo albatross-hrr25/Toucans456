@@ -1,5 +1,5 @@
 var cloudinary = require('cloudinary');
-var express = require('express');
+// var express = require('express');
 var bodyParser = require('body-parser');
 var db = require('./../db/schema.js');
 var expressJWT = require('express-jwt');
@@ -12,7 +12,7 @@ var multer  = require('multer');
 var upload = multer({ dest: 'uploads/'});
 //clean storage
 
-var app = express();
+// var app = express();
 app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());

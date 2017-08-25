@@ -1,8 +1,7 @@
 var mysql = require('mysql');
-var dbConnection = mysql.createConnection({
-  user: process.env.DB_USER,
-  password: ''
-});
+
+console.log('Showing mySQL URL: ', process.env.MYSQL_URL);
+var dbConnection = mysql.createConnection(process.env.MYSQL_URL);
 
 //Create Recipe database if it doesn't exist
 exports.createDatabase = function () {
