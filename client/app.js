@@ -16,11 +16,11 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
 
     // Initialization for the angular-auth0 library
     angularAuth0Provider.init({
-      clientID: process.env.AUTH0_CLIENT_ID,
-      domain: process.env.AUTH0_DOMAIN,
+      clientID: AUTH0_CLIENT_ID,
+      domain: AUTH0_DOMAIN,
       responseType: 'token id_token',
-      redirectUri: process.env.AUTH0_CALLBACK_URL,
-      audience: process.env.AUTH0_API_AUDIENCE,
+      redirectUri: AUTH0_CALLBACK_URL,
+      audience: AUTH0_API_AUDIENCE,
     });
     
     // Configure a tokenGetter so that the isAuthenticated
