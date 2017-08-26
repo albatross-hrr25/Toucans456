@@ -1,0 +1,197 @@
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+<!-- Banner -->
+<section id="banner">
+  <div class="inner">
+    <h2>Recipes Archive</h2>
+    <p>Saving your family legacy in one place.</p>
+    <ul class="actions">
+      <li ng-if="!auth.isAuthenticated()"><a ng-click="auth.login()" class="button special">Log In</a></li>
+      <li ng-if="auth.isAuthenticated()"><a ng-click="auth.logout()" class="button special">Log Out</a></li>
+    </ul>
+    <button class="button team" data-toggle="modal" data-target="#team">Meet the Team</button>
+  </div>
+</section>
+
+<!-- Modal Sign Up Form-->
+  <!-- Modal -->
+<!-- <div class="modal fade bs-modal-sm" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <br>
+        <div class="bs-example bs-example-tabs">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+              <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+            </ul>
+        </div>
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active in" id="signin">
+            <form class="form-horizontal">
+            <fieldset> -->
+
+            <!-- Sign In Form -->
+            <!-- Text input-->
+            <!-- <div class="control-group">
+              <label class="control-label" for="userid">Username:</label>
+              <div class="controls">
+                <input required="" type="username" class="form-control" id="username" placeholder="Enter username" class="input-medium" ng-model="username">
+              </div>
+            </div> -->
+
+            <!-- Password input-->
+            <!-- <div class="control-group">
+              <label class="control-label" for="passwordinput">Password:</label>
+              <div class="controls">
+                <input ng-model="password" type="password" class="form-control" id="pwd" class="input-medium" placeholder="Enter password">
+              </div>
+            </div> -->
+
+            <!-- Button -->
+            <!-- <div class="control-group">
+              <label class="control-label" for="signin"></label>
+              <div class="controls">
+                <button id="signin" name="signin" class="btn btn-default"  ng-click="$ctrl.loginClick()">Sign In</button>
+              </div>
+            </div>
+
+            </fieldset>
+            </form>
+        </div> -->
+
+        <!-- Sign Up Form -->
+        <!-- <div class="tab-pane" id="signup">
+            <form class="form-horizontal">
+            <fieldset> -->
+            <!-- Text input-->
+            <!-- <div class="control-group">
+              <label class="control-label" for="userid">Username:</label>
+              <div class="controls"> -->
+                <!-- <input id="userid" name="userid" class="form-control" type="text" placeholder="JoeSixpack" class="input-large" required=""> -->
+                <!-- <input type="text" class="form-control" id="signupUserId" placeholder="username" required="">
+              </div>
+            </div> -->
+
+            <!-- Password input-->
+            <!-- <div class="control-group">
+              <label class="control-label" for="password">Password:</label>
+              <div class="controls"> -->
+                <!-- <input id="password" name="password" class="form-control" type="password" placeholder="********" class="input-large" required=""> -->
+                <!-- <input type="password" class="form-control" id="signupUserPwd" placeholder="password" equired="">
+                <em>1-8 Characters</em>
+              </div>
+            </div> -->
+
+            <!-- Button -->
+            <!-- <div class="control-group">
+              <label class="control-label" for="confirmsignup"></label>
+              <div class="controls">
+                <button id="signin" name="signin" class="btn btn-default" ng-click="$ctrl.signUpClick()">Sign Up</button>
+              </div>
+            </div>
+
+            </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Modal End-->
+
+<!-- Modal Sign up faild-->
+
+   <!-- <div class="modal fade" id="signUpFailedModal" role="dialog" >
+    <div class="modal-dialog"> -->
+      <!-- Modal content-->
+      <!-- <center>
+      <div class="modal-content">
+        <div class="modal-header modal-header-danger" >
+          <h4 class="modal-title">Username already exists!</h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </center>
+      </div>
+    </div>
+  </div> -->
+<!-- Modal End-->
+
+
+<!-- Modal LogIn failed-->
+   <!-- <div class="modal fade" id="logInFailedModal" role="dialog" >
+    <div class="modal-dialog"> -->
+      <!-- Modal content-->
+      <!-- <center>
+      <div class="modal-content">
+        <div class="modal-header modal-header-danger" >
+          <h4 class="modal-title">Invalid username and/or password</h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </center>
+    </div>
+  </div> -->
+<!-- Modal End-->
+
+<!-- Meet the Team -->
+
+  <div class="modal fade modal-profile" id="team" role="dialog" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <center>
+      <div class="modal-content">
+        <div class="modal-header" >
+          <h2 class="modal-title profileTitle">Meet the Team!</h2>
+          <ul>
+            <div class="profile">
+             <li class="teamMember">
+                <a href="https://github.com/schaeferCode">
+                  <img class="profileImage" ng-src="https://avatars3.githubusercontent.com/u/28928299?v=4&s=460">
+                </a>
+                <p class="bio">Scott Schaefer is committed to clean code, continuous learning, and getting things done. He triumphed in learning user authentication for the Recipe Archive and his  adherence to time boxing kept the app on track to completion.</p>
+              </li>
+            </div>
+            <div class="profile">
+              <li class="teamMember">
+                <a href="https://github.com/ZimChristine">
+                  <img class="profileImage" ng-src="https://avatars3.githubusercontent.com/u/20617878?v=4&u=cfe659e671a928d3b62c6df3c6b9b28d6ae9ab1b&s=400">
+                </a>
+                <p class="bio">Working with Christine was a true pleasure. Her technical skill with the full-stack and persistence in hammering out new tech was inspirational and a joy to experience. 10 out of 10, would work with again.</p>
+              </li>
+            </div>
+            <div class="profile">
+              <li class="teamMember">
+                <a href="https://www.linkedin.com/in/sonrisa-chen-68559a5a">
+                  <img class="profileImage" ng-src="https://avatars2.githubusercontent.com/u/28817696?v=4&u=515f2198a1f24aaffdcb73c17679b2bdfdd77bcb&s=400">
+                </a>
+                <p class="bio">Sonrisa fearlessly drove a piece of functionality that none of the group had experience with to total completion. With her strict attention to detail she easily became the group’s Git sensei.</p>
+              </li>
+            </div>
+            <div class="profile">
+              <li class="teamMember">
+                <a href="https://www.linkedin.com/in/scott-mitchell-5a296423">
+                  <img class="profileImage" ng-src="https://avatars0.githubusercontent.com/u/2523064?v=4&s=400">
+                </a>
+                <p class="bio">Scott Mitchell was known to the group as the database master. However, he not only proved to be vital to the backend, he created heavily on the frontend as well, displaying his finesse with AngularJs.</p>
+              </li>
+            </div>
+            <div class="profile">
+              <li class="teamMember">
+                <a href="https://github.com/VeysonD">
+                  <img class="profileImage" ng-src="https://avatars0.githubusercontent.com/u/26846780?v=4&u=8b0cbbaf14548845d58ab7d5c95fe188e1e6713b&s=400">
+                </a>
+                <p class="bio">Not only having a vast amount of technical skill, Rick’s curiosity and persistence earned him the reputation of being Mr. Fix-it. Nearly every part of this project has Rick’s fingerprint on it as result.</p>
+              </li>
+            </div>
+          </ul>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      </center>
+    </div>
+  </div>
+
+</div>
