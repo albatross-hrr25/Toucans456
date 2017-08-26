@@ -24,6 +24,16 @@ angular.module('app')
         }
     });
   }
+
+  // LOGOUT
+  // When user selects 'logout', this will destroy the
+  // accessToken and idToken
+  function logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+  }
+
+  
 })
 .service('get', function () {
 
