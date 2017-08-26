@@ -33,7 +33,28 @@ angular.module('app')
     localStorage.removeItem('id_token');
   }
 
-  
+  // SET USER
+  // Save user's id_token and access_token to localStorage
+  // Which configures successful log in
+  function setUser(authResult) {
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+  }
+
+  // IS AUTHENTICATED
+  // Checks if user is logged in by returning whether or not
+  // there is a id_token in localStorage
+  function isAuthenticated() {
+    return authManager.isAuthenticated();
+  }
+
+  return {
+    login: login,
+    handleParseHash: handleParseHash,
+    logout: logout,
+    isAuthenticated: isAuthenticated
+  }
+
 })
 .service('get', function () {
 
