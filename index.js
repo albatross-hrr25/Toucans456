@@ -2,7 +2,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cloudinary = require('cloudinary');
 
+//Authrization Processor.
+const expressJWT = require('express-jwt');
+const jwt = require('jsonwebtoken');
+
+//clean storage
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/'});
 
 //Loading .env file. -Heroku
 require('dotenv').config();
@@ -14,7 +22,12 @@ require('dotenv').config();
 const app = module.exports = express();
 const port = process.env.PORT || 8000;
 
-var mysql = require('./db/config.js');
+const mysql = require('./db/config.js');
+const db = require('./db/schema.js');
+const userCtrl = require('./server/userCtrl.js');
+
+const cloudConfig = require('./server/cloudinaryConfig.js');
+
 // var cloudinary = require('./client/cloudinary/cloudinaryConfig.js')
 
 //Booting up rest of the server file.
@@ -39,31 +52,18 @@ app.listen(port, () => {
 //   })
 //   .catch(console.error);
 
-// ==============Line of death ==============================
-// ==========================================================
+
+//========================================================
+//=================Merged route.js========================
+//========================================================
 
 
-var cloudinary = require('cloudinary');
-// var express = require('express');
-// var bodyParser = require('body-parser');
-var db = require('./db/schema.js');
-var expressJWT = require('express-jwt');
-var jwt = require('jsonwebtoken');
-var cloudConfig = require('./server/cloudinaryConfig.js');
-
-
-var multer  = require('multer');
-var upload = multer({ dest: 'uploads/'});
-//clean storage
-
-// var app = express();
-// const public = path.join(__dirname + '/client');
-// app.use(bodyParser.json());
-// app.use(express.static(public));
-
+// =========Public root web Middleware======== //
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
+// =========Public root web Middleware======== //
+
 
 // Setting up tokens
 app.use(expressJWT({
@@ -72,21 +72,22 @@ app.use(expressJWT({
   path: ['/api/login', '/api/signup', '/']
 }));
 
-/////////////////////////////////////////////////////////////
-/////////////////////// GET REQUESTS ///////////////////////
-////////////////////////////////////////////////////////////
 
+
+// =============End Points =================================
+
+// ====User Control====
 // Finds all users from the database
-app.get('/api/users', (request, response) => {
-  db.User.findAll()
-    .then((users) => {
-      // console.log(users);
-      response.send(users);
-    })
-    .catch((error) => {
-      response.send(error);
-    });
-});
+app.get('/api/users', userCtrl.findUser);
+app.get('/api/login', userCtrl.login);
+
+app.post('/api/signup', userCtrl.signup);
+// ====================
+
+// ====Recipes Control====
+
+
+// ====================
 
 // Finds all recipes from the database
 app.get('/api/recipes', (request, response) => {
@@ -139,29 +140,6 @@ app.get('/api/recipe', (request, response) => {
 
 
 
-app.get('/api/login', (request, response) => {
-  db.User.findAll({
-    where: {
-      username: request.query.username
-    }
-  })
-    .then((user) => {
-      // compare passwords
-      if (user[0].dataValues.hash === request.query.hash) {
-        var myToken = jwt.sign({
-          username: request.query.username
-        }, 'rowdyHouse');
-        // redirect to homepage with token as header
-        response.status(200).json(myToken);
-      } else {
-        response.status(401).send('Invalid password');
-      }
-    })
-    .catch((error) => {
-      console.log('User does not exist');
-      response.status(401).send(error);
-    });
-});
 
 //Returns all recipes based on what was typed in search bar
 app.get('/api/search', (request, response) => {
@@ -183,42 +161,6 @@ app.get('/api/search', (request, response) => {
 //////////////////////////////////////////////////////////////
 /////////////////////// POST REQUESTS ///////////////////////
 /////////////////////////////////////////////////////////////
-
-app.post('/api/signup', (request, response) => {
-  var username = request.body.username;
-  var hash = request.body.hash;
-
-  if (!username) {
-    response.status(404).send('invalid username');
-  }
-  if (!hash) {
-    response.status(404).send('invalid password');
-  }
-  db.User.findAll({where: {username: username}})
-  .then ((userData) => {
-    if(userData.length > 0) {
-      console.log('User already exists');
-      response.status(404).send('User already exists')
-    } else {
-      db.User.create({
-        username: username,
-        hash: hash
-      })
-      .then((user) => {
-        var myToken = jwt.sign({
-            username: username
-        }, 'rowdyHouse');
-        response.status(200).json(myToken);
-      })
-      .catch((error) => {
-        response.status(404).json(error);
-      })
-    }
-  })
-  .catch((error) => {
-    response.status(404).json(error);
-  })
-})
 
 // Adds a recipe, desired tags, thumbnail url, and photos to the database
 

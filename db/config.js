@@ -2,6 +2,9 @@ var mysql = require('mysql');
 
 var dbConnection = mysql.createConnection(process.env.MYSQL_URL);
 
+
+//Database intialization is omitted due to usage of ClearDB database
+
 //Create Recipe database if it doesn't exist
 // exports.createDatabase = function () {
 //   return new Promise(function(resolve, reject) {
