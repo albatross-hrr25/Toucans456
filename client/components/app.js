@@ -5,7 +5,7 @@ angular.module('app')
     templateUrl: 'templates/app.html'
 
   })
-  .controller ('RecipeController', function ($scope, get, $state, store, authService) {
+  .controller ('RecipeController', function ($scope, get, $state, authService) {
 
     // Set up use with Auth0 Service
     var vm = this;
