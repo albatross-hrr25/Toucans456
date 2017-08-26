@@ -1,5 +1,30 @@
 angular.module('app')
 
+.service('authService', function($state, angularAuth0, authManager) {
+
+  // LOGIN
+  // When user selects 'login', this will redirect to Auth0's
+  // hosted Lock, which is where user will put in credentials
+  function login() {
+    angularAuth0.authorize();
+  }
+
+  // PARSE HASH
+  // When user successfully authenticates, this will parse the
+  // hash to get the idToken and accessToken
+  function handleParseHash() {
+    angularAuth0.parseHash(
+      {_idTokenVerification: false },
+      function(err, authResult) {
+        if (err) {
+          console.log('Error with parsing hash: ', err);
+        }
+        if (authResult && authResult.idToken) {
+          setUser(authResult);
+        }
+    });
+  }
+})
 .service('get', function () {
 
   this.getRecipes = function (config, callback) {
