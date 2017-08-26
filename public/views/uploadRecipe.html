@@ -1,0 +1,80 @@
+<div>
+ <!--  <submission form> -->
+  <form role="form" id="form_id">
+     <div class="form-group required">
+      <input type="text"
+             class="form-control"
+             id="recipeName"
+             placeholder="Recipe Name"
+             ng-model="$ctrl.newRecipe.Title"
+             required>
+      <label id="uploadLable" for="name"><p>Recipe Name</p></label>
+    </div>
+
+    <div class="form-group required">
+      <input type="text"
+             id="focusedInput"
+             name="tags"
+             placeholder="Tags"
+             class="tm-input form-control tm-input-info">
+      <label id="uploadLable" for="tags"><p>Tags (press enter after each desired tag)</p></label>
+    </div>
+
+    <div class="form-group required">
+      <label id="uploadLable" for="image_uploads"><p>Choose max 4-image to upload (PNG, JPG)</p></label>
+      <input type="file"
+             file-model="myFile"
+             id="upload_field"
+             name="file"
+             accept=".jpg, .jpeg, .png"
+             multiple
+             required>
+    </div>
+
+    <div class="form-group">
+
+      <button type="button"
+              class="btn btn-default"
+              ng-click="$ctrl.handlePhotoSubmit()"
+              >Submit</button>
+
+    </div>
+  </form>
+
+  <!-- <modal failed> -->
+  <div class="modal fade" id="myModalfailed" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header modal-header-danger">
+          <h4 class="modal-title">Warning!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Recipe Title and file are required</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <modal success> -->
+  <div class="modal fade" id="myModalsuccess" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header modal-header-cool">
+          <h4 class="modal-title">Successfully uploaded!</h4>
+        </div>
+        <div class="modal-body">
+          <p>Time to cook!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

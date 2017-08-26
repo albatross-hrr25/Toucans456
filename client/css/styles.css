@@ -1,0 +1,413 @@
+/* Reset */
+  html, body, div, span {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: "Helvetica Neue";
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+
+/* Basic */
+  @-ms-viewport {
+    width: device-width;
+  }
+
+  body, select, textarea {
+    color: #fff;
+    font-size: 15pt;
+    font-weight: 400;
+    letter-spacing: 0.075em;
+    line-height: 1.65em;
+  }
+
+  input {
+    color: black;
+    font-size: 8pt;
+    /*font-weight: 400;
+    letter-spacing: 0.075em;
+    line-height: 1.65em;*/
+  }
+
+  strong, b {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  h1, h2{
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.225em;
+    line-height: 1em;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 1.35em;
+    line-height: 1.75em;
+  }
+
+  h4, p {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+
+.container {
+  color: #5d5e60;
+  margin-top: 10px;
+}
+
+/* Inventory scroll bar*/
+#left {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.well {
+  height:100px;
+  background-color: white;
+  padding: 5px;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+#inventoryTitle {
+  font:"Helvetica Neue";
+  size:12px;
+  font-size: 12px;
+  font-style: bold;
+}
+
+/* Inventory scroll bar End*/
+
+#primaryTitleGroup {
+ /* position: relative;
+  left:25%;*/
+  width: 600px;
+}
+
+#primaryTitle {
+  color:black;
+}
+
+#primary {
+  height:500px;
+}
+
+#uploadLable {
+  size:12px;
+  font-size: 12px;
+}
+
+
+.upload-title {
+  font:"Helvetica Neue";
+  text-align: left;
+  font-size: 36px;
+}
+
+.upload {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 500px;
+  height: 300px;
+}
+
+
+
+/*
+carousel-control without transparent area
+*/
+.carousel-control {
+   height:0;
+   top:50%;
+}
+
+/*
+carousel background white
+*/
+.carousel {
+  background: url(http://www.solidbackgrounds.com/images/2560x1440/2560x1440-white-solid-color-background.jpg);
+  position: relative;
+  padding: 10px;     /* Shows as a border around the carousel */
+}
+
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: auto;
+      margin: auto;
+  }
+
+/*
+carousel arrow color
+*/
+.glyphicon.glyphicon-chevron-right{
+   color:black;
+}
+
+.glyphicon.glyphicon-chevron-left{
+   color:black;
+}
+
+/*
+carousel indicator color
+*/
+.carousel-indicators .active{
+  background-color:black;
+}
+
+.carousel-indicators li{
+  background-color:black;
+  opacity: 0.5;
+  width: 15px;
+  height: 15px;
+}
+
+
+/*
+Sign Up Failed modal color
+*/
+/* .modal-header-danger {
+  color:#565656;
+  padding:5px 5px;
+  border-bottom:1px solid #eee;
+  background-color: #d9534f;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+}
+
+.modal-header-cool {
+  color:#565656;
+  padding:9px 5px;
+  border-bottom:1px solid #eee;
+  background-color: #5bc0de;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-content {
+  max-height: 95vh;
+  overflow: scroll;
+} */
+
+/* SignUp Modal tab color */
+/* .nav-tabs > li.active > a {
+  color: #3c5a78;
+  font-size: 16px;
+}
+.nav-tabs > li > a {
+  color: #575757;
+} */
+
+
+
+/* Banner */
+
+#banner {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  cursor: default;
+  height: 100vh;
+  min-height: 35em;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+#banner h2 {
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease;
+  -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+  -ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  display: inline-block;
+  font-size: 1.75em;
+  opacity: 1;
+  padding: 0.35em 1em;
+  position: relative;
+  z-index: 1;
+}
+
+#banner h2:before, #banner h2:after {
+  -moz-transition: width 0.85s ease;
+  -webkit-transition: width 0.85s ease;
+  -ms-transition: width 0.85s ease;
+  transition: width 0.85s ease;
+  -moz-transition-delay: 0.25s;
+  -webkit-transition-delay: 0.25s;
+  -ms-transition-delay: 0.25s;
+  transition-delay: 0.25s;
+  background: #fff;
+  content: '';
+  display: block;
+  height: 2px;
+  position: absolute;
+  width: 100%;
+}
+
+#banner h2:before {
+  top: 0;
+  left: 0;
+}
+
+#banner h2:after {
+  bottom: 0;
+  right: 0;
+}
+
+#banner p {
+  letter-spacing: 0.225em;
+  text-transform: uppercase;
+}
+
+#banner p a {
+  color: inherit;
+}
+
+/* Landing */
+
+#page-wrapper {
+  background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 0;
+}
+
+/* Button */
+
+  .button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: inset 0 0 0 2px #fff;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: 600;
+    height: 3.125em;
+    letter-spacing: 0.225em;
+    line-height: 3.125em;
+    padding: 0 2.75em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  input[type="button"]:hover,
+  button:hover,
+  .button:hover {
+    background-color: rgba(144, 144, 144, 0.25);
+  }
+
+  #navButton {
+    height:34px;
+  }
+
+  .btn:focus,.btn:active {
+     outline: none !important;
+     background-color: white;
+  }
+
+  /* Team Modal */
+.modal-profile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.profileImage {
+  width: 35%;
+  height: auto;
+  margin-right: 10px;
+  float: left;
+}
+
+.bio {
+  color: #555;
+  font-size: 16px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.profileTitle {
+  color: #555;
+  margin-bottom: 10px
+}
+
+.profile-link {
+  text-align: left;
+}
+
+.teamMember {
+  display: block;
+}
+
+.profile {
+  clear: left;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+/*  margin-bottom: 120px;
+*/
+}
+
+.team {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+/* Tourist.html List */
+.actions li {
+  list-style: none;
+}

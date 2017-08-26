@@ -1,0 +1,12 @@
+<div class="float-left">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <inventory-entry
+        ng-repeat="recipe in $ctrl.recipes"
+        recipe="recipe"
+        on-click="$ctrl.onClick"
+      >
+      </inventory-entry>
+    </li>
+  </ul>
+</div>
