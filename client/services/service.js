@@ -85,31 +85,31 @@ angular.module('app')
     });
   };
 
-  this.login = function (config, callback, failedAlert) {
-    console.log('login is running');
-    axios.get('/api/login', config)
-      .then(function (token) {
-        console.log('Frontend GET login success', token);
-        callback(token);
-      })
-      .catch(function (err) {
-        failedAlert();
-        console.log('This is the error form logn', err);
-      });
-  };
+  // this.login = function (config, callback, failedAlert) {
+  //   console.log('login is running');
+  //   axios.get('/api/login', config)
+  //     .then(function (token) {
+  //       console.log('Frontend GET login success', token);
+  //       callback(token);
+  //     })
+  //     .catch(function (err) {
+  //       failedAlert();
+  //       console.log('This is the error form logn', err);
+  //     });
+  // };
 
-  this.signUp = (config, callback, failedAlert) => {
-    console.log(config)
-    // post request to '/api/signup'
-    axios.post('/api/signup', config)
-      .then((token) => {
-        callback(token);
-      })
-      .catch((error) => {
-        failedAlert();
-        console.log(error);
-      });
-  };
+  // this.signUp = (config, callback, failedAlert) => {
+  //   console.log(config)
+  //   // post request to '/api/signup'
+  //   axios.post('/api/signup', config)
+  //     .then((token) => {
+  //       callback(token);
+  //     })
+  //     .catch((error) => {
+  //       failedAlert();
+  //       console.log(error);
+  //     });
+  // };
 
   this.uploadFileToUrl = function(file, uploadUrl){
     var fd = new FormData();
