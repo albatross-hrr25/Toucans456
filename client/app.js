@@ -4,7 +4,8 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
     var touristState = {
       name: 'tourist',
       url: '/tourist',
-      component: 'tourist'
+      component: 'tourist',
+      controllerAs: 'vm'
     };
 
     var primaryState = {

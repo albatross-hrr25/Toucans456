@@ -6,6 +6,7 @@ angular.module('app')
   // When user selects 'login', this will redirect to Auth0's
   // hosted Lock, which is where user will put in credentials
   function login() {
+    console.log('The login function was invoked');
     angularAuth0.authorize();
   }
 
@@ -29,6 +30,7 @@ angular.module('app')
   // When user selects 'logout', this will destroy the
   // accessToken and idToken
   function logout() {
+    console.log('The logout function was invoked');
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
   }
