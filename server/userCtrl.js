@@ -1,4 +1,5 @@
 const app = require('../index.js');
+const db = require('../db/schema.js');
 
 exports.findUser = (request, response) => {
   db.User.findAll()
@@ -9,7 +10,7 @@ exports.findUser = (request, response) => {
     .catch((error) => {
       response.send(error);
     });
-}
+};
 
 exports.signup = (request, response) => {
   var username = request.body.username;
@@ -25,7 +26,7 @@ exports.signup = (request, response) => {
   .then ((userData) => {
     if(userData.length > 0) {
       console.log('User already exists');
-      response.status(404).send('User already exists')
+      response.status(404).send('User already exists');
     } else {
       db.User.create({
         username: username,
@@ -39,12 +40,12 @@ exports.signup = (request, response) => {
       })
       .catch((error) => {
         response.status(404).json(error);
-      })
+      });
     }
   })
   .catch((error) => {
     response.status(404).json(error);
-  })
+  });
 };
 
 exports.login = (request, response) => {
