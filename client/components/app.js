@@ -5,8 +5,11 @@ angular.module('app')
     templateUrl: 'templates/app.html'
 
   })
-  .controller ('RecipeController', function ($scope, get, $state, store) {
+  .controller ('RecipeController', function ($scope, get, $state, authService) {
 
+    // Set up use with Auth0 Service
+    var vm = this;
+    vm.auth = authService;
 
   ////////handle switch views via ng-if////////
     this.content = true;
@@ -72,13 +75,13 @@ angular.module('app')
     });
 
   //////// allows user to logout ////////
-    this.logout = () => {
-      console.log('Logging out');
-      axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
-      store.remove('id_token');
+    // this.logout = () => {
+    //   console.log('Logging out');
+    //   axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
+    //   store.remove('id_token');
 
-      $state.go('tourist');
-    };
+    //   $state.go('tourist');
+    // };
 
   });
 
