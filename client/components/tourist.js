@@ -1,5 +1,20 @@
 angular.module('app')
-  .controller('TouristCtrl', function ($scope, get, $state, $timeout) {
+  .controller('TouristCtrl', function (authService) {
+
+    // Set up use with Auth0 Service
+    var vm = this;
+    vm.auth = authService;
+
+  })
+
+  .component('tourist', {
+
+    controller: 'TouristCtrl',
+    templateUrl: 'templates/tourist.html'
+
+  });
+
+    // .controller('TouristCtrl', function ($scope, get, $state, $timeout) {
     // this.showSignUp = () => {
     //   $("#signUpModal").modal('show');
     // };
@@ -53,10 +68,3 @@ angular.module('app')
     //   $timeout(() => this.signAfterClick(), 200);
 
     // };
-  })
-  .component('tourist', {
-
-    controller: 'TouristCtrl',
-    templateUrl: 'templates/tourist.html'
-
-  });
