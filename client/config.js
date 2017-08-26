@@ -1,7 +1,5 @@
-angular.module('app', ['auth0.auth0', 'angular-storage', 'ui.router', 'angular-jwt'])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, jwtOptionsProvider, angularAuth0Provider, jwtInterceptorProvider) {
-    $urlRouterProvider.otherwise('tourist');
-    $locationProvider.hashPrefix('');
+angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider) {
 
     var touristState = {
       name: 'tourist',
@@ -24,6 +22,20 @@ angular.module('app', ['auth0.auth0', 'angular-storage', 'ui.router', 'angular-j
       redirectUri: process.env.AUTH0_CALLBACK_URL,
       audience: process.env.AUTH0_API_AUDIENCE,
     });
+    
+    // Configure a tokenGetter so that the isAuthenticated
+    // method from angular-jwt can be used
+    jwtOptionsProvider.config({
+      tokenGetter: function() {
+        return localStorage.getItem('id_token');
+      }
+    });
+    
+    $urlRouterProvider.otherwise('tourist');
+
+    // Remove the ! from the hash so that
+    // auth0.js can properly parse it
+    $locationProvider.hashPrefix('');
 
   });
 
