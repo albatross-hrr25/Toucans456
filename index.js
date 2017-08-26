@@ -57,7 +57,7 @@ var upload = multer({ dest: 'uploads/'});
 //clean storage
 
 // var app = express();
-const public = path.join(__dirname + '/../client');
+const public = path.join(__dirname + '/client');
 app.use(bodyParser.json());
 app.use(express.static(public));
 
