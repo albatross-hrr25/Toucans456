@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-console.log('Showing mySQL URL: ', process.env.MYSQL_URL);
+
 var dbConnection = mysql.createConnection(process.env.MYSQL_URL);
 
 dbConnection.connect(function(err) {

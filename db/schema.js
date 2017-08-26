@@ -1,8 +1,10 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('recipes', 'root', '', {
-  dialect: 'mysql' //can be sqlite3
-});
+const db = new Sequelize(process.env.MYSQL_URL);
+
+// var db = new Sequelize('recipes', 'root', '', {
+//   dialect: 'mysql' //can be sqlite3
+// });
 
 db.authenticate()
   .then(() => {
