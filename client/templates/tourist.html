@@ -4,10 +4,11 @@
 <!-- Banner -->
 <section id="banner">
   <div class="inner">
-    <h2>Recipe Archive</h2>
+    <h2>Recipes Archive</h2>
     <p>Saving your family legacy in one place.</p>
     <ul class="actions">
-      <li><a href="#" class="button special" ng-click="$ctrl.showSignUp()">Sign Up</a></li>
+      <li ng-if="!auth.isAuthenticated()"><a ng-click="auth.login()" class="button special">Log In</a></li>
+      <li ng-if="auth.isAuthenticated()"><a ng-click="auth.logout()" class="button special">Log Out</a></li>
     </ul>
     <button class="button team" data-toggle="modal" data-target="#team">Meet the Team</button>
   </div>
