@@ -64,11 +64,11 @@ app.use(bodyParser.json());
 
 
 // Setting up sign in tokens
-app.use(expressJWT({
-  secret: 'rowdyHouse'
-}).unless({
-  path: ['/api/login', '/api/signup', '/']
-}));
+// app.use(expressJWT({
+//   secret: 'rowdyHouse'
+// }).unless({
+//   path: ['/api/login', '/api/signup', '/']
+// }));
 // =========================
 
 // =============End Points =================================
