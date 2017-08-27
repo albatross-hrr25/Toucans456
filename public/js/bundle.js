@@ -118,6 +118,94 @@ var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
 var AUTH0_API_AUDIENCE = 'angular';
 'use strict';
 
+angular.module('app').component('inventory', {
+
+  controller: 'InventoryCtrl',
+  templateUrl: 'views/inventory.html',
+  bindings: {
+    recipes: '<',
+    onClick: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('inventoryEntry', {
+
+  controller: 'InventoryEntryCtrl',
+  templateUrl: 'views/inventoryEntry.html',
+  bindings: {
+    recipe: '<',
+    onClick: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('main', {
+
+  controller: 'RecipeController',
+  templateUrl: 'views/main.html'
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('navbar', {
+
+  controller: 'NavTest',
+  templateUrl: 'views/nav.html',
+  bindings: {
+    handlesearchresults: '<',
+    handleclickhome: '<',
+    logout: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('primaryRecipe', {
+
+  controller: 'PrimaryRecipeController',
+  templateUrl: 'views/primary-recipe.html',
+  bindings: {
+    recipe: '<',
+    photos: '<',
+    tags: '<',
+    star: '<',
+    title: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('tourist', {
+
+  controller: 'TouristCtrl',
+  templateUrl: 'views/tourist.html'
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('uploadRecipe', {
+  controller: 'UploadRecipeCtrl',
+  templateUrl: 'views/uploadRecipe.html'
+});
+
+//Checked KK
+'use strict';
+
 angular.module('app').controller('InventoryCtrl', function () {});
 'use strict';
 
@@ -418,92 +506,4 @@ angular.module('app').service('mainService', function () {
     });
   };
 });
-'use strict';
-
-angular.module('app').component('inventory', {
-
-  controller: 'InventoryCtrl',
-  templateUrl: 'views/inventory.html',
-  bindings: {
-    recipes: '<',
-    onClick: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('inventoryEntry', {
-
-  controller: 'InventoryEntryCtrl',
-  templateUrl: 'views/inventoryEntry.html',
-  bindings: {
-    recipe: '<',
-    onClick: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('main', {
-
-  controller: 'RecipeController',
-  templateUrl: 'views/main.html'
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('navbar', {
-
-  controller: 'NavTest',
-  templateUrl: 'views/nav.html',
-  bindings: {
-    handlesearchresults: '<',
-    handleclickhome: '<',
-    logout: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('primaryRecipe', {
-
-  controller: 'PrimaryRecipeController',
-  templateUrl: 'views/primary-recipe.html',
-  bindings: {
-    recipe: '<',
-    photos: '<',
-    tags: '<',
-    star: '<',
-    title: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('tourist', {
-
-  controller: 'TouristCtrl',
-  templateUrl: 'views/tourist.html'
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('uploadRecipe', {
-  controller: 'UploadRecipeCtrl',
-  templateUrl: 'views/uploadRecipe.html'
-});
-
-//Checked KK
 //# sourceMappingURL=bundle.js.map
