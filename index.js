@@ -91,27 +91,35 @@ var authCheck = jwt({
 
 // ====User Control====
 // Finds all users from the database
-app.get('/api/users', authCheck, userCtrl.findUser);
-app.get('/api/login', authCheck, userCtrl.login);
+app.get('/api/users', userCtrl.findUser);
+app.get('/api/login', userCtrl.login);
+app.post('/api/signup', userCtrl.signup);
 
-app.post('/api/signup', authCheck, userCtrl.signup);
+// TEST AUTHORIZATION
+app.get('/api/public', function(req, res) {
+  res.json({ message: "Hello from a public endpoint! You don't need to be authenticated to see this." });
+});
+
+app.get('/api/private', authCheck, function(req, res) {
+  res.json({ message: "You are logged in and can view this private message!" });
+});
 // ====================
 
 // ====Recipes Control====
 //--Search within Receipe--
-app.get('/api/recipes', authCheck, recipeCtrl.findRecipes); 
+app.get('/api/recipes', recipeCtrl.findRecipes); 
 
 //--Get data inside of that Receipe--
-app.get('/api/recipe', authCheck, recipeCtrl.getRecipeData);
+app.get('/api/recipe', recipeCtrl.getRecipeData);
 
 //--Make New Receipe in the list--
-app.post('/api/recipes', authCheck, upload.array('file', 4), recipeCtrl.addRecipe);
+app.post('/api/recipes', upload.array('file', 4), recipeCtrl.addRecipe);
 
 //--Delete the Receipe--
-app.delete('/api/recipes', authCheck, recipeCtrl.removeRecipe);
+app.delete('/api/recipes', recipeCtrl.removeRecipe);
 // ====================
 
 // ====Search Control ====
-app.get('/api/search', authCheck, searchCtrl.searchAll);
+app.get('/api/search', searchCtrl.searchAll);
 // =======================
 
