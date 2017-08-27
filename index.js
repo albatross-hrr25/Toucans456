@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cloudinary = require('cloudinary');
 
-//Authrization Processor.
-const expressJWT = require('express-jwt');
-const jwt = require('jsonwebtoken');
+//Authorization Processor.
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa'); // Signing algorithm for JWT/Auth0
+const cors = require('cors');
+// const jwt = require('jsonwebtoken');
 
 //clean storage
 const multer  = require('multer');
@@ -62,6 +64,20 @@ app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 // =========Public root web Middleware======== //
 
+// =========Authentication======== //
+app.use(cors());
+
+var authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://zhusufeng.auth0.com/.well-known/jwks.json'  
+  }),
+  audience: 'angular',
+  issuer: 'https://zhusufeng.auth0.com/',
+  algorithms: ['RS256']
+});
 
 // Setting up sign in tokens
 // app.use(expressJWT({
@@ -75,27 +91,27 @@ app.use(bodyParser.json());
 
 // ====User Control====
 // Finds all users from the database
-app.get('/api/users', userCtrl.findUser);
-app.get('/api/login', userCtrl.login);
+app.get('/api/users', authCheck, userCtrl.findUser);
+app.get('/api/login', authCheck, userCtrl.login);
 
-app.post('/api/signup', userCtrl.signup);
+app.post('/api/signup', authCheck, userCtrl.signup);
 // ====================
 
 // ====Recipes Control====
 //--Search within Receipe--
-app.get('/api/recipes', recipeCtrl.findRecipes); 
+app.get('/api/recipes', authCheck, recipeCtrl.findRecipes); 
 
 //--Get data inside of that Receipe--
-app.get('/api/recipe', recipeCtrl.getRecipeData);
+app.get('/api/recipe', authCheck, recipeCtrl.getRecipeData);
 
 //--Make New Receipe in the list--
-app.post('/api/recipes', upload.array('file', 4), recipeCtrl.addRecipe);
+app.post('/api/recipes', authCheck, upload.array('file', 4), recipeCtrl.addRecipe);
 
 //--Delete the Receipe--
-app.delete('/api/recipes', recipeCtrl.removeRecipe);
+app.delete('/api/recipes', authCheck, recipeCtrl.removeRecipe);
 // ====================
 
 // ====Search Control ====
-app.get('/api/search', searchCtrl.searchAll);
+app.get('/api/search', authCheck, searchCtrl.searchAll);
 // =======================
 
