@@ -2,19 +2,28 @@
 
 angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider) {
 
-  var touristState = {
-    name: 'tourist',
+  $stateProvider.state('tourist', {
     url: '/tourist',
-    component: 'tourist',
+    template: '<tourist></tourist>',
     controllerAs: 'vm'
-  };
-
-  var primaryState = {
-    name: 'primary',
+  }).state('primary', {
     url: '/primary',
-    component: 'app',
+    template: '<main></main>',
     controllerAs: 'vm'
-  };
+  });
+  // var touristState = {
+  //   name: 'tourist',
+  //   url: '/tourist',
+  //   component: 'tourist',
+  //   controllerAs: 'vm'
+  // };
+
+  // var primaryState = {
+  //   name: 'primary',
+  //   url: '/primary',
+  //   component: 'app',
+  //   controllerAs: 'vm'
+  // };
 
   // Initialization for the angular-auth0 library
   angularAuth0Provider.init({
@@ -212,7 +221,8 @@ angular.module('app').controller('InventoryCtrl', function () {});
 angular.module('app').controller('InventoryEntryCtrl', function () {});
 'use strict';
 
-angular.module('app').controller('NavTest', function () {
+angular.module('app').controller('NavTest', function ($scope, authService) {
+  $scope.auth = authService;
   this.user = 'nav';
 });
 'use strict';
