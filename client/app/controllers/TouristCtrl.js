@@ -1,7 +1,9 @@
-angular.module('app').controller('TouristCtrl', function (authService) {
+angular.module('app').controller('TouristCtrl', function ($scope, authService) {
 
   // Set up use with Auth0 Service
-  var vm = this;
-  vm.auth = authService;
+  $scope.auth = authService;
+
+  // console.log('Show me auth: ', auth);
+
 
 });
