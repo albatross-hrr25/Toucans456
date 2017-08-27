@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cloudinary = require('cloudinary');
 
-//Authrization Processor.
-const expressJWT = require('express-jwt');
-const jwt = require('jsonwebtoken');
+//Authorization Processor.
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa'); // Signing algorithm for JWT/Auth0
+const cors = require('cors');
+// const jwt = require('jsonwebtoken');
 
 //clean storage
 const multer  = require('multer');
@@ -62,6 +64,20 @@ app.use(bodyParser.urlencoded( {extended: true }));
 app.use(bodyParser.json());
 // =========Public root web Middleware======== //
 
+// =========Authentication======== //
+app.use(cors());
+
+var authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://zhusufeng.auth0.com/.well-known/jwks.json'  
+  }),
+  audience: 'angular',
+  issuer: 'https://zhusufeng.auth0.com/',
+  algorithms: ['RS256']
+});
 
 // Setting up sign in tokens
 // app.use(expressJWT({
@@ -77,8 +93,16 @@ app.use(bodyParser.json());
 // Finds all users from the database
 app.get('/api/users', userCtrl.findUser);
 app.get('/api/login', userCtrl.login);
-
 app.post('/api/signup', userCtrl.signup);
+
+// TEST AUTHORIZATION
+app.get('/api/public', function(req, res) {
+  res.json({ message: "Hello from a public endpoint! You don't need to be authenticated to see this." });
+});
+
+app.get('/api/private', authCheck, function(req, res) {
+  res.json({ message: "You are logged in and can view this private message!" });
+});
 // ====================
 
 // ====Recipes Control====

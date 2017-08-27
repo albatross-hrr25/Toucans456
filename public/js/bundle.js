@@ -2,19 +2,28 @@
 
 angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider) {
 
-  var touristState = {
-    name: 'tourist',
+  $stateProvider.state('tourist', {
     url: '/tourist',
-    component: 'tourist',
+    template: '<tourist></tourist>',
     controllerAs: 'vm'
-  };
-
-  var primaryState = {
-    name: 'primary',
+  }).state('primary', {
     url: '/primary',
-    component: 'app',
+    template: '<main></main>',
     controllerAs: 'vm'
-  };
+  });
+  // var touristState = {
+  //   name: 'tourist',
+  //   url: '/tourist',
+  //   component: 'tourist',
+  //   controllerAs: 'vm'
+  // };
+
+  // var primaryState = {
+  //   name: 'primary',
+  //   url: '/primary',
+  //   component: 'app',
+  //   controllerAs: 'vm'
+  // };
 
   // Initialization for the angular-auth0 library
   angularAuth0Provider.init({
@@ -118,13 +127,102 @@ var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
 var AUTH0_API_AUDIENCE = 'angular';
 'use strict';
 
+angular.module('app').component('inventory', {
+
+  controller: 'InventoryCtrl',
+  templateUrl: 'views/inventory.html',
+  bindings: {
+    recipes: '<',
+    onClick: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('inventoryEntry', {
+
+  controller: 'InventoryEntryCtrl',
+  templateUrl: 'views/inventoryEntry.html',
+  bindings: {
+    recipe: '<',
+    onClick: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('main', {
+
+  controller: 'RecipeController',
+  templateUrl: 'views/main.html'
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('navbar', {
+
+  controller: 'NavTest',
+  templateUrl: 'views/nav.html',
+  bindings: {
+    handlesearchresults: '<',
+    handleclickhome: '<',
+    logout: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('primaryRecipe', {
+
+  controller: 'PrimaryRecipeController',
+  templateUrl: 'views/primary-recipe.html',
+  bindings: {
+    recipe: '<',
+    photos: '<',
+    tags: '<',
+    star: '<',
+    title: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('tourist', {
+
+  controller: 'TouristCtrl',
+  templateUrl: 'views/tourist.html'
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('uploadRecipe', {
+  controller: 'UploadRecipeCtrl',
+  templateUrl: 'views/uploadRecipe.html'
+});
+
+//Checked KK
+'use strict';
+
 angular.module('app').controller('InventoryCtrl', function () {});
 'use strict';
 
 angular.module('app').controller('InventoryEntryCtrl', function () {});
 'use strict';
 
-angular.module('app').controller('NavTest', function () {
+angular.module('app').controller('NavTest', function ($scope, authService) {
+  $scope.auth = authService;
   this.user = 'nav';
 });
 'use strict';
@@ -418,92 +516,4 @@ angular.module('app').service('mainService', function () {
     });
   };
 });
-'use strict';
-
-angular.module('app').component('inventory', {
-
-  controller: 'InventoryCtrl',
-  templateUrl: 'views/inventory.html',
-  bindings: {
-    recipes: '<',
-    onClick: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('inventoryEntry', {
-
-  controller: 'InventoryEntryCtrl',
-  templateUrl: 'views/inventoryEntry.html',
-  bindings: {
-    recipe: '<',
-    onClick: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('main', {
-
-  controller: 'RecipeController',
-  templateUrl: 'views/main.html'
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('navbar', {
-
-  controller: 'NavTest',
-  templateUrl: 'views/nav.html',
-  bindings: {
-    handlesearchresults: '<',
-    handleclickhome: '<',
-    logout: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('primaryRecipe', {
-
-  controller: 'PrimaryRecipeController',
-  templateUrl: 'views/primary-recipe.html',
-  bindings: {
-    recipe: '<',
-    photos: '<',
-    tags: '<',
-    star: '<',
-    title: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('tourist', {
-
-  controller: 'TouristCtrl',
-  templateUrl: 'views/tourist.html'
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('uploadRecipe', {
-  controller: 'UploadRecipeCtrl',
-  templateUrl: 'views/uploadRecipe.html'
-});
-
-//Checked KK
 //# sourceMappingURL=bundle.js.map
