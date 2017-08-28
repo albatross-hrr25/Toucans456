@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider, $httpProvider) {
+angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt', 'ngFileUpload']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider, $httpProvider) {
 
   $stateProvider.state('home', {
     url: '/',
@@ -329,7 +329,7 @@ angular.module('app').controller('TouristCtrl', function ($scope, authService) {
 });
 'use strict';
 
-angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout, mainService) {
+angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout, mainService, Upload) {
   var _this = this;
 
   this.newRecipe = {};
@@ -341,12 +341,26 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
     $("#myModalsuccess").modal('show');
   };
 
-  this.handlePhotoSubmit = function () {
+  this.handlePhotoSubmit = function (file) {
     //Retrieves all files from angular component
     var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
 
     //Retrieves all tags from angular component
     var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
+
+    console.log(file);
+    file.upload = Upload.upload({
+      url: '/upload',
+      data: { file: file }
+    });
+
+    file.upload.then(function (response) {
+      console.log('success!', response);
+      $scope.imageData = response.data;
+    }, function (result) {
+      console.log('error :(', result);
+    });
+
     _this.newRecipe["Tags"] = addedTags.split(",");
     _this.newRecipe["Photos"] = addedPhotos;
     console.log("MEMEMEMEMEMEMEMEMMEMEMEME", _this.newRecipe);

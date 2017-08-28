@@ -15,7 +15,7 @@ cloudinary.config({
 var uploadPhoto = function(inputfilepath, title, tags) {
   var reterivedUrl;
   console.log('upload invoked');
-  return cloudinary.uploader.upload(inputfilepath,
+  return cloudinary.v2.uploader.upload(inputfilepath,
       // { // This sizing might be OK for primary view
       //   width: 2000,
       //   height: 1000,
@@ -28,6 +28,7 @@ var uploadPhoto = function(inputfilepath, title, tags) {
         width: 2000,
         height: 1000,
         crop: "fit",
+        ocr: "adv_ocr",
        // effect: 'art:incognito', // 'auto_color' is a good effect, too.
         tags: tags
       },
