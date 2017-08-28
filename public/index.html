@@ -3,7 +3,6 @@
 
 <head>
   <title>Recipes Archive: Legacy Edition</title>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Recipes Archive saves your family legacy in one place">
@@ -23,9 +22,12 @@
 </head>
 
 <body ng-app="app">
-  
-  <main ng-if="auth.isAuthenticated()"></main>
-  <tourist ng-if="!auth.isAuthenticated()"></tourist>
+
+  <div>
+    <ui-view></ui-view>
+  </div>
+  <!-- <main ng-if="auth.isAuthenticated()"></main>
+  <tourist ng-if="!auth.isAuthenticated()"></tourist> -->
 
   <!-- ==========Scripts=============== -->
 
