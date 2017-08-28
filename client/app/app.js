@@ -11,6 +11,11 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
       template: '<main></main>',
       onEnter: checkAuthentication
     })
+    .state('profile', {
+      url: '/profile',
+      template: '<profile></profile>',
+      onEnter: checkAuthentication
+    })
     .state('callback', {
       url: '/callback',
       template: '<callback></callback>'

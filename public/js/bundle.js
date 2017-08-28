@@ -9,6 +9,10 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
     url: '/primary',
     template: '<main></main>',
     onEnter: checkAuthentication
+  }).state('profile', {
+    url: '/profile',
+    template: '<profile></profile>',
+    onEnter: checkAuthentication
   }).state('callback', {
     url: '/callback',
     template: '<callback></callback>'
@@ -157,6 +161,14 @@ angular.module('app').component('primaryRecipe', {
 //Checked KK
 'use strict';
 
+angular.module('app').component('profile', {
+
+  controller: 'ProfileCtrl',
+  templateUrl: 'views/profile.html'
+
+});
+'use strict';
+
 angular.module('app').component('tourist', {
 
   controller: 'TouristCtrl',
@@ -191,6 +203,23 @@ angular.module('app').controller('NavTest', function ($scope, authService) {
 'use strict';
 
 angular.module('app').controller('PrimaryRecipeController', function ($scope) {});
+'use strict';
+
+angular.module('app').controller('ProfileCtrl', function ($scope, authService) {
+
+  var vm = this;
+  vm.auth = authService;
+  vm.profile;
+
+  if (authService.getCachedProfile()) {
+    vm.profile = authService.getCachedProfile();
+  } else {
+    authService.getProfile(function (err, profile) {
+      vm.profile = profile;
+      $scope.$apply();
+    });
+  }
+});
 'use strict';
 
 angular.module('app').controller('RecipeController', function ($scope, mainService, $state, authService) {
