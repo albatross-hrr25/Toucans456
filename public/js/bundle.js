@@ -4,7 +4,6 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
 
   $stateProvider.state('home', {
     url: '/',
-    controller: 'TouristCtrl',
     templateUrl: '../views/tourist.html'
   }).state('primary', {
     url: '/primary',
@@ -111,8 +110,9 @@ angular.module('app').run(function ($rootScope, authService) {
 
 var AUTH0_CLIENT_ID = 'aZbdnVihkR6huEZNVWBRFkTb2l5I1Tk5';
 var AUTH0_DOMAIN = 'zhusufeng.auth0.com';
-var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
+var AUTH0_CALLBACK_URL = 'http://localhost:8000/callback';
 var AUTH0_API_AUDIENCE = 'angular';
+var REQUESTED_SCOPES = 'openid profile read:messages write:messages';
 'use strict';
 
 angular.module('app').component('inventory', {
