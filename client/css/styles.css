@@ -1,83 +1,96 @@
 /* Reset */
-  html, body, div, span {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: "Helvetica Neue";
-    font-size: 100%;
-    vertical-align: baseline;
-  }
 
-  .grid-item { width: 200px; }
+html,
+body,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: "Helvetica Neue";
+  font-size: 100%;
+  vertical-align: baseline;
+}
 
-  .grid {
-    background: #EEE;
-    max-width: 1200px;
-    counter-reset: grid-item;
-  }
+.grid-item {
+  width: 200px;
+}
 
-  .grid-item {
-    /* width: 160px; */
-    /* height: 120px; */
-    float: left;
-    margin-left: 20px;
-    /* background: #D26; */
-    /* border: 2px solid #333; */
-    /* border-color: hsla(0, 0%, 0%, 0.5); */
-    border-radius: 5px;
-  }
+.grid {
+  background: #EEE;
+  max-width: 1200px;
+  counter-reset: grid-item;
+}
+
+.grid-item {
+  /* width: 160px; */
+  /* height: 120px; */
+  float: left;
+  margin-left: 20px;
+  /* background: #D26; */
+  /* border: 2px solid #333; */
+  /* border-color: hsla(0, 0%, 0%, 0.5); */
+  border-radius: 5px;
+}
+
 
 /* Basic */
-  @-ms-viewport {
-    width: device-width;
-  }
 
-  #banner{
-    color: #fff;
-    font-size: 15pt;
-    font-weight: 400;
-    letter-spacing: 0.075em;
-    line-height: 1.65em;
-  }
+@-ms-viewport {
+  width: device-width;
+}
 
-  input {
-    color: black;
-    font-size: 8pt;
-    /*font-weight: 400;
+#banner {
+  color: #fff;
+  font-size: 15pt;
+  font-weight: 400;
+  letter-spacing: 0.075em;
+  line-height: 1.65em;
+}
+
+input {
+  color: black;
+  font-size: 8pt;
+  /*font-weight: 400;
     letter-spacing: 0.075em;
     line-height: 1.65em;*/
-  }
+}
 
-  strong, b {
-    color: #fff;
-    font-weight: 600;
-  }
+strong,
+b {
+  color: #fff;
+  font-weight: 600;
+}
 
-  h1, h2{
-    color: #fff;
-    font-weight: 800;
-    letter-spacing: 0.225em;
-    line-height: 1em;
-    margin: 0 0 1em 0;
-    text-transform: uppercase;
-  }
+h1,
+h2 {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.225em;
+  line-height: 1em;
+  margin: 0 0 1em 0;
+  text-transform: uppercase;
+}
 
-  h2 {
-    font-size: 1.35em;
-    line-height: 1.75em;
-  }
+h2 {
+  font-size: 1.35em;
+  line-height: 1.75em;
+}
 
-  h4, p {
-    font-size: 1em;
-    line-height: 1.5em;
-  }
+h4,
+p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
 
 .container {
   color: #5d5e60;
   margin-top: 10px;
 }
 
+
 /* Inventory scroll bar*/
+
 #left {
   height: 500px;
   overflow-y: scroll;
@@ -93,38 +106,37 @@ img {
   max-width: 100%;
 }
 
-
 #inventoryTitle {
-  font:"Helvetica Neue";
-  size:12px;
+  font: "Helvetica Neue";
+  size: 12px;
   font-size: 12px;
   font-style: bold;
 }
 
+
 /* Inventory scroll bar End*/
 
 #primaryTitleGroup {
- /* position: relative;
+  /* position: relative;
   left:25%;*/
   width: 600px;
 }
 
 #primaryTitle {
-  color:black;
+  color: black;
 }
 
 #primary {
-  height:500px;
+  height: 500px;
 }
 
 #uploadLable {
-  size:12px;
+  size: 12px;
   font-size: 12px;
 }
 
-
 .upload-title {
-  font:"Helvetica Neue";
+  font: "Helvetica Neue";
   text-align: left;
   font-size: 36px;
 }
@@ -140,51 +152,57 @@ img {
 }
 
 
-
 /*
 carousel-control without transparent area
 */
+
 .carousel-control {
-   height:0;
-   top:50%;
+  height: 0;
+  top: 50%;
 }
+
 
 /*
 carousel background white
 */
+
 .carousel {
   background: url(http://www.solidbackgrounds.com/images/2560x1440/2560x1440-white-solid-color-background.jpg);
   position: relative;
-  padding: 10px;     /* Shows as a border around the carousel */
+  padding: 10px;
+  /* Shows as a border around the carousel */
 }
 
+.carousel-inner>.item>img,
+.carousel-inner>.item>a>img {
+  width: auto;
+  margin: auto;
+}
 
-.carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: auto;
-      margin: auto;
-  }
 
 /*
 carousel arrow color
 */
-.glyphicon.glyphicon-chevron-right{
-   color:black;
+
+.glyphicon.glyphicon-chevron-right {
+  color: black;
 }
 
-.glyphicon.glyphicon-chevron-left{
-   color:black;
+.glyphicon.glyphicon-chevron-left {
+  color: black;
 }
+
 
 /*
 carousel indicator color
 */
-.carousel-indicators .active{
-  background-color:black;
+
+.carousel-indicators .active {
+  background-color: black;
 }
 
-.carousel-indicators li{
-  background-color:black;
+.carousel-indicators li {
+  background-color: black;
   opacity: 0.5;
   width: 15px;
   height: 15px;
@@ -194,6 +212,8 @@ carousel indicator color
 /*
 Sign Up Failed modal color
 */
+
+
 /* .modal-header-danger {
   color:#565656;
   padding:5px 5px;
@@ -225,7 +245,10 @@ Sign Up Failed modal color
   overflow: scroll;
 } */
 
+
 /* SignUp Modal tab color */
+
+
 /* .nav-tabs > li.active > a {
   color: #3c5a78;
   font-size: 16px;
@@ -233,7 +256,6 @@ Sign Up Failed modal color
 .nav-tabs > li > a {
   color: #575757;
 } */
-
 
 
 /* Banner */
@@ -276,7 +298,8 @@ Sign Up Failed modal color
   z-index: 1;
 }
 
-#banner h2:before, #banner h2:after {
+#banner h2:before,
+#banner h2:after {
   -moz-transition: width 0.85s ease;
   -webkit-transition: width 0.85s ease;
   -ms-transition: width 0.85s ease;
@@ -312,13 +335,14 @@ Sign Up Failed modal color
   color: inherit;
 }
 
+
 /* Landing */
 
 #page-wrapper {
-  background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
-  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
-  background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
-  background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/michael-roulier-01.jpg");
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/michael-roulier-01.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
@@ -326,54 +350,58 @@ Sign Up Failed modal color
   padding-top: 0;
 }
 
+
 /* Button */
 
-  .button {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background-color: transparent;
-    border-radius: 3px;
-    border: 0;
-    box-shadow: inset 0 0 0 2px #fff;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 0.8em;
-    font-weight: 600;
-    height: 3.125em;
-    letter-spacing: 0.225em;
-    line-height: 3.125em;
-    padding: 0 2.75em;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 0;
+  box-shadow: inset 0 0 0 2px #fff;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 600;
+  height: 3.125em;
+  letter-spacing: 0.225em;
+  line-height: 3.125em;
+  padding: 0 2.75em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  input[type="button"]:hover,
-  button:hover,
-  .button:hover {
-    background-color: rgba(144, 144, 144, 0.25);
-  }
+input[type="button"]:hover,
+button:hover,
+.button:hover {
+  background-color: rgba(144, 144, 144, 0.25);
+}
 
-  #navButton {
-    height:34px;
-  }
+#navButton {
+  height: 34px;
+}
 
-  .btn:focus,.btn:active {
-     outline: none !important;
-     background-color: white;
-  }
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  /* background-color: #DF5B0D; */
+}
 
-  /* Team Modal */
+
+/* Team Modal */
+
 .modal-profile {
   position: fixed;
   top: 50%;
@@ -416,7 +444,7 @@ Sign Up Failed modal color
   height: 200px;
   margin-bottom: 20px;
   border: 1px solid black;
-/*  margin-bottom: 120px;
+  /*  margin-bottom: 120px;
 */
 }
 
@@ -426,7 +454,27 @@ Sign Up Failed modal color
   left: 20px;
 }
 
+
 /* Tourist.html List */
+
 .actions li {
   list-style: none;
+}
+
+#primaryRecipeWindow {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#addButton {
+  border-radius: 100%;
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  /* border: 3px solid #73AD21; */
+}
+
+#modal-show-add {
+  padding: 20px 20px 20px 20px;
 }

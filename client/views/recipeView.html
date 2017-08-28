@@ -9,13 +9,37 @@
   <!-- ================ NAV BAR ================== -->
 
   <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
-  <!-- <inventory-entry ng-repeat="recipe in $ctrl.recipes" recipe="recipe" on-click="$ctrl.onClick">
-    </inventory-entry> -->
-  <!-- <div class="grid">
-      <div class="grid-item"></div>
-  </div> -->
 
-  
+
+
+  <!-- Modal to show item Detail. -->
+  <div class="modal fade" id="showDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    <primary-recipe recipe="primaryRecipe" photos="selectRecipePhotos" tags="selectRecipeTags" star="selectRecipeIsStarred" title="selectRecipeTitle"></primary-recipe>
+
+
+  </div>
+  <!-- End of Modal -->
+
+  <!-- Add button on corner -->
+  <button id="addButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAdd">+</button>
+  <!-- Add button on corner -->
+
+  <!-- Add Recipe Modal -->
+  <div class="modal fade" id="showAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content" id="modal-show-add">
+        <div class="upload-title">
+          Save a Recipe
+        </div>
+        <upload-recipe></upload-recipe>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- Add Recipe Modal -->
 
 
 </div>
