@@ -6,5 +6,5 @@ angular.module('app')
     $rootScope.auth = authService;
 
     // Process the auth token if it exists and fetch the profile
-    authService.handleParseHash();  
+    authService.handleAuthentication();  
   });
