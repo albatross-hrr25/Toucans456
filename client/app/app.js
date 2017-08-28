@@ -4,7 +4,6 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
     $stateProvider
     .state('home', {
       url: '/',
-      controller: 'TouristCtrl',
       templateUrl: '../views/tourist.html' 
     })
     .state('primary', {
