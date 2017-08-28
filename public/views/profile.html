@@ -3,11 +3,15 @@
 <div class="panel panel-default profile-area">
   <div class="panel-heading"><h3>Profile</h3></div>
   <div class="panel-body">
-    <img ng-src="{{ vm.profile.picture }}" class="avatar" alt="avatar">
+    <img ng-src="{{ $ctrl.profile.picture }}" class="avatar" alt="avatar">
     <div>
       <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
-      <h3 class="nickname">{{ vm.profile.nickname }}</h3>
+      <h3 class="nickname">{{ $ctrl.profile.nickname }}</h3>
     </div>
-    <pre class="full-profile">{{ vm.profile | json }}</pre>
+    <div>
+      <li>User Id: {{ $ctrl.profile.sub }}</li>
+      <li>Last Login: {{ $ctrl.profile.updated_at }}</li>
+    </div>
+    <!-- <pre class="full-profile">{{ $ctrl.profile | json }}</pre> -->
   </div>
 </div>

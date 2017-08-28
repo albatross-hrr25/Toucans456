@@ -201,6 +201,9 @@ angular.module('app').controller('InventoryCtrl', function () {});
 angular.module('app').controller('InventoryEntryCtrl', function () {});
 'use strict';
 
+angular.module('app').controller('mainCtrl', function () {});
+'use strict';
+
 angular.module('app').controller('NavTest', function ($scope, authService) {
   $scope.auth = authService;
   this.user = 'nav';
@@ -212,13 +215,10 @@ angular.module('app').controller('PrimaryRecipeController', function ($scope) {}
 
 angular.module('app').controller('ProfileCtrl', function ($scope, authService) {
 
-  $scope.testmekevin = "Kevin is so cool.";
-
   var vm = this;
   vm.auth = authService;
   vm.profile;
 
-  debugger;
   if (authService.getCachedProfile()) {
     vm.profile = authService.getCachedProfile();
     console.log('Showing Profile: ', vm.profile);
@@ -384,9 +384,6 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
     });
   });
 });
-'use strict';
-
-angular.module('app').controller('mainCtrl', function () {});
 'use strict';
 
 angular.module('app').service('authService', function ($state, angularAuth0, $timeout) {
