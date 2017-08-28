@@ -69,7 +69,9 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
 });
 'use strict';
 
-angular.module('app').run(function (authService) {
+angular.module('app').run(function ($rootScope, authService) {
+
+  $rootScope.auth = authService;
 
   // Process authentication result in the hash
   authService.handleAuthentication();
