@@ -1,16 +1,21 @@
 'use strict';
 
-angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider) {
+angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider, $httpProvider) {
 
   $stateProvider.state('home', {
     url: '/',
-    controller: 'TouristCtrl',
-    templateUrl: '../views/tourist.html'
+    template: '<tourist></tourist>'
   }).state('primary', {
     url: '/primary',
-    controller: 'RecipeController',
-    template: '<main></main>'
-    // templateUrl: '../views/main.html' 
+    template: '<main></main>',
+    onEnter: checkAuthentication
+  }).state('profile', {
+    url: '/profile',
+    template: '<profile></profile>',
+    onEnter: checkAuthentication
+  }).state('callback', {
+    url: '/callback',
+    template: '<callback></callback>'
   });
 
   // Initialization for the angular-auth0 library
@@ -19,7 +24,8 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
     domain: AUTH0_DOMAIN,
     responseType: 'token id_token',
     redirectUri: AUTH0_CALLBACK_URL,
-    audience: AUTH0_API_AUDIENCE
+    audience: AUTH0_API_AUDIENCE,
+    scope: REQUESTED_SCOPES
   });
 
   // Configure a tokenGetter so that the isAuthenticated
@@ -27,84 +33,47 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
   jwtOptionsProvider.config({
     tokenGetter: function tokenGetter() {
       return localStorage.getItem('id_token');
-    }
+    },
+    whiteListedDomains: ['localhost', '127.0.0.1', 'recipes-archive.herokuapp.com']
   });
+
+  $httpProvider.interceptors.push('jwtInterceptor');
 
   $urlRouterProvider.otherwise('/');
 
   // Remove the ! from the hash so that
   // auth0.js can properly parse it
   $locationProvider.hashPrefix('');
+
+  // Comment out the line below to run the app
+  // without HTML5 mode (will use hashes in routes)
+  // $locationProvider.html5Mode(true);
+
+  function checkAuthentication($transition$) {
+    var $state = $transition$.router.stateService;
+    var auth = $transition$.injector().get('authService');
+    if (!auth.isAuthenticated()) {
+      return $state.target('home');
+    }
+  }
+
+  function checkForScopes(scopes) {
+    return function checkAuthentication($transition$) {
+      var $state = $transition$.router.stateService;
+      var auth = $transition$.injector().get('authService');
+      if (!auth.isAuthenticated() || !auth.userHasScopes(scopes)) {
+        return $state.target('home');
+      }
+    };
+  }
 });
-
-// ///////// JWT /////////
-//     jwtOptionsProvider.config({
-//       //unauthenticatedRedirectPath: '/login',
-//       tokenGetter: function() {
-//         return localStorage.getItem('id_token');  //where does this come from
-//       },
-//       whiteListedDomains: ['127.0.0.1', 'localhost']
-//     });
-
-//     jwtInterceptorProvider.tokenGetter = function(store) {
-//       return store.get('id_token');
-//     }
-// ///////// REDIRECT /////////
-//     // redirect = function($q, $timeout, store, $location) {
-//     //   $timeout(function() {
-//     //     store.get('id_token');
-//     //     console.log('running timeout');
-//     //   })
-//     //   return {
-//     //     responseError: function(err) {
-//     //       if(err.status === 401) {
-//     //         console.log('There is an error: ', err);
-//     //         $location.path('/tourist');
-//     //       }
-//     //       return $q.reject(err);
-//     //     }
-//     //   }
-//     // }
-
-// ///////// REGISTERING STATES AND FUNCTIONS /////////
-//     $httpProvider.interceptors.push('jwtInterceptor');
-//     //$httpProvider.interceptors.push('redirect');
-
-//     $stateProvider.state(touristState);
-//     $stateProvider.state(primaryState);
-
-//   })
-//   .run(function($rootScope, $state, $location, jwtHelper, store) {
-//     $rootScope.$on('$locationChangeStart', function() {
-//       var token = store.get('id_token');
-
-//       if (token) {  //does this token exist?
-//         if (typeof token === 'object') {
-//           token = token.data;
-//         }
-//         if (jwtHelper.isTokenExpired(token) === false) {  //is it expired?
-//           console.log('Staying at primary');
-//           axios.defaults.headers.common.Authorization = 'Bearer ' + token;
-
-//           $location.path('/primary');  //head to the primary page
-//         } else {  //if it is expired head back to tourist page
-//           console.log('Going home to tourist');
-//           $location.path('/tourist');
-//         }
-//       } else {  //no token
-//         console.log('Going home to tourist');
-//         $location.path('/tourist');
-//       }
-//     });
-//   });
 'use strict';
 
 angular.module('app').run(function ($rootScope, authService) {
-  // Put the authService on $rootScope so its methods
-  // can be accessed from the nav bar
+
   $rootScope.auth = authService;
 
-  // Process the auth token if it exists and fetch the profile
+  // Process authentication result in the hash
   authService.handleAuthentication();
 });
 'use strict';
@@ -113,6 +82,15 @@ var AUTH0_CLIENT_ID = 'aZbdnVihkR6huEZNVWBRFkTb2l5I1Tk5';
 var AUTH0_DOMAIN = 'zhusufeng.auth0.com';
 var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
 var AUTH0_API_AUDIENCE = 'angular';
+var REQUESTED_SCOPES = 'openid profile read:messages write:messages';
+'use strict';
+
+angular.module('app').component('callback', {
+
+  controller: 'CallbackCtrl',
+  templateUrl: 'views/callback.html'
+
+});
 'use strict';
 
 angular.module('app').component('inventory', {
@@ -185,6 +163,14 @@ angular.module('app').component('primaryRecipe', {
 //Checked KK
 'use strict';
 
+angular.module('app').component('profile', {
+
+  controller: 'ProfileCtrl',
+  templateUrl: 'views/profile.html'
+
+});
+'use strict';
+
 angular.module('app').component('tourist', {
 
   controller: 'TouristCtrl',
@@ -203,6 +189,9 @@ angular.module('app').component('uploadRecipe', {
 //Checked KK
 'use strict';
 
+angular.module('app').controller('CallbackCtrl', function () {});
+'use strict';
+
 angular.module('app').controller('InventoryCtrl', function () {});
 'use strict';
 
@@ -216,6 +205,23 @@ angular.module('app').controller('NavTest', function ($scope, authService) {
 'use strict';
 
 angular.module('app').controller('PrimaryRecipeController', function ($scope) {});
+'use strict';
+
+angular.module('app').controller('ProfileCtrl', function ($scope, authService) {
+
+  var vm = this;
+  vm.auth = authService;
+  vm.profile;
+
+  if (authService.getCachedProfile()) {
+    vm.profile = authService.getCachedProfile();
+  } else {
+    authService.getProfile(function (err, profile) {
+      vm.profile = profile;
+      $scope.$apply();
+    });
+  }
+});
 'use strict';
 
 angular.module('app').controller('RecipeController', function ($scope, mainService, $state, authService) {
@@ -358,7 +364,9 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
 });
 'use strict';
 
-angular.module('app').service('authService', function ($state, angularAuth0, authManager, $timeout) {
+angular.module('app').service('authService', function ($state, angularAuth0, $timeout) {
+
+  var userProfile;
 
   // LOGIN
   // When user selects 'login', this will redirect to Auth0's
@@ -368,13 +376,14 @@ angular.module('app').service('authService', function ($state, angularAuth0, aut
     angularAuth0.authorize();
   }
 
-  // PARSE HASH
+  // HANDLE AUTHENTICATION
   // When user successfully authenticates, this will parse the
   // hash to get the idToken and accessToken
   function handleAuthentication() {
     angularAuth0.parseHash(function (err, authResult) {
-      if (authResult && authResult.accessToken && authResult.idToken) {
+      if (authResult && authResult.idToken) {
         setSession(authResult);
+        console.log('Session was set!');
         $state.go('home');
       } else if (err) {
         $timeout(function () {
@@ -385,25 +394,64 @@ angular.module('app').service('authService', function ($state, angularAuth0, aut
     });
   }
 
+  // GET PROFILE
+  // Retrieves userInfo from Auth0
+  function getProfile(cb) {
+    var accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
+    angularAuth0.client.userInfo(accessToken, function (err, profile) {
+      if (profile) {
+        setUserProfile(profile);
+      }
+      cb(err, profile);
+    });
+  }
+
+  // SET USER PROFILE
+  // Saves profile to variable userProfile
+  function setUserProfile(profile) {
+    userProfile = profile;
+  }
+
+  // GET CACHED PROFILE
+  // Return the variable userProfile
+  function getCachedProfile() {
+    return userProfile;
+  }
+
   // LOGOUT
   // When user selects 'logout', this will destroy the
-  // access_token, id_token nad expires_at
+  // access_token, id_token, expires_at, scopes
+  // Then redirects to the home route
   function logout() {
     console.log('The logout function was invoked');
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('scopes');
+    $state.go('home');
   }
 
   // SET SESSION
-  // Save user's id_token and access_token to localStorage
+  // Save user's id_token, access_token, expires_at to localStorage
   // Which configures successful log in
-  // Also sets time that access token expires at
   function setSession(authResult) {
     var expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime());
+
+    // If there is a value on the `scope` param from the authResult,
+    // use it to set scopes in the session for the user. Otherwise
+    // use the scopes as requested. If no scopes were requested,
+    // set it to nothing
+    console.log('authResult.scope is ', authResult.scope);
+    console.log('REQUESTED_SCOPES is ', REQUESTED_SCOPES);
+    var scopes = authResult.scope || REQUESTED_SCOPES || '';
+    console.log('Your scopes are now ', scopes);
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('scopes', JSON.stringify(scopes));
   }
 
   // IS AUTHENTICATED
@@ -414,11 +462,25 @@ angular.module('app').service('authService', function ($state, angularAuth0, aut
     return new Date().getTime() < expiresAt;
   }
 
+  // USER HAS SCOPES
+  function userHasScopes(scopes) {
+    var grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
+    for (var i = 0; i < scopes.length; i++) {
+      if (grantedScopes.indexOf(scopes[i]) < 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   return {
     login: login,
+    getProfile: getProfile,
+    getCachedProfile: getCachedProfile,
     handleAuthentication: handleAuthentication,
     logout: logout,
-    isAuthenticated: isAuthenticated
+    isAuthenticated: isAuthenticated,
+    userHasScopes: userHasScopes
   };
 });
 'use strict';

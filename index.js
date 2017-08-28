@@ -7,7 +7,8 @@ const cloudinary = require('cloudinary');
 //Authorization Processor.
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa'); // Signing algorithm for JWT/Auth0
-const cors = require('cors');
+const cors = require('cors'); 
+// const jwtAuthz = require('express-jwt-authz'); // for scope
 // const jwt = require('jsonwebtoken');
 
 //clean storage
@@ -67,17 +68,24 @@ app.use(bodyParser.json());
 // =========Authentication======== //
 app.use(cors());
 
-var authCheck = jwt({
+var checkJwt = jwt({
+  // Dynamically provide a signing key based on the kind in the header and the signing keys provided by the JWKS endpoint
   secret: jwks.expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
     jwksUri: 'https://zhusufeng.auth0.com/.well-known/jwks.json'  
   }),
+
+  // Validate the audience and the issuer
   audience: 'angular',
   issuer: 'https://zhusufeng.auth0.com/',
   algorithms: ['RS256']
 });
+
+// For checking scope
+// const checkScopes = jwtAuthz([ 'read:messages' ]);
+// const checkScopesAdmin = jwtAuthz([ 'write:messages' ]);
 
 // Setting up sign in tokens
 // app.use(expressJWT({
@@ -100,7 +108,7 @@ app.get('/api/public', function(req, res) {
   res.json({ message: "Hello from a public endpoint! You don't need to be authenticated to see this." });
 });
 
-app.get('/api/private', authCheck, function(req, res) {
+app.get('/api/private', checkJwt, function(req, res) {
   res.json({ message: "You are logged in and can view this private message!" });
 });
 // ====================
