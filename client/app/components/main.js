@@ -1,9 +1,5 @@
 angular.module('app').component('main', {
-
-  controller: 'RecipeController',
+  controller: 'mainCtrl',
   templateUrl: 'views/main.html'
 
 });
-
-
-//Checked KK

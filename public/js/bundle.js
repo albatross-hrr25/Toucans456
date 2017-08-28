@@ -4,11 +4,7 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
 
   $stateProvider.state('home', {
     url: '/',
-    template: '<tourist></tourist>'
-  }).state('primary', {
-    url: '/primary',
-    template: '<main></main>',
-    onEnter: checkAuthentication
+    template: '<recipe-view></recipe-view>'
   }).state('profile', {
     url: '/profile',
     template: '<profile></profile>',
@@ -122,13 +118,10 @@ angular.module('app').component('inventoryEntry', {
 'use strict';
 
 angular.module('app').component('main', {
-
-  controller: 'RecipeController',
+  controller: 'mainCtrl',
   templateUrl: 'views/main.html'
 
 });
-
-//Checked KK
 'use strict';
 
 angular.module('app').component('navbar', {
@@ -171,6 +164,16 @@ angular.module('app').component('profile', {
 });
 'use strict';
 
+angular.module('app').component('recipeView', {
+
+  controller: 'RecipeController',
+  templateUrl: 'views/recipeView.html'
+
+});
+
+//Checked KK
+'use strict';
+
 angular.module('app').component('tourist', {
 
   controller: 'TouristCtrl',
@@ -209,16 +212,21 @@ angular.module('app').controller('PrimaryRecipeController', function ($scope) {}
 
 angular.module('app').controller('ProfileCtrl', function ($scope, authService) {
 
+  $scope.testmekevin = "Kevin is so cool.";
+
   var vm = this;
   vm.auth = authService;
   vm.profile;
 
+  debugger;
   if (authService.getCachedProfile()) {
     vm.profile = authService.getCachedProfile();
+    console.log('Showing Profile: ', vm.profile);
   } else {
     authService.getProfile(function (err, profile) {
       vm.profile = profile;
       $scope.$apply();
+      console.log('Showing Profile: ', vm.profile);
     });
   }
 });
@@ -362,6 +370,9 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
     });
   });
 });
+'use strict';
+
+angular.module('app').controller('mainCtrl', function () {});
 'use strict';
 
 angular.module('app').service('authService', function ($state, angularAuth0, $timeout) {

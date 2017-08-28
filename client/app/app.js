@@ -4,12 +4,7 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
     $stateProvider
     .state('home', {
       url: '/',
-      template: '<tourist></tourist>', 
-    })
-    .state('primary', {
-      url: '/primary',
-      template: '<main></main>',
-      onEnter: checkAuthentication
+      template: '<recipe-view></recipe-view>', 
     })
     .state('profile', {
       url: '/profile',
