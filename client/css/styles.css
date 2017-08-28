@@ -13,7 +13,7 @@
     width: device-width;
   }
 
-  body, select, textarea {
+  #banner{
     color: #fff;
     font-size: 15pt;
     font-weight: 400;
