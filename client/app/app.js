@@ -2,29 +2,17 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider) {
 
     $stateProvider
-    .state('tourist', {
-      url: '/tourist',
-      template: '<tourist></tourist>',
-      controllerAs: 'vm'
+    .state('home', {
+      url: '/',
+      controller: 'TouristCtrl',
+      templateUrl: '../views/tourist.html' 
     })
     .state('primary', {
       url: '/primary',
-      template: '<main></main>',
-      controllerAs: 'vm'
-    });
-    // var touristState = {
-    //   name: 'tourist',
-    //   url: '/tourist',
-    //   component: 'tourist',
-    //   controllerAs: 'vm'
-    // };
-
-    // var primaryState = {
-    //   name: 'primary',
-    //   url: '/primary',
-    //   component: 'app',
-    //   controllerAs: 'vm'
-    // };
+      controller: 'RecipeController',
+      template: '<main></main>'
+      // templateUrl: '../views/main.html' 
+    })
 
     // Initialization for the angular-auth0 library
     angularAuth0Provider.init({
@@ -43,7 +31,7 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt'])
       }
     });
     
-    $urlRouterProvider.otherwise('tourist');
+    $urlRouterProvider.otherwise('/');
 
     // Remove the ! from the hash so that
     // auth0.js can properly parse it

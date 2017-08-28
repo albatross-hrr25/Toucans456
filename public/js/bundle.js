@@ -2,28 +2,16 @@
 
 angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(function ($stateProvider, $urlRouterProvider, $locationProvider, jwtOptionsProvider, angularAuth0Provider) {
 
-  $stateProvider.state('tourist', {
-    url: '/tourist',
-    template: '<tourist></tourist>',
-    controllerAs: 'vm'
+  $stateProvider.state('home', {
+    url: '/',
+    controller: 'TouristCtrl',
+    templateUrl: '../views/tourist.html'
   }).state('primary', {
     url: '/primary',
-    template: '<main></main>',
-    controllerAs: 'vm'
+    controller: 'RecipeController',
+    template: '<main></main>'
+    // templateUrl: '../views/main.html' 
   });
-  // var touristState = {
-  //   name: 'tourist',
-  //   url: '/tourist',
-  //   component: 'tourist',
-  //   controllerAs: 'vm'
-  // };
-
-  // var primaryState = {
-  //   name: 'primary',
-  //   url: '/primary',
-  //   component: 'app',
-  //   controllerAs: 'vm'
-  // };
 
   // Initialization for the angular-auth0 library
   angularAuth0Provider.init({
@@ -42,7 +30,7 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
     }
   });
 
-  $urlRouterProvider.otherwise('tourist');
+  $urlRouterProvider.otherwise('/');
 
   // Remove the ! from the hash so that
   // auth0.js can properly parse it
@@ -117,11 +105,11 @@ angular.module('app').run(function ($rootScope, authService) {
   $rootScope.auth = authService;
 
   // Process the auth token if it exists and fetch the profile
-  authService.handleParseHash();
+  authService.handleAuthentication();
 });
 'use strict';
 
-var AUTH0_CLIENT_ID = 'Zak43COwtpgU3Ei9vDiL8BX7fQc90iRx';
+var AUTH0_CLIENT_ID = 'aZbdnVihkR6huEZNVWBRFkTb2l5I1Tk5';
 var AUTH0_DOMAIN = 'zhusufeng.auth0.com';
 var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
 var AUTH0_API_AUDIENCE = 'angular';
@@ -370,7 +358,7 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
 });
 'use strict';
 
-angular.module('app').service('authService', function ($state, angularAuth0, authManager) {
+angular.module('app').service('authService', function ($state, angularAuth0, authManager, $timeout) {
 
   // LOGIN
   // When user selects 'login', this will redirect to Auth0's
@@ -383,44 +371,52 @@ angular.module('app').service('authService', function ($state, angularAuth0, aut
   // PARSE HASH
   // When user successfully authenticates, this will parse the
   // hash to get the idToken and accessToken
-  function handleParseHash() {
-    angularAuth0.parseHash({ _idTokenVerification: false }, function (err, authResult) {
-      if (err) {
-        console.log('Error with parsing hash: ', err);
-      }
-      if (authResult && authResult.idToken) {
-        setUser(authResult);
+  function handleAuthentication() {
+    angularAuth0.parseHash(function (err, authResult) {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        setSession(authResult);
+        $state.go('home');
+      } else if (err) {
+        $timeout(function () {
+          $state.go('home');
+        });
+        console.log('Error handling authentication: ', err);
       }
     });
   }
 
   // LOGOUT
   // When user selects 'logout', this will destroy the
-  // accessToken and idToken
+  // access_token, id_token nad expires_at
   function logout() {
     console.log('The logout function was invoked');
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
   }
 
-  // SET USER
+  // SET SESSION
   // Save user's id_token and access_token to localStorage
   // Which configures successful log in
-  function setUser(authResult) {
+  // Also sets time that access token expires at
+  function setSession(authResult) {
+    var expiresAt = JSON.stringify(authResult.expiresIn * 1000 + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
   }
 
   // IS AUTHENTICATED
   // Checks if user is logged in by returning whether or not
-  // there is a id_token in localStorage
+  // the current time is past the access token's expiry time
   function isAuthenticated() {
-    return authManager.isAuthenticated();
+    var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    return new Date().getTime() < expiresAt;
   }
 
   return {
     login: login,
-    handleParseHash: handleParseHash,
+    handleAuthentication: handleAuthentication,
     logout: logout,
     isAuthenticated: isAuthenticated
   };
