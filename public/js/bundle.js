@@ -98,12 +98,9 @@ angular.module('app', ['auth0.auth0', 'ui.router', 'angular-jwt']).config(functi
 //   });
 'use strict';
 
-angular.module('app').run(function ($rootScope, authService) {
-  // Put the authService on $rootScope so its methods
-  // can be accessed from the nav bar
-  $rootScope.auth = authService;
+angular.module('app').run(function (authService) {
 
-  // Process the auth token if it exists and fetch the profile
+  // Process authentication result in the hash
   authService.handleAuthentication();
 });
 'use strict';
