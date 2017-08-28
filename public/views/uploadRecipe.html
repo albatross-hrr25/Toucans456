@@ -20,7 +20,7 @@
       <label id="uploadLable" for="tags"><p>Tags (press enter after each desired tag)</p></label>
     </div>
 
-    <div class="form-group required">
+    <!-- <div class="form-group required">
       <label id="uploadLable" for="image_uploads"><p>Choose max 4-image to upload (PNG, JPG)</p></label>
       <input type="file"
              file-model="myFile"
@@ -31,11 +31,25 @@
              required>
     </div>
 
+    <div class="form-group"> -->
+    <div class="form-group required">
+      <label id="uploadLable" for="image_uploads"><p>Choose a image to upload (PNG, JPG)</p></label>
+      <input type="file"
+             ngf-select
+             ng-model="myFile"
+             file-model="myFile"
+             id="upload_field"
+             name="myFile"
+             accept=".jpg, .jpeg, .png"
+             ngf-max-size="20MB"
+             required>
+    </div>
+
     <div class="form-group">
 
       <button type="button"
               class="btn btn-default"
-              ng-click="$ctrl.handlePhotoSubmit()"
+              ng-click="$ctrl.handlePhotoSubmit(myFile)"
               >Submit</button>
 
     </div>

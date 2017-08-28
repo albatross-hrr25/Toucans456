@@ -26,3 +26,5 @@ uploads/
 # secret #
 config.js
 config
+
+key.json
