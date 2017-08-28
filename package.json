@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Toucans456/Toucans456#readme",
   "dependencies": {
+    "angular-masonry": "^0.17.0",
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.0",

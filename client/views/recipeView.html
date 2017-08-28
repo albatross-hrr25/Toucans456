@@ -8,34 +8,38 @@
   </navbar>
   <!-- ================ NAV BAR ================== -->
 
-  <div class="row" ng-if="$ctrl.content">
-    <!-- container for inventory -->
-    <div class="col-sm-2">
-      <div class="well text-center" ng-click="$ctrl.runUpload()">
-        <img ng-src="http://res.cloudinary.com/toucans456/image/upload/v1503093150/uploadbutton_im30rh.png" height="100%" style="opacity: 0.7"
-          width="auto" class="img-rounded img-fluid" />
+  <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
 
-      </div>
-      <div id="left">
-        <inventory recipes="recipes" on-click="$ctrl.selectRecipe"></inventory>
-      </div>
-    </div>
 
-    <!-- container for primary recipe -->
-    <div class="col-sm-10">
-      <primary-recipe recipe="primaryRecipe" photos="selectRecipePhotos" tags="selectRecipeTags" star="selectRecipeIsStarred" title="selectRecipeTitle"></primary-recipe>
-    </div>
+
+  <!-- Modal to show item Detail. -->
+  <div class="modal fade" id="showDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    <primary-recipe recipe="primaryRecipe" photos="selectRecipePhotos" tags="selectRecipeTags" star="selectRecipeIsStarred" title="selectRecipeTitle"></primary-recipe>
+
 
   </div>
+  <!-- End of Modal -->
 
+  <!-- Add button on corner -->
+  <button id="addButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAdd">+</button>
+  <!-- Add button on corner -->
 
-  <div ng-if="!$ctrl.content">
-    <div class="col-sm-6 upload">
-      <div class="upload-title">
-        Save a Recipe
+  <!-- Add Recipe Modal -->
+  <div class="modal fade" id="showAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content" id="modal-show-add">
+        <div class="upload-title">
+          Save a Recipe
+        </div>
+        <upload-recipe></upload-recipe>
       </div>
-      <upload-recipe></upload-recipe>
+
+
     </div>
   </div>
-  
+  <!-- Add Recipe Modal -->
+
+
 </div>

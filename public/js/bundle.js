@@ -79,6 +79,15 @@ var AUTH0_DOMAIN = 'zhusufeng.auth0.com';
 var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
 var AUTH0_API_AUDIENCE = 'angular';
 var REQUESTED_SCOPES = 'openid profile read:messages write:messages';
+// // external js: masonry.pkgd.js
+// $(document).ready(function(){
+//   $('.grid').masonry({
+//     itemSelector: '.grid-item',
+//     columnWidth: 30,
+//     horizontalOrder: true
+//   });
+// });
+"use strict";
 'use strict';
 
 angular.module('app').component('callback', {
@@ -199,9 +208,6 @@ angular.module('app').controller('InventoryCtrl', function () {});
 'use strict';
 
 angular.module('app').controller('InventoryEntryCtrl', function () {});
-'use strict';
-
-angular.module('app').controller('mainCtrl', function () {});
 'use strict';
 
 angular.module('app').controller('NavTest', function ($scope, authService) {
@@ -384,6 +390,9 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
     });
   });
 });
+'use strict';
+
+angular.module('app').controller('mainCtrl', function () {});
 'use strict';
 
 angular.module('app').service('authService', function ($state, angularAuth0, $timeout) {
