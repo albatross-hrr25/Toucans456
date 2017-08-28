@@ -4,16 +4,24 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cloudinary = require('cloudinary');
 
+// google cloud vision authentication
+const gcloud = require('google-cloud')({
+  keyFilename: 'key.json',
+  projectId: 'kevin su'
+});
+const vision = gcloud.vision();
+
+
 //Authorization Processor.
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa'); // Signing algorithm for JWT/Auth0
-const cors = require('cors'); 
+const cors = require('cors');
 // const jwtAuthz = require('express-jwt-authz'); // for scope
 // const jwt = require('jsonwebtoken');
 
 //clean storage
 const multer  = require('multer');
-const upload = multer({ dest: 'uploads/'});
+// const upload = multer({ dest: 'uploads/'});
 
 //Loading .env file. -Heroku
 require('dotenv').config();
@@ -74,7 +82,7 @@ var checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: 'https://zhusufeng.auth0.com/.well-known/jwks.json'  
+    jwksUri: 'https://zhusufeng.auth0.com/.well-known/jwks.json'
   }),
 
   // Validate the audience and the issuer
@@ -115,13 +123,13 @@ app.get('/api/private', checkJwt, function(req, res) {
 
 // ====Recipes Control====
 //--Search within Receipe--
-app.get('/api/recipes', recipeCtrl.findRecipes); 
+app.get('/api/recipes', recipeCtrl.findRecipes);
 
 //--Get data inside of that Receipe--
 app.get('/api/recipe', recipeCtrl.getRecipeData);
 
 //--Make New Receipe in the list--
-app.post('/api/recipes', upload.array('file', 4), recipeCtrl.addRecipe);
+// app.post('/api/recipes', upload.array('file', 4), recipeCtrl.addRecipe);
 
 //--Delete the Receipe--
 app.delete('/api/recipes', recipeCtrl.removeRecipe);
@@ -131,3 +139,29 @@ app.delete('/api/recipes', recipeCtrl.removeRecipe);
 app.get('/api/search', searchCtrl.searchAll);
 // =======================
 
+app.post('/upload', multer({ dest: './uploads/'}).single('file'), function(req,res){
+
+  console.log(req.body); // form fields for text
+  console.log(req.file); // form files for image
+
+  // cloudinary upload
+  cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+    if (err) {
+      console.log('Cloudinary Is Not Working');
+    } else {
+      console.log(result);
+    }
+  });
+
+  // google cloud vision
+  vision.detect(req.file.path, 'labels', function(err, detections, apiResponse) {
+    if (err) {
+      console.log('Google Cloud Vision Is Not Working');
+    } else {
+      var detectedText = JSON.stringify(detections, null, 4);
+      console.log(detectedText);
+      res.status(200).send(detectedText);
+    }
+
+  });
+});
