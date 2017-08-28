@@ -1,6 +1,6 @@
 angular.module('app').component('callback', {
 
   controller: 'CallbackCtrl',
-  templateUrl: 'views/callback.html',
+  templateUrl: 'views/callback.html'
 
 });
