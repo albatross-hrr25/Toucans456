@@ -3,6 +3,7 @@ Mac OSX ##
 
 ## NPM ##
 node_modules/
+bower_components/
 package-lock.json
 
 # Logs and databases #

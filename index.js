@@ -4,13 +4,17 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cloudinary = require('cloudinary');
 
+//Loading .env file. -Heroku
+require('dotenv').config();
+
+const googleKey = JSON.parse(process.env.google_key);
+
 // google cloud vision authentication
 const gcloud = require('google-cloud')({
-  keyFilename: 'key.json',
+  keyFilename: googleKey,
   projectId: 'kevin su'
 });
 const vision = gcloud.vision();
-
 
 //Authorization Processor.
 const jwt = require('express-jwt');
@@ -20,11 +24,12 @@ const cors = require('cors');
 // const jwt = require('jsonwebtoken');
 
 //clean storage
-const multer  = require('multer');
-// const upload = multer({ dest: 'uploads/'});
+const multer = require('multer');
+const upload = multer({
+  dest: 'uploads/'
+});
 
-//Loading .env file. -Heroku
-require('dotenv').config();
+
 
 //Database testing script.
 // var testDB = require('./server/testDatabase.js');
@@ -44,7 +49,7 @@ const cloudConfig = require('./server/cloudinaryConfig.js');
 
 //===PORT====================================
 app.listen(port, () => {
-  console.log('Node is listening on port ', port,' Stamp: ', Date());
+  console.log('Node is listening on port ', port, ' Stamp: ', Date());
 });
 //===PORT====================================
 
@@ -69,7 +74,9 @@ app.listen(port, () => {
 
 // =========Public root web Middleware======== //
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded( {extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 // =========Public root web Middleware======== //
 
@@ -112,12 +119,16 @@ app.get('/api/login', userCtrl.login);
 app.post('/api/signup', userCtrl.signup);
 
 // TEST AUTHORIZATION
-app.get('/api/public', function(req, res) {
-  res.json({ message: "Hello from a public endpoint! You don't need to be authenticated to see this." });
+app.get('/api/public', function (req, res) {
+  res.json({
+    message: "Hello from a public endpoint! You don't need to be authenticated to see this."
+  });
 });
 
-app.get('/api/private', checkJwt, function(req, res) {
-  res.json({ message: "You are logged in and can view this private message!" });
+app.get('/api/private', checkJwt, function (req, res) {
+  res.json({
+    message: "You are logged in and can view this private message!"
+  });
 });
 // ====================
 
@@ -129,7 +140,7 @@ app.get('/api/recipes', recipeCtrl.findRecipes);
 app.get('/api/recipe', recipeCtrl.getRecipeData);
 
 //--Make New Receipe in the list--
-// app.post('/api/recipes', upload.array('file', 4), recipeCtrl.addRecipe);
+app.post('/api/recipes', upload.array('file', 4), recipeCtrl.addRecipe);
 
 //--Delete the Receipe--
 app.delete('/api/recipes', recipeCtrl.removeRecipe);
@@ -139,22 +150,38 @@ app.delete('/api/recipes', recipeCtrl.removeRecipe);
 app.get('/api/search', searchCtrl.searchAll);
 // =======================
 
-app.post('/upload', multer({ dest: './uploads/'}).single('file'), function(req,res){
+app.post('/upload', multer({
+  dest: './uploads/'
+}).single('file'), function (req, res) {
 
-  console.log(req.body); // form fields for text
+  console.log('Showind body: ', req.body); // form fields for text
   console.log(req.file); // form files for image
+  console.log('Showing Recipe: ', req.body.newRecipe); // form files for image
+  console.log('Showing title: ', req.body.newRecipe.Title);
 
   // cloudinary upload
-  cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+  cloudinary.v2.uploader.upload(req.file.path, function (err, result) {
     if (err) {
       console.log('Cloudinary Is Not Working');
     } else {
-      console.log(result);
+      console.log(result.url);
+
+      console.log('To access tag input: ', req.body.newRecipe.Tags);
+
+      
+      db.Recipe.create({
+        title: req.body.newRecipe.Title,
+        imageUrl: result.url,
+        Tags: req.body.newRecipe.Tags
+      }, {
+        include: [db.Tag]  //UPDATE THIS TO HANDLE USERNAME
+      });
     }
   });
-
+  
+  
   // google cloud vision
-  vision.detect(req.file.path, 'labels', function(err, detections, apiResponse) {
+  vision.detect(req.file.path, 'labels', function (err, detections, apiResponse) {
     if (err) {
       console.log('Google Cloud Vision Is Not Working');
     } else {
