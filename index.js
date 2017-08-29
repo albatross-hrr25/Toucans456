@@ -7,11 +7,9 @@ const cloudinary = require('cloudinary');
 //Loading .env file. -Heroku
 require('dotenv').config();
 
-const googleKey = JSON.parse(process.env.google_key);
-
 // google cloud vision authentication
 const gcloud = require('google-cloud')({
-  keyFilename: googleKey,
+  keyFilename: process.env.google_key,
   projectId: 'kevin su'
 });
 const vision = gcloud.vision();
