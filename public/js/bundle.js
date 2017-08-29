@@ -76,7 +76,9 @@ angular.module('app').run(function ($rootScope, authService) {
 
 var AUTH0_CLIENT_ID = 'aZbdnVihkR6huEZNVWBRFkTb2l5I1Tk5';
 var AUTH0_DOMAIN = 'zhusufeng.auth0.com';
-var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
+var AUTH0_CALLBACK_URL = 'https://recipes-archive.herokuapp.com/';
+//var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
+
 var AUTH0_API_AUDIENCE = 'angular';
 var REQUESTED_SCOPES = 'openid profile read:messages write:messages';
 // // external js: masonry.pkgd.js
@@ -199,6 +201,203 @@ angular.module('app').component('uploadRecipe', {
 });
 
 //Checked KK
+'use strict';
+
+angular.module('app').controller('CallbackCtrl', function () {});
+'use strict';
+
+angular.module('app').controller('InventoryCtrl', function () {});
+'use strict';
+
+angular.module('app').controller('InventoryEntryCtrl', function () {});
+'use strict';
+
+angular.module('app').controller('NavTest', function ($scope, authService) {
+  $scope.auth = authService;
+  this.user = 'nav';
+});
+'use strict';
+
+angular.module('app').controller('PrimaryRecipeController', function ($scope) {});
+'use strict';
+
+angular.module('app').controller('ProfileCtrl', function ($scope, authService) {
+
+  var vm = this;
+  vm.auth = authService;
+  vm.profile;
+
+  if (authService.getCachedProfile()) {
+    vm.profile = authService.getCachedProfile();
+    console.log('Showing Profile: ', vm.profile);
+  } else {
+    authService.getProfile(function (err, profile) {
+      vm.profile = profile;
+      $scope.$apply();
+      console.log('Showing Profile: ', vm.profile);
+    });
+  }
+});
+'use strict';
+
+angular.module('app').controller('RecipeController', function ($scope, mainService, $state, authService) {
+  var _this = this;
+
+  // Set up use with Auth0 Service
+  var vm = this;
+  vm.auth = authService;
+
+  ////////handle switch views via ng-if////////
+  this.content = true;
+  this.runUpload = function () {
+    _this.content = false;
+  };
+
+  //////// search bar ////////
+  this.handleSearchResults = function (query) {
+    mainService.search({
+      query: query
+    }, function (recipes) {
+      $scope.recipes = recipes;
+      $scope.$apply();
+      console.log(recipes);
+    });
+  };
+
+  this.handleClickHome = function () {
+    _this.content = true;
+    mainService.getRecipes(null, function (recipes) {
+      $scope.recipes = recipes;
+      $scope.primaryRecipe = recipes[0];
+      $scope.$apply();
+    });
+  };
+
+  //////// GET service for primary recipe ////////
+  this.selectRecipe = function (recipe) {
+    console.log(recipe.id);
+    $scope.primaryRecipe = recipe;
+
+    // retrieve photos and associated data //
+    mainService.getRecipe(recipe.id, function (resObj) {
+      console.log('Retrieved data', resObj.data);
+      var tags = resObj.data.Tags;
+
+      $scope.selectRecipePhotos = resObj.data.Photos;
+      $scope.selectRecipeTags = tags.map(function (cur) {
+        return cur = cur.Tag;
+      });
+      $scope.selectRecipeIsStarred = resObj.data.isStarred;
+      $scope.selectRecipeTitle = resObj.data.title;
+
+      $scope.$apply();
+    });
+  };
+
+  //////// recipe app initializion ////////
+  mainService.getRecipes(null, function (recipes) {
+    $scope.recipes = recipes;
+    $scope.primaryRecipe = recipes[0];
+
+    mainService.getRecipe($scope.primaryRecipe.id, function (resObj) {
+      console.log('Retrieved data', resObj.data);
+      var tags = resObj.data.Tags;
+
+      $scope.selectRecipePhotos = resObj.data.Photos;
+      $scope.selectRecipeTags = tags.map(function (cur) {
+        return cur = cur.Tag;
+      });
+      $scope.selectRecipeIsStarred = resObj.data.isStarred;
+      $scope.selectRecipeTitle = resObj.data.title;
+
+      $scope.$apply();
+    });
+  });
+
+  //////// allows user to logout ////////
+  // this.logout = () => {
+  //   console.log('Logging out');
+  //   axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
+  //   store.remove('id_token');
+
+  //   $state.go('tourist');
+  // };
+});
+
+//Checked kk
+'use strict';
+
+angular.module('app').controller('TouristCtrl', function ($scope, authService) {
+
+  // Set up use with Auth0 Service
+  $scope.auth = authService;
+
+  // console.log('Show me auth: ', auth);
+
+});
+'use strict';
+
+angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout, mainService, Upload) {
+  var _this = this;
+
+  this.newRecipe = {};
+  this.showFailModal = function () {
+    $("#myModalfailed").modal('show');
+  };
+
+  this.showSuccessModal = function () {
+    $("#myModalsuccess").modal('show');
+  };
+
+  this.handlePhotoSubmit = function (file) {
+    //Retrieves all files from angular component
+    var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
+
+    //Retrieves all tags from angular component
+    var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
+
+    _this.newRecipe["Tags"] = addedTags.split(",");
+    _this.newRecipe["Photos"] = addedPhotos;
+    console.log("MEMEMEMEMEMEMEMEMMEMEMEME", _this.newRecipe);
+    var test = _this.newRecipe;
+
+    console.log(file);
+    file.upload = Upload.upload({
+      url: '/upload',
+      data: { file: file,
+        newRecipe: test
+      }
+    });
+
+    file.upload.then(function (response) {
+      console.log('success!', response);
+      $scope.imageData = response.data;
+    }, function (result) {
+      console.log('error :(', result);
+    });
+
+    // if (!!this.newRecipe.Title && addedPhotos.length !== 0) {
+    //   mainService.uploadFileToUrl(this.newRecipe, '/api/recipes');
+    //   this.showSuccessModal();
+    // } else {
+    //   this.showFailModal();
+    //   return false;
+    // }
+
+    $('#form_id').trigger("reset");
+    $(".tm-input").tagsManager('empty');
+  };
+
+  $timeout(function () {
+    // code to execute after directives goes here
+    $(".tm-input").tagsManager({
+      hiddenTagListName: "yolo"
+    });
+  });
+});
+'use strict';
+
+angular.module('app').controller('mainCtrl', function () {});
 'use strict';
 
 angular.module('app').service('authService', function ($state, angularAuth0, $timeout) {
@@ -411,201 +610,4 @@ angular.module('app').service('mainService', function () {
     });
   };
 });
-'use strict';
-
-angular.module('app').controller('CallbackCtrl', function () {});
-'use strict';
-
-angular.module('app').controller('InventoryCtrl', function () {});
-'use strict';
-
-angular.module('app').controller('InventoryEntryCtrl', function () {});
-'use strict';
-
-angular.module('app').controller('NavTest', function ($scope, authService) {
-  $scope.auth = authService;
-  this.user = 'nav';
-});
-'use strict';
-
-angular.module('app').controller('PrimaryRecipeController', function ($scope) {});
-'use strict';
-
-angular.module('app').controller('ProfileCtrl', function ($scope, authService) {
-
-  var vm = this;
-  vm.auth = authService;
-  vm.profile;
-
-  if (authService.getCachedProfile()) {
-    vm.profile = authService.getCachedProfile();
-    console.log('Showing Profile: ', vm.profile);
-  } else {
-    authService.getProfile(function (err, profile) {
-      vm.profile = profile;
-      $scope.$apply();
-      console.log('Showing Profile: ', vm.profile);
-    });
-  }
-});
-'use strict';
-
-angular.module('app').controller('RecipeController', function ($scope, mainService, $state, authService) {
-  var _this = this;
-
-  // Set up use with Auth0 Service
-  var vm = this;
-  vm.auth = authService;
-
-  ////////handle switch views via ng-if////////
-  this.content = true;
-  this.runUpload = function () {
-    _this.content = false;
-  };
-
-  //////// search bar ////////
-  this.handleSearchResults = function (query) {
-    mainService.search({
-      query: query
-    }, function (recipes) {
-      $scope.recipes = recipes;
-      $scope.$apply();
-      console.log(recipes);
-    });
-  };
-
-  this.handleClickHome = function () {
-    _this.content = true;
-    mainService.getRecipes(null, function (recipes) {
-      $scope.recipes = recipes;
-      $scope.primaryRecipe = recipes[0];
-      $scope.$apply();
-    });
-  };
-
-  //////// GET service for primary recipe ////////
-  this.selectRecipe = function (recipe) {
-    console.log(recipe.id);
-    $scope.primaryRecipe = recipe;
-
-    // retrieve photos and associated data //
-    mainService.getRecipe(recipe.id, function (resObj) {
-      console.log('Retrieved data', resObj.data);
-      var tags = resObj.data.Tags;
-
-      $scope.selectRecipePhotos = resObj.data.Photos;
-      $scope.selectRecipeTags = tags.map(function (cur) {
-        return cur = cur.Tag;
-      });
-      $scope.selectRecipeIsStarred = resObj.data.isStarred;
-      $scope.selectRecipeTitle = resObj.data.title;
-
-      $scope.$apply();
-    });
-  };
-
-  //////// recipe app initializion ////////
-  mainService.getRecipes(null, function (recipes) {
-    $scope.recipes = recipes;
-    $scope.primaryRecipe = recipes[0];
-
-    mainService.getRecipe($scope.primaryRecipe.id, function (resObj) {
-      console.log('Retrieved data', resObj.data);
-      var tags = resObj.data.Tags;
-
-      $scope.selectRecipePhotos = resObj.data.Photos;
-      $scope.selectRecipeTags = tags.map(function (cur) {
-        return cur = cur.Tag;
-      });
-      $scope.selectRecipeIsStarred = resObj.data.isStarred;
-      $scope.selectRecipeTitle = resObj.data.title;
-
-      $scope.$apply();
-    });
-  });
-
-  //////// allows user to logout ////////
-  // this.logout = () => {
-  //   console.log('Logging out');
-  //   axios.defaults.headers.common['Authorization'] = 'Bearer logged out';
-  //   store.remove('id_token');
-
-  //   $state.go('tourist');
-  // };
-});
-
-//Checked kk
-'use strict';
-
-angular.module('app').controller('TouristCtrl', function ($scope, authService) {
-
-  // Set up use with Auth0 Service
-  $scope.auth = authService;
-
-  // console.log('Show me auth: ', auth);
-
-});
-'use strict';
-
-angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout, mainService, Upload) {
-  var _this = this;
-
-  this.newRecipe = {};
-  this.showFailModal = function () {
-    $("#myModalfailed").modal('show');
-  };
-
-  this.showSuccessModal = function () {
-    $("#myModalsuccess").modal('show');
-  };
-
-  this.handlePhotoSubmit = function (file) {
-    //Retrieves all files from angular component
-    var addedPhotos = angular.element(document.querySelector("#upload_field"))[0].files;
-
-    //Retrieves all tags from angular component
-    var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
-
-    _this.newRecipe["Tags"] = addedTags.split(",");
-    _this.newRecipe["Photos"] = addedPhotos;
-    console.log("MEMEMEMEMEMEMEMEMMEMEMEME", _this.newRecipe);
-    var test = _this.newRecipe;
-
-    console.log(file);
-    file.upload = Upload.upload({
-      url: '/upload',
-      data: { file: file,
-        newRecipe: test
-      }
-    });
-
-    file.upload.then(function (response) {
-      console.log('success!', response);
-      $scope.imageData = response.data;
-    }, function (result) {
-      console.log('error :(', result);
-    });
-
-    // if (!!this.newRecipe.Title && addedPhotos.length !== 0) {
-    //   mainService.uploadFileToUrl(this.newRecipe, '/api/recipes');
-    //   this.showSuccessModal();
-    // } else {
-    //   this.showFailModal();
-    //   return false;
-    // }
-
-    $('#form_id').trigger("reset");
-    $(".tm-input").tagsManager('empty');
-  };
-
-  $timeout(function () {
-    // code to execute after directives goes here
-    $(".tm-input").tagsManager({
-      hiddenTagListName: "yolo"
-    });
-  });
-});
-'use strict';
-
-angular.module('app').controller('mainCtrl', function () {});
 //# sourceMappingURL=bundle.js.map
