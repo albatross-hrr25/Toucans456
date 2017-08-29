@@ -76,7 +76,10 @@ angular.module('app').run(function ($rootScope, authService) {
 
 var AUTH0_CLIENT_ID = 'aZbdnVihkR6huEZNVWBRFkTb2l5I1Tk5';
 var AUTH0_DOMAIN = 'zhusufeng.auth0.com';
-var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
+var AUTH0_CALLBACK_URL = 'https://recipes-archive.herokuapp.com/' || 'http://localhost:8000/';
+
+//var AUTH0_CALLBACK_URL = 'http://localhost:8000/';
+
 var AUTH0_API_AUDIENCE = 'angular';
 var REQUESTED_SCOPES = 'openid profile read:messages write:messages';
 // // external js: masonry.pkgd.js
@@ -88,117 +91,6 @@ var REQUESTED_SCOPES = 'openid profile read:messages write:messages';
 //   });
 // });
 "use strict";
-'use strict';
-
-angular.module('app').component('callback', {
-
-  controller: 'CallbackCtrl',
-  templateUrl: 'views/callback.html'
-
-});
-'use strict';
-
-angular.module('app').component('inventory', {
-
-  controller: 'InventoryCtrl',
-  templateUrl: 'views/inventory.html',
-  bindings: {
-    recipes: '<',
-    onClick: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('inventoryEntry', {
-
-  controller: 'InventoryEntryCtrl',
-  templateUrl: 'views/inventoryEntry.html',
-  bindings: {
-    recipe: '<',
-    onClick: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('main', {
-  controller: 'mainCtrl',
-  templateUrl: 'views/main.html'
-
-});
-'use strict';
-
-angular.module('app').component('navbar', {
-
-  controller: 'NavTest',
-  templateUrl: 'views/nav.html',
-  bindings: {
-    handlesearchresults: '<',
-    handleclickhome: '<',
-    logout: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('primaryRecipe', {
-
-  controller: 'PrimaryRecipeController',
-  templateUrl: 'views/primary-recipe.html',
-  bindings: {
-    recipe: '<',
-    photos: '<',
-    tags: '<',
-    star: '<',
-    title: '<'
-  }
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('profile', {
-
-  controller: 'ProfileCtrl',
-  templateUrl: 'views/profile.html'
-
-});
-'use strict';
-
-angular.module('app').component('recipeView', {
-
-  controller: 'RecipeController',
-  templateUrl: 'views/recipeView.html'
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('tourist', {
-
-  controller: 'TouristCtrl',
-  templateUrl: 'views/tourist.html'
-
-});
-
-//Checked KK
-'use strict';
-
-angular.module('app').component('uploadRecipe', {
-  controller: 'UploadRecipeCtrl',
-  templateUrl: 'views/uploadRecipe.html'
-});
-
-//Checked KK
 'use strict';
 
 angular.module('app').controller('CallbackCtrl', function () {});
@@ -354,10 +246,17 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
     //Retrieves all tags from angular component
     var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
 
+    _this.newRecipe["Tags"] = addedTags.split(",");
+    _this.newRecipe["Photos"] = addedPhotos;
+    console.log("MEMEMEMEMEMEMEMEMMEMEMEME", _this.newRecipe);
+    var test = _this.newRecipe;
+
     console.log(file);
     file.upload = Upload.upload({
       url: '/upload',
-      data: { file: file }
+      data: { file: file,
+        newRecipe: test
+      }
     });
 
     file.upload.then(function (response) {
@@ -367,17 +266,13 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
       console.log('error :(', result);
     });
 
-    _this.newRecipe["Tags"] = addedTags.split(",");
-    _this.newRecipe["Photos"] = addedPhotos;
-    console.log("MEMEMEMEMEMEMEMEMMEMEMEME", _this.newRecipe);
-
-    if (!!_this.newRecipe.Title && addedPhotos.length !== 0) {
-      mainService.uploadFileToUrl(_this.newRecipe, '/api/recipes');
-      _this.showSuccessModal();
-    } else {
-      _this.showFailModal();
-      return false;
-    }
+    // if (!!this.newRecipe.Title && addedPhotos.length !== 0) {
+    //   mainService.uploadFileToUrl(this.newRecipe, '/api/recipes');
+    //   this.showSuccessModal();
+    // } else {
+    //   this.showFailModal();
+    //   return false;
+    // }
 
     $('#form_id').trigger("reset");
     $(".tm-input").tagsManager('empty');
@@ -393,6 +288,117 @@ angular.module('app').controller('UploadRecipeCtrl', function ($scope, $timeout,
 'use strict';
 
 angular.module('app').controller('mainCtrl', function () {});
+'use strict';
+
+angular.module('app').component('callback', {
+
+  controller: 'CallbackCtrl',
+  templateUrl: 'views/callback.html'
+
+});
+'use strict';
+
+angular.module('app').component('inventory', {
+
+  controller: 'InventoryCtrl',
+  templateUrl: 'views/inventory.html',
+  bindings: {
+    recipes: '<',
+    onClick: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('inventoryEntry', {
+
+  controller: 'InventoryEntryCtrl',
+  templateUrl: 'views/inventoryEntry.html',
+  bindings: {
+    recipe: '<',
+    onClick: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('main', {
+  controller: 'mainCtrl',
+  templateUrl: 'views/main.html'
+
+});
+'use strict';
+
+angular.module('app').component('navbar', {
+
+  controller: 'NavTest',
+  templateUrl: 'views/nav.html',
+  bindings: {
+    handlesearchresults: '<',
+    handleclickhome: '<',
+    logout: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('primaryRecipe', {
+
+  controller: 'PrimaryRecipeController',
+  templateUrl: 'views/primary-recipe.html',
+  bindings: {
+    recipe: '<',
+    photos: '<',
+    tags: '<',
+    star: '<',
+    title: '<'
+  }
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('profile', {
+
+  controller: 'ProfileCtrl',
+  templateUrl: 'views/profile.html'
+
+});
+'use strict';
+
+angular.module('app').component('recipeView', {
+
+  controller: 'RecipeController',
+  templateUrl: 'views/recipeView.html'
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('tourist', {
+
+  controller: 'TouristCtrl',
+  templateUrl: 'views/tourist.html'
+
+});
+
+//Checked KK
+'use strict';
+
+angular.module('app').component('uploadRecipe', {
+  controller: 'UploadRecipeCtrl',
+  templateUrl: 'views/uploadRecipe.html'
+});
+
+//Checked KK
 'use strict';
 
 angular.module('app').service('authService', function ($state, angularAuth0, $timeout) {

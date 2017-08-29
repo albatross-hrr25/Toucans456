@@ -18,10 +18,17 @@ angular.module('app').controller('UploadRecipeCtrl',
     //Retrieves all tags from angular component
     var addedTags = angular.element(document.getElementsByName("yolo"))[0].value;
 
+    this.newRecipe["Tags"] = addedTags.split(",");
+    this.newRecipe["Photos"] = addedPhotos;
+    console.log("MEMEMEMEMEMEMEMEMMEMEMEME", this.newRecipe);
+    var test = this.newRecipe
+
     console.log(file);
     file.upload = Upload.upload({
       url: '/upload',
-      data: {file: file}
+      data: {file: file,
+        newRecipe: test  
+      }
     });
 
     file.upload.then(function (response) {
@@ -31,17 +38,16 @@ angular.module('app').controller('UploadRecipeCtrl',
       console.log('error :(', result);
     });
 
-    this.newRecipe["Tags"] = addedTags.split(",");
-    this.newRecipe["Photos"] = addedPhotos;
-    console.log("MEMEMEMEMEMEMEMEMMEMEMEME", this.newRecipe);
 
-    if (!!this.newRecipe.Title && addedPhotos.length !== 0) {
-      mainService.uploadFileToUrl(this.newRecipe, '/api/recipes');
-      this.showSuccessModal();
-    } else {
-      this.showFailModal();
-      return false;
-    }
+    
+
+    // if (!!this.newRecipe.Title && addedPhotos.length !== 0) {
+    //   mainService.uploadFileToUrl(this.newRecipe, '/api/recipes');
+    //   this.showSuccessModal();
+    // } else {
+    //   this.showFailModal();
+    //   return false;
+    // }
 
     $('#form_id').trigger("reset");
     $(".tm-input").tagsManager('empty');
